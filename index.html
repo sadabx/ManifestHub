@@ -369,7 +369,7 @@
           // Check if manifest exists using GitHub API
           try {
             const response = await fetch(
-              `https://api.github.com/repos/SteamAutoCracks/ManifestHub/branches/${gameId}`
+              `https://api.github.com/repos/sadabx/ManifestHub/branches/${gameId}`
             );
 
             if (response.status === 200) {
@@ -378,7 +378,7 @@
               await typeText(`> Preparing download link...\n`);
               await typeText(`> Ready for download.\n`);
 
-              const githubUrl = `https://codeload.github.com/SteamAutoCracks/ManifestHub/zip/refs/heads/${gameId}`;
+              const githubUrl = `https://codeload.github.com/sadabx/ManifestHub/zip/refs/heads/${gameId}`;
               downloadLink.href = githubUrl;
               downloadSection.classList.remove("hidden");
 
