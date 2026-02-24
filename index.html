@@ -368,54 +368,53 @@
           </div>
         </div>
 
-        <!-- IMPORTANT NOTICE ABOUT GAME COMPATIBILITY -->
-        <div class="warning-box mb-6">
-          <div class="warning-title">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span class="orbitron">BEFORE YOU REQUEST A GAME</span>
-          </div>
-          <p class="text-slate-300 text-sm mb-3">
-            The following types of games <span class="text-orange-400 font-bold">WILL NOT WORK</span> with SteamTools. Please don't request them:
-          </p>
-          <ul class="warning-list">
-            <li>
-              <i class="fas fa-globe"></i>
-              <span><span class="text-orange-400">Online co-op / multiplayer only</span> games that require server authentication</span>
-            </li>
-            <li>
-              <i class="fas fa-shield-alt"></i>
-              <span>Games with <span class="text-orange-400">Denuvo</span> or other advanced DRM protection</span>
-            </li>
-            <li>
-              <i class="fas fa-window-restore"></i>
-              <span>Games that require <span class="text-orange-400">3rd party launchers</span> (EA App, Ubisoft Connect, Rockstar Launcher, etc.)</span>
-            </li>
-            <li>
-              <i class="fas fa-link"></i>
-              <span>Games with <span class="text-orange-400">always-online</span> requirements</span>
-            </li>
-            <li>
-              <i class="fas fa-ban"></i>
-              <span>Free-to-play games that rely on microtransactions</span>
-            </li>
-          </ul>
-          <p class="text-slate-400 text-xs mt-3">
-            <i class="fas fa-info-circle mr-1"></i>
-            If you request these games, they'll be added to our blacklist and won't be fulfilled.
-          </p>
-        </div>
-
-        <!-- REQUEST GAME FORM (Formspree) - with cooldown, blacklist check, and requests.json check -->
-        <div class="mt-6 pt-6 border-t border-slate-700/50">
+        <!-- REQUEST GAME FORM (Formspree) - with warning inside the box -->
+        <div class="mt-10 pt-6 border-t border-slate-700/50">
           <div class="bg-slate-800/40 p-5 rounded-xl cyber-border">
             <h2 class="orbitron text-2xl mb-4 flex items-center">
               <i class="fas fa-paper-plane text-blue-400 mr-3"></i>
               REQUEST A GAME
             </h2>
+            
+            <!-- WARNING INSIDE THE REQUEST BOX -->
+            <div class="warning-box mb-4">
+              <div class="warning-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="orbitron text-sm">GAMES THAT WON'T WORK</span>
+              </div>
+              <ul class="warning-list text-xs">
+                <li>
+                  <i class="fas fa-globe"></i>
+                  <span>Online co-op / multiplayer only</span>
+                </li>
+                <li>
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Denuvo or advanced DRM</span>
+                </li>
+                <li>
+                  <i class="fas fa-window-restore"></i>
+                  <span>3rd party launchers (EA App, Ubi, Rockstar)</span>
+                </li>
+                <li>
+                  <i class="fas fa-link"></i>
+                  <span>Always-online requirements</span>
+                </li>
+                <li>
+                  <i class="fas fa-ban"></i>
+                  <span>Free-to-play / microtransactions</span>
+                </li>
+              </ul>
+              <p class="text-slate-500 text-xs mt-2">
+                <i class="fas fa-info-circle mr-1"></i>
+                These get blacklisted automatically
+              </p>
+            </div>
+
             <p class="text-slate-300 text-sm mb-4">
               Can't find the manifest? Submit a request — we only need the App
               ID and the game name.
             </p>
+            
             <!-- Cooldown timer display -->
             <div
               id="cooldownContainer"
@@ -426,6 +425,7 @@
               <span id="cooldownSeconds" class="cooldown-timer">60</span>
               seconds.
             </div>
+            
             <!-- Formspree endpoint -->
             <form
               id="requestForm"
