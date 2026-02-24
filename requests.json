@@ -1,7 +1,6 @@
 [
   { "appId": "3164500", "name": "Schedule I" },
   { "appId": "242760", "name": "The Forest" },
-  { "appId": "2322010", "name": "God of War Ragnarök" },
   { "appId": "3800340", "name": "Scootx" },
   { "appId": "1283970", "name": "YoloMouse" },
   { "appId": "391220", "name": "Rise of the Tomb Raider" },
@@ -11,12 +10,9 @@
   { "appId": "3008670", "name": "Poppy Playtime Chapter 4" },
   { "appId": "601050", "name": "AOT 2" },
   { "appId": "2069250", "name": "High on Life" },
-  { "appId": "990080", "name": "Hogwarts Legacy" },
   { "appId": "629730", "name": "Blade and Sorcery" },
   { "appId": "4100940", "name": "Poppy Playtime" },
-  { "appId": "997010", "name": "Police Simulator: Patrol Officers" },
   { "appId": "388090", "name": "Five Nights at Freddy's 4" },
   { "appId": "1588550", "name": "Cairn" },
-  { "appId": "", "name": "" }
+  { "appId": "703080", "name": "Planet Zoo" }
 ]
-
