@@ -11,10 +11,12 @@
   { "appId": "3240220", "name": "Grand Theft Auto V Enhanced" }, 
   { "appId": "1174180", "name": "Red Dead Redemption 2" },
   { "appId": "668580", "name": "Atomic Heart" },
-  { "appId": "3717070", "name": "WWE 2K26" }
+  { "appId": "3717070", "name": "WWE 2K26" },
   { "appId": "1551360", "name": "Forza Horizon 5" },
   { "appId": "1811260", "name": "FIFA 23" },
   { "appId": "3932890", "name": "Escape from Tarkov" },
-  { "appId": "2555190", "name": "Poppy Playtime - Chapter 3" }
+  { "appId": "2555190", "name": "Poppy Playtime - Chapter 3" },
+  { "appId": "990080", "name": "Hogwarts Legacy" },
+  { "appId": "2322010", "name": "God of War Ragnarök" },
+  { "appId": "997010", "name": "Police Simulator: Patrol Officers" }
 ]
-
