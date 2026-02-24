@@ -368,14 +368,14 @@
           </div>
         </div>
 
-        <!-- REQUEST GAME FORM (Formspree) - with warning inside the box -->
+        <!-- REQUEST GAME FORM (Cloudflare Worker) - with warning inside the box -->
         <div class="mt-10 pt-6 border-t border-slate-700/50">
           <div class="bg-slate-800/40 p-5 rounded-xl cyber-border">
             <h2 class="orbitron text-2xl mb-4 flex items-center">
               <i class="fas fa-paper-plane text-blue-400 mr-3"></i>
               REQUEST A GAME
             </h2>
-            
+
             <!-- WARNING INSIDE THE REQUEST BOX -->
             <div class="warning-box mb-4">
               <div class="warning-title">
@@ -414,7 +414,7 @@
               Can't find the manifest? Submit a request — we only need the App
               ID and the game name.
             </p>
-            
+
             <!-- Cooldown timer display -->
             <div
               id="cooldownContainer"
@@ -425,11 +425,11 @@
               <span id="cooldownSeconds" class="cooldown-timer">60</span>
               seconds.
             </div>
-            
-            <!-- Formspree endpoint -->
+
+            <!-- Cloudflare Worker endpoint - REPLACE THIS URL WITH YOUR WORKER URL -->
             <form
               id="requestForm"
-              action="https://formspree.io/f/xzdaydjj"
+              action="https://manifesthub-bridge.sadabsiperkhan.workers.dev/"
               method="POST"
             >
               <!-- two fields: appid and game name -->
@@ -442,7 +442,7 @@
                   >
                   <input
                     type="text"
-                    name="App ID"
+                    name="appId"
                     id="appid"
                     placeholder="e.g. 220968"
                     required
@@ -457,7 +457,7 @@
                   >
                   <input
                     type="text"
-                    name="Game Name"
+                    name="gameName"
                     id="gamename"
                     placeholder="e.g. Cyberpunk 2077"
                     required
@@ -465,12 +465,7 @@
                   />
                 </div>
               </div>
-              <!-- honeypot -->
-              <input
-                type="text"
-                name="_gotcha"
-                style="display: none !important"
-              />
+
               <button
                 type="submit"
                 id="submitRequestBtn"
@@ -785,7 +780,7 @@
           checkBtn.classList.add("from-blue-600", "to-purple-600");
         }
 
-        // ----- Request form handler with blacklist check, requests check, and cooldown -----
+        // ----- Request form handler with Cloudflare Worker -----
         requestForm.addEventListener("submit", async function (e) {
           e.preventDefault();
 
@@ -831,7 +826,7 @@
             return;
           }
 
-          // Proceed with Formspree submission
+          // Proceed with Cloudflare Worker submission
           const originalText = submitBtn.innerHTML;
           submitBtn.disabled = true;
           submitBtn.innerHTML =
@@ -845,27 +840,31 @@
           );
 
           try {
-            const formData = new FormData(requestForm);
+            // Prepare the data to match what your worker expects
+            const requestData = {
+              appId: appId,
+              gameName: gameName,
+            };
+
             const response = await fetch(requestForm.action, {
               method: "POST",
-              body: formData,
-              headers: { Accept: "application/json" },
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestData),
             });
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (response.ok && result.status === "success") {
               formFeedback.textContent =
                 "✅ Request sent! Thank you. (Cooldown 60s)";
               formFeedback.classList.add("text-green-400");
               requestForm.reset();
               startCooldown();
             } else {
-              const data = await response.json();
-              if (data.errors) {
-                formFeedback.textContent =
-                  "❌ Error: " + data.errors.map((e) => e.message).join(", ");
-              } else {
-                formFeedback.textContent = "❌ Submission failed. Try again?";
-              }
+              formFeedback.textContent =
+                "❌ Submission failed. Please try again.";
               formFeedback.classList.add("text-red-400");
             }
           } catch (error) {
