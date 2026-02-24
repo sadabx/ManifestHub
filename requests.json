@@ -13,9 +13,10 @@
   { "appId": "2069250", "name": "High on Life" },
   { "appId": "990080", "name": "Hogwarts Legacy" },
   { "appId": "629730", "name": "Blade and Sorcery" },
-  { "appId": "4100940", "name": "Poppy Playtime" }
-  { "appId": "997010", "name": "Police Simulator: Patrol Officers" }
-  { "appId": "388090", "name": "Five Nights at Freddy's 4" }
-  { "appId": "1588550", "name": "Cairn" }
+  { "appId": "4100940", "name": "Poppy Playtime" },
+  { "appId": "997010", "name": "Police Simulator: Patrol Officers" },
+  { "appId": "388090", "name": "Five Nights at Freddy's 4" },
+  { "appId": "1588550", "name": "Cairn" },
   { "appId": "", "name": "" }
 ]
+
