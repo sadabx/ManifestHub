@@ -6,60 +6,12 @@ This repository offers two ways to use the tool: a robust **Command Line Interfa
 
 ## 🚀 Features
 
-* **Dual CLI Support**:
-* `.bat` script for native Windows execution.
-* `.py` script for cross-platform support (Windows, macOS, Linux).
-
-
 * **Web Interface**: A responsive HTML5/Tailwind CSS interface for easy access via a browser.
 * **Automated Checks**: Instantly validates AppIDs against the ManifestHub database via the GitHub API.
 * **Direct Downloads**: Generates direct download links for manifest files.
 
-## 🛠️ Installation & Requirements
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/steam-manifest-hub.git
-cd steam-manifest-hub
-
-```
-
-### 2. Python Requirements (For CLI)
-
-If you intend to use the Python version of the tool, you will need to install the `requests` library:
-
-```bash
-pip install requests
-
-```
-
-*Note: The script uses standard libraries (`os`, `sys`, `re`, `time`) alongside `requests`.*
-
-## 📖 Usage
-
-### Option 1: CLI Edition (Windows Batch)
-
-Simply double-click the `Steam Manifest Hub - CLI Edition.bat` file.
-
-1. Launch the script.
-2. Read and accept the disclaimer by pressing `Y`.
-3. Enter your desired Steam AppID when prompted.
-
-### Option 2: CLI Edition (Python)
-
-Run the Python script from your terminal:
-
-```bash
-python "Steam Manifest Hub - CLI Edition.py"
-
-```
-
-1. The script will clear the screen and present the disclaimer.
-2. Accept the disclaimer to proceed.
-3. Enter a numeric AppID to search the database.
-
-### Option 3: Web Interface
+### Web Interface
 
 Open `index.html` in any modern web browser.
 
