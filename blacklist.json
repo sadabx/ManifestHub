@@ -1,23 +1,9 @@
 [
   { "appId": "2358720", "name": "Black Myth: Wukong" },
-  { "appId": "2054970", "name": "Dragon's Dogma 2" },
-  { "appId": "553850", "name": "HELLDIVERS 2" },
-  { "appId": "2161700", "name": "Persona 3 Reload" },
-  { "appId": "1774580", "name": "STAR WARS Jedi: Survivor" },
   { "appId": "2488620", "name": "EA SPORTS F1 24" },
   { "appId": "2322530", "name": "EA SPORTS FC 25" },
-  { "appId": "1938090", "name": "Call of Duty" },
-  { "appId": "2000950", "name": "Call of Duty®: Modern Warfare® (2019)" },
   { "appId": "3240220", "name": "Grand Theft Auto V Enhanced" }, 
   { "appId": "1174180", "name": "Red Dead Redemption 2" },
-  { "appId": "668580", "name": "Atomic Heart" },
-  { "appId": "3717070", "name": "WWE 2K26" },
-  { "appId": "1551360", "name": "Forza Horizon 5" },
-  { "appId": "1811260", "name": "FIFA 23" },
-  { "appId": "3932890", "name": "Escape from Tarkov" },
-  { "appId": "2555190", "name": "Poppy Playtime - Chapter 3" },
-  { "appId": "990080", "name": "Hogwarts Legacy" },
-  { "appId": "2322010", "name": "God of War Ragnarök" },
-  { "appId": "997010", "name": "Police Simulator: Patrol Officers" },
-  { "appId": "2531310", "name": "The Last of Us Part II Remastered" }
+  { "appId": "1811260", "name": "FIFA 23" }
 ]
+
