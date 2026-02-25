@@ -105,7 +105,6 @@
         padding: 2rem;
         max-width: 500px;
         width: 90%;
-        text-align: center;
         box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
       }
 
@@ -113,24 +112,28 @@
         font-size: 0.9rem;
         margin-top: 0.5rem;
       }
+
       .unsupported-icon {
-        color: #f97316; /* orange */
+        color: #f97316;
         animation: pulse 1.5s infinite;
       }
       .info-icon {
-        color: #3b82f6; /* blue */
+        color: #3b82f6;
       }
       .cooldown-timer {
         font-family: "Orbitron", monospace;
         font-weight: 700;
       }
+
       .warning-box {
         background: rgba(255, 165, 0, 0.1);
         border-left: 4px solid #f97316;
         padding: 1rem;
         border-radius: 0.5rem;
         margin-bottom: 1.5rem;
+        text-align: left;
       }
+
       .warning-title {
         color: #f97316;
         font-weight: 600;
@@ -139,11 +142,13 @@
         align-items: center;
         gap: 0.5rem;
       }
+
       .warning-list {
         list-style-type: none;
         padding: 0;
         margin: 0;
       }
+
       .warning-list li {
         display: flex;
         align-items: center;
@@ -152,14 +157,114 @@
         font-size: 0.9rem;
         color: #e2e8f0;
       }
+
       .warning-list i {
         width: 1.25rem;
         color: #f97316;
       }
+
+      .search-results {
+        max-height: 400px;
+        overflow-y: auto;
+        border-radius: 0.5rem;
+        background: rgba(30, 41, 59, 0.5);
+        margin-top: 1rem;
+      }
+
+      .result-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        border-bottom: 1px solid rgba(71, 85, 105, 0.5);
+        transition: background 0.2s;
+      }
+
+      .result-item:hover {
+        background: rgba(51, 65, 85, 0.5);
+      }
+
+      .result-img {
+        width: 120px;
+        height: 45px;
+        object-fit: cover;
+        border-radius: 0.25rem;
+        background: #1e293b;
+      }
+
+      .result-info {
+        flex: 1;
+      }
+
+      .result-info strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .result-sub {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .badge-game {
+        background: rgba(52, 211, 153, 0.2);
+        color: #34d399;
+      }
+      .badge-dlc {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+      }
+      .badge-software {
+        background: rgba(167, 139, 250, 0.2);
+        color: #a78bfa;
+      }
+      .badge-depot {
+        background: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+      }
+
+      .no-results {
+        text-align: center;
+        color: #94a3b8;
+        padding: 2rem;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .lua-suggestion {
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid #34d399;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .accordion-button {
+        transition: all 0.3s ease;
+      }
+
+      .accordion-button i {
+        transition: transform 0.3s ease;
+      }
     </style>
   </head>
   <body class="flex flex-col items-center justify-center p-4">
-    <!-- Disclaimer Modal -->
+    <!-- Disclaimer Modal (Now contains the warning box) -->
     <div id="disclaimerModal" class="modal-overlay">
       <div class="modal-content">
         <div class="mb-6">
@@ -170,26 +275,43 @@
             DISCLAIMER
           </h2>
         </div>
-
         <div class="text-left mb-6">
           <h3 class="orbitron text-lg text-blue-400 mb-2">README:</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
             This website is for informational purposes only. We are not
             responsible for any consequences that may arise from using the
             provided data.
           </p>
-        </div>
 
+          <!-- WARNING BOX MOVED INSIDE DISCLAIMER MODAL -->
+          <div class="warning-box">
+            <div class="warning-title">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span class="orbitron text-sm">GAMES THAT WON'T WORK</span>
+            </div>
+            <ul class="warning-list text-xs">
+              <li>
+                <i class="fas fa-globe"></i> Online co-op / multiplayer only
+              </li>
+              <li><i class="fas fa-shield-alt"></i> Denuvo or advanced DRM</li>
+              <li>
+                <i class="fas fa-window-restore"></i> 3rd party launchers (EA
+                App, Ubi, Rockstar)
+              </li>
+              <li><i class="fas fa-link"></i> Always-online requirements</li>
+            </ul>
+          </div>
+        </div>
         <button
           id="acceptDisclaimer"
-          class="orbitron bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          class="orbitron bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-full"
         >
           I Understand & Accept The Risks
         </button>
       </div>
     </div>
 
-    <!-- Unsupported Game Popup Modal (triggered by blacklist.json) -->
+    <!-- Unsupported Game Modal -->
     <div id="unsupportedModal" class="modal-overlay hidden">
       <div
         class="modal-content border-orange-500"
@@ -207,20 +329,18 @@
           <p
             class="text-slate-300 text-md leading-relaxed"
             id="unsupportedGameMessage"
-          >
-            This game is not compatible and won't work with the current tool.
-          </p>
+          ></p>
         </div>
         <button
           id="closeUnsupportedModal"
-          class="orbitron bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          class="orbitron bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 w-full"
         >
           GOT IT
         </button>
       </div>
     </div>
 
-    <!-- Already Requested Popup Modal (triggered by requests.json) -->
+    <!-- Already Requested Modal -->
     <div id="requestedModal" class="modal-overlay hidden">
       <div class="modal-content border-blue-500" style="border-color: #3b82f6">
         <div class="mb-6">
@@ -233,13 +353,11 @@
           <p
             class="text-slate-300 text-md leading-relaxed"
             id="requestedGameMessage"
-          >
-            This game has already been submitted to our request list.
-          </p>
+          ></p>
         </div>
         <button
           id="closeRequestedModal"
-          class="orbitron bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="orbitron bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
         >
           GOT IT
         </button>
@@ -253,8 +371,7 @@
           STEAM MANIFEST HUB
         </h1>
         <p class="text-slate-300 text-lg">
-          Download Steam application manifests with an App ID to use with
-          SteamTools
+          Download Steam application manifests or generate Lua depot key files
         </p>
         <p class="text-blue-400 text-sm mt-2">
           Made By
@@ -273,7 +390,6 @@
             >Download SteamTools</a
           >
         </p>
-
         <div class="flex justify-center mt-4">
           <div
             class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
@@ -285,15 +401,45 @@
       <main
         class="cyber-border bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 md:p-8 glow-box"
       >
-        <!-- Input Section -->
+        <!-- Status & Progress -->
+        <div
+          id="infoBox"
+          class="bg-blue-900/30 border border-blue-700/50 rounded-lg p-3 mb-4 text-sm"
+        >
+          <i class="fas fa-circle-notch fa-spin text-blue-400 mr-2"></i>
+          <span id="statusText">Loading data...</span>
+        </div>
+
+        <!-- Stats -->
+        <div id="statsContainer" class="grid grid-cols-3 gap-3 mb-6 hidden">
+          <div class="bg-slate-800/80 rounded-lg p-3 text-center">
+            <div class="text-2xl font-bold text-blue-400" id="statDepots">
+              0
+            </div>
+            <div class="text-xs text-slate-400">Depot Keys</div>
+          </div>
+          <div class="bg-slate-800/80 rounded-lg p-3 text-center">
+            <div class="text-2xl font-bold text-green-400" id="statSupported">
+              0
+            </div>
+            <div class="text-xs text-slate-400">Supported</div>
+          </div>
+          <div class="bg-slate-800/80 rounded-lg p-3 text-center">
+            <div class="text-2xl font-bold text-purple-400" id="statTotal">
+              0
+            </div>
+            <div class="text-xs text-slate-400">Total Apps</div>
+          </div>
+        </div>
+
+        <!-- Manifest Check Section -->
         <div class="mb-8">
+          <h2 class="orbitron text-xl mb-4 flex items-center">
+            <i class="fas fa-search text-blue-400 mr-3"></i>
+            CHECK MANIFEST
+          </h2>
           <div class="flex flex-col md:flex-row gap-4">
             <div class="flex-1">
-              <label
-                for="gameId"
-                class="block text-sm font-medium text-slate-300 mb-2 orbitron"
-                >ENTER YOUR DESIRED STEAM APP ID</label
-              >
               <div class="relative">
                 <div
                   class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
@@ -317,100 +463,108 @@
               </button>
             </div>
           </div>
-        </div>
 
-        <!-- Results Section -->
-        <div id="resultsSection" class="hidden">
-          <div class="terminal-text p-5 rounded-lg mb-6">
-            <div class="flex items-center mb-3">
-              <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          <!-- Terminal Output -->
+          <div id="resultsSection" class="hidden mt-4">
+            <div class="terminal-text p-4 rounded-lg">
+              <div class="flex items-center mb-2">
+                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <pre
+                id="terminalOutput"
+                class="text-green-400 overflow-x-auto whitespace-pre-wrap font-mono text-sm"
+              ></pre>
             </div>
-            <pre
-              id="terminalOutput"
-              class="text-green-400 overflow-x-auto whitespace-pre-wrap"
-            ></pre>
-          </div>
 
-          <div id="downloadSection" class="hidden text-center">
-            <a
-              id="downloadLink"
-              class="inline-block orbitron bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-            >
-              <i class="fas fa-download mr-2"></i> DOWNLOAD MANIFEST
-            </a>
-            <p class="text-slate-300 mt-3 text-sm">
-              Files are downloaded from the
+            <!-- Download Manifest Button -->
+            <div id="downloadSection" class="hidden text-center mt-4">
               <a
-                href="https://github.com/sadabx/ManifestHub/"
-                class="text-purple-400 hover:text-purple-300 transition-colors"
-                target="_blank"
-                >ManifestHub</a
+                id="downloadLink"
+                class="inline-block orbitron bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500"
+                download
               >
-            </p>
-          </div>
+                <i class="fas fa-download mr-2"></i> DOWNLOAD MANIFEST
+              </a>
+            </div>
 
-          <div id="notFoundSection" class="hidden text-center py-6">
-            <div
-              class="inline-flex items-center bg-red-900/30 border border-red-700/50 px-6 py-4 rounded-lg"
-            >
-              <i
-                class="fas fa-exclamation-triangle text-red-400 mr-3 text-2xl"
-              ></i>
-              <div>
-                <h3 class="orbitron text-red-300">MANIFEST NOT FOUND</h3>
-                <p class="text-slate-300 text-sm">
-                  No manifests were found for this Steam application, for now...
+            <!-- Lua Alternative Button -->
+            <div id="luaAlternativeSection" class="hidden text-center mt-4">
+              <div class="lua-suggestion">
+                <i class="fas fa-key text-green-400 text-2xl mb-2"></i>
+                <p class="text-slate-300 mb-3">
+                  Wait! Lua keys are available in our database.
                 </p>
+                <button
+                  id="generateLuaBtn"
+                  class="orbitron bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-500 hover:to-teal-500 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  <i class="fas fa-file-code mr-2"></i> GENERATE LUA INSTEAD
+                </button>
+              </div>
+            </div>
+
+            <!-- Not Found Section -->
+            <div id="notFoundSection" class="hidden text-center mt-4">
+              <div
+                class="inline-flex items-center bg-red-900/30 border border-red-700/50 px-6 py-4 rounded-lg"
+              >
+                <i
+                  class="fas fa-exclamation-triangle text-red-400 mr-3 text-2xl"
+                ></i>
+                <div>
+                  <h3 class="orbitron text-red-300">MANIFEST NOT FOUND</h3>
+                  <p class="text-slate-300 text-sm" id="notFoundMessage">
+                    No manifests were found for this Steam application.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- REQUEST GAME FORM (Cloudflare Worker) - with warning inside the box -->
-        <div class="mt-10 pt-6 border-t border-slate-700/50">
-          <div class="bg-slate-800/40 p-5 rounded-xl cyber-border">
-            <h2 class="orbitron text-2xl mb-4 flex items-center">
-              <i class="fas fa-paper-plane text-blue-400 mr-3"></i>
-              REQUEST A GAME
-            </h2>
-
-            <!-- WARNING INSIDE THE REQUEST BOX -->
-            <div class="warning-box mb-4">
-              <div class="warning-title">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span class="orbitron text-sm">GAMES THAT WON'T WORK</span>
-              </div>
-              <ul class="warning-list text-xs">
-                <li>
-                  <i class="fas fa-globe"></i>
-                  <span>Online co-op / multiplayer only</span>
-                </li>
-                <li>
-                  <i class="fas fa-shield-alt"></i>
-                  <span>Denuvo or advanced DRM</span>
-                </li>
-                <li>
-                  <i class="fas fa-window-restore"></i>
-                  <span>3rd party launchers (EA App, Ubi, Rockstar)</span>
-                </li>
-                <li>
-                  <i class="fas fa-link"></i>
-                  <span>Always-online requirements</span>
-                </li>
-              </ul>
-              <p class="text-slate-500 text-xs mt-2">
-                <i class="fas fa-info-circle mr-1"></i>
-                These get blacklisted automatically
-              </p>
+        <!-- Lua Generator Section -->
+        <div class="mb-8 pt-6 border-t border-slate-700/50">
+          <h2 class="orbitron text-xl mb-4 flex items-center">
+            <i class="fas fa-key text-green-400 mr-3"></i>
+            GENERATE LUA KEYS
+          </h2>
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <i class="fas fa-search text-slate-400"></i>
             </div>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search supported games by name or AppID..."
+              class="pl-10 w-full bg-slate-700/50 border border-slate-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              disabled
+            />
+          </div>
+          <div id="searchResults" class="search-results mt-2"></div>
+        </div>
 
-            <p class="text-slate-300 text-sm mb-4">
-              Can't find the manifest? Submit a request
-            </p>
+        <!-- Expandable/Collapsible Request Form Accordion -->
+        <div class="pt-6 border-t border-slate-700/50">
+          <button
+            id="requestAccordionBtn"
+            class="accordion-button w-full flex items-center justify-between bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:from-purple-600/30 hover:to-pink-600/30 border border-purple-500/30 rounded-lg p-4 transition-all duration-300"
+          >
+            <span class="orbitron text-lg flex items-center">
+              <i class="fas fa-paper-plane text-purple-400 mr-3"></i>
+              WANT TO REQUEST A GAME?
+            </span>
+            <i
+              id="accordionIcon"
+              class="fas fa-chevron-down text-purple-400 transition-transform duration-300"
+            ></i>
+          </button>
 
-            <!-- Cooldown timer display -->
+          <!-- Hidden Request Form Container -->
+          <div id="requestFormContainer" class="hidden mt-4">
             <div
               id="cooldownContainer"
               class="mb-3 text-sm text-orange-400 hidden"
@@ -421,13 +575,11 @@
               seconds.
             </div>
 
-            <!-- Cloudflare Worker endpoint - REPLACE THIS URL WITH YOUR WORKER URL -->
             <form
               id="requestForm"
               action="https://manifesthub-bridge.sadabsiperkhan.workers.dev/"
               method="POST"
             >
-              <!-- two fields: appid and game name -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label
@@ -473,7 +625,7 @@
           </div>
         </div>
 
-        <!-- Info Section -->
+        <!-- Info Grid -->
         <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-800/30 p-4 rounded-lg">
             <div class="text-blue-400 mb-2">
@@ -497,8 +649,8 @@
             </div>
             <h3 class="orbitron text-lg mb-1">Database</h3>
             <p class="text-slate-300 text-sm">
-              The manifests are stored on GitHub and downloaded directly from
-              their servers.
+              The manifests and depot keys are stored on GitHub and downloaded
+              directly from their servers.
             </p>
           </div>
           <div class="bg-slate-800/30 p-4 rounded-lg">
@@ -532,72 +684,10 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // ----- Load blacklist from external JSON file -----
-        let blacklistedGames = [];
-
-        async function loadBlacklist() {
-          try {
-            const response = await fetch("blacklist.json");
-            if (!response.ok) {
-              console.warn(
-                "Could not load blacklist.json, defaulting to empty list."
-              );
-              blacklistedGames = [];
-              return;
-            }
-            blacklistedGames = await response.json();
-            if (!Array.isArray(blacklistedGames)) blacklistedGames = [];
-          } catch (e) {
-            console.warn("Error loading blacklist, default empty.");
-            blacklistedGames = [];
-          }
-        }
-
-        // ----- Load already requested games from external JSON file -----
-        let requestedGames = [];
-
-        async function loadRequestedGames() {
-          try {
-            const response = await fetch("requests.json");
-            if (!response.ok) {
-              console.warn(
-                "Could not load requests.json, defaulting to empty list."
-              );
-              requestedGames = [];
-              return;
-            }
-            requestedGames = await response.json();
-            if (!Array.isArray(requestedGames)) requestedGames = [];
-          } catch (e) {
-            console.warn("Error loading requests.json, default empty.");
-            requestedGames = [];
-          }
-        }
-
-        // Load both files
-        Promise.all([loadBlacklist(), loadRequestedGames()]).then(() => {
-          console.log("Blacklist and requests loaded.");
-        });
-
-        // ----- Modal elements -----
+        // ========== MODALS ==========
         const disclaimerModal = document.getElementById("disclaimerModal");
         const unsupportedModal = document.getElementById("unsupportedModal");
-        const closeUnsupportedBtn = document.getElementById(
-          "closeUnsupportedModal"
-        );
-        const unsupportedGameMessage = document.getElementById(
-          "unsupportedGameMessage"
-        );
-
         const requestedModal = document.getElementById("requestedModal");
-        const closeRequestedBtn = document.getElementById(
-          "closeRequestedModal"
-        );
-        const requestedGameMessage = document.getElementById(
-          "requestedGameMessage"
-        );
-
-        disclaimerModal.classList.remove("hidden");
 
         document
           .getElementById("acceptDisclaimer")
@@ -605,30 +695,497 @@
             disclaimerModal.classList.add("hidden");
           });
 
-        closeUnsupportedBtn.addEventListener("click", function () {
-          unsupportedModal.classList.add("hidden");
+        document
+          .getElementById("closeUnsupportedModal")
+          .addEventListener("click", function () {
+            unsupportedModal.classList.add("hidden");
+          });
+
+        document
+          .getElementById("closeRequestedModal")
+          .addEventListener("click", function () {
+            requestedModal.classList.add("hidden");
+          });
+
+        // ========== ACCORDION FUNCTIONALITY ==========
+        const accordionBtn = document.getElementById("requestAccordionBtn");
+        const requestFormContainer = document.getElementById(
+          "requestFormContainer"
+        );
+        const accordionIcon = document.getElementById("accordionIcon");
+        const appIdField = document.getElementById("appid");
+
+        accordionBtn.addEventListener("click", function () {
+          // Toggle form visibility
+          requestFormContainer.classList.toggle("hidden");
+
+          // Toggle icon
+          if (requestFormContainer.classList.contains("hidden")) {
+            accordionIcon.className = "fas fa-chevron-down text-purple-400";
+          } else {
+            accordionIcon.className = "fas fa-chevron-up text-purple-400";
+            // Focus on AppID field when expanded
+            setTimeout(() => appIdField.focus(), 100);
+          }
         });
 
-        closeRequestedBtn.addEventListener("click", function () {
-          requestedModal.classList.add("hidden");
-        });
+        // ========== GLOBAL DATA ==========
+        let blacklistedGames = [];
+        let requestedGames = [];
+        let depotKeys = {};
+        let appNames = {};
+        let appTypes = {};
+        let appDepots = {};
+        let searchable = [];
 
-        // ----- Cooldown state -----
+        // Cooldown
         let cooldownUntil = 0;
         const COOLDOWN_SECONDS = 60;
-        const cooldownContainer = document.getElementById("cooldownContainer");
-        const cooldownSecondsSpan = document.getElementById("cooldownSeconds");
+
+        // Current app for Lua generation
+        let currentAppId = null;
+        let currentAppName = null;
+
+        // ========== UTILITY FUNCTIONS ==========
+        function escapeHtml(text) {
+          return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function updateStatus(message, isError = false) {
+          const statusEl = document.getElementById("statusText");
+          const infoBox = document.getElementById("infoBox");
+          statusEl.innerHTML = message;
+          if (isError) {
+            infoBox.className =
+              "bg-red-900/30 border border-red-700/50 rounded-lg p-3 mb-4 text-sm";
+          } else {
+            infoBox.className =
+              "bg-blue-900/30 border border-blue-700/50 rounded-lg p-3 mb-4 text-sm";
+          }
+        }
+
+        function log(message) {
+          console.log(message);
+        }
+
+        // ========== LOAD BLACKLIST AND REQUESTS ==========
+        async function loadBlacklist() {
+          try {
+            const response = await fetch("blacklist.json");
+            if (response.ok) {
+              blacklistedGames = await response.json();
+              if (!Array.isArray(blacklistedGames)) blacklistedGames = [];
+            }
+          } catch (e) {
+            console.warn("Could not load blacklist.json");
+          }
+        }
+
+        async function loadRequestedGames() {
+          try {
+            const response = await fetch("requests.json");
+            if (response.ok) {
+              requestedGames = await response.json();
+              if (!Array.isArray(requestedGames)) requestedGames = [];
+            }
+          } catch (e) {
+            console.warn("Could not load requests.json");
+          }
+        }
+
+        // ========== LOAD DEPOT KEYS ==========
+        async function loadDepotKeys() {
+          updateStatus("Loading depot keys...");
+
+          try {
+            const response = await fetch(
+              "https://raw.githubusercontent.com/fylsdy/ManifestHub/refs/heads/main/depotkeys(178%2C474)(By%20Sudama).json"
+            );
+            depotKeys = await response.json();
+            updateStatus(
+              `✅ Loaded ${Object.keys(depotKeys).length} depot keys`
+            );
+            document.getElementById("statDepots").textContent =
+              Object.keys(depotKeys).length;
+          } catch (e) {
+            updateStatus("❌ Failed to load depot keys", true);
+            console.error(e);
+          }
+        }
+
+        // ========== LOAD APP LISTS ==========
+        async function loadAppLists() {
+          updateStatus("Loading game catalogues...");
+
+          try {
+            // Load games
+            const gamesResponse = await fetch(
+              "https://raw.githubusercontent.com/jsnli/steamappidlist/refs/heads/master/data/games_appid.json"
+            );
+            const games = await gamesResponse.json();
+            games.forEach((app) => {
+              appNames[app.appid] = app.name;
+              appTypes[app.appid] = "game";
+            });
+
+            // Load DLCs
+            const dlcResponse = await fetch(
+              "https://raw.githubusercontent.com/jsnli/steamappidlist/refs/heads/master/data/dlc_appid.json"
+            );
+            const dlcs = await dlcResponse.json();
+            dlcs.forEach((app) => {
+              appNames[app.appid] = app.name;
+              appTypes[app.appid] = "dlc";
+            });
+
+            // Load software
+            const softwareResponse = await fetch(
+              "https://raw.githubusercontent.com/jsnli/steamappidlist/refs/heads/master/data/software_appid.json"
+            );
+            const software = await softwareResponse.json();
+            software.forEach((app) => {
+              appNames[app.appid] = app.name;
+              appTypes[app.appid] = "software";
+            });
+
+            document.getElementById("statTotal").textContent =
+              Object.keys(appNames).length;
+
+            // Build mapping
+            buildMapping();
+          } catch (e) {
+            updateStatus("❌ Failed to load app lists", true);
+            console.error(e);
+          }
+        }
+
+        // ========== BUILD MAPPING ==========
+        function buildMapping() {
+          updateStatus("Building app mapping...");
+
+          const MAX_DISTANCE = 100;
+          const sortedAppids = Object.keys(appNames)
+            .map(Number)
+            .sort((a, b) => a - b);
+          const raw = {};
+
+          Object.keys(depotKeys).forEach((depotStr) => {
+            const depotId = parseInt(depotStr);
+
+            // Binary search for closest appid
+            let left = 0,
+              right = sortedAppids.length - 1;
+            while (left <= right) {
+              const mid = Math.floor((left + right) / 2);
+              if (sortedAppids[mid] < depotId) {
+                left = mid + 1;
+              } else {
+                right = mid - 1;
+              }
+            }
+
+            if (left < sortedAppids.length) {
+              const appId = sortedAppids[left];
+              if (appId - depotId <= MAX_DISTANCE && appId >= depotId) {
+                if (!raw[appId]) raw[appId] = new Set();
+                raw[appId].add(depotId);
+              }
+            }
+
+            if (right >= 0) {
+              const appId = sortedAppids[right];
+              if (depotId - appId <= MAX_DISTANCE && depotId >= appId) {
+                if (!raw[appId]) raw[appId] = new Set();
+                raw[appId].add(depotId);
+              }
+            }
+          });
+
+          // Convert Sets to arrays
+          appDepots = {};
+          Object.keys(raw).forEach((appIdStr) => {
+            const appId = parseInt(appIdStr);
+            if (appNames[appId]) {
+              appDepots[appId] = Array.from(raw[appId]).sort((a, b) => a - b);
+            }
+          });
+
+          // Build searchable array
+          searchable = Object.keys(appDepots)
+            .map((appId) => parseInt(appId))
+            .sort((a, b) => a - b)
+            .map((appId) => ({
+              appId: appId,
+              name: appNames[appId],
+              nameLower: appNames[appId].toLowerCase(),
+              appIdStr: appId.toString(),
+            }));
+
+          const supported = searchable.length;
+          document.getElementById("statSupported").textContent = supported;
+          document.getElementById("statsContainer").classList.remove("hidden");
+          document.getElementById("searchInput").disabled = false;
+
+          updateStatus(`✅ Ready! ${supported} supported apps`);
+        }
+
+        // ========== GENERATE LUA ==========
+        function generateLua(appId, name) {
+          const depots = appDepots[appId] || [];
+          if (depots.length === 0) {
+            updateStatus(`❌ No depots for ${name}`, true);
+            return;
+          }
+
+          const lua = [`addappid(${appId})`];
+          let validCount = 0;
+
+          for (const depot of depots) {
+            const key = depotKeys[depot.toString()];
+            if (key) {
+              lua.push(`addappid(${depot},0,"${key}")`);
+              validCount++;
+            }
+          }
+
+          if (validCount === 0) {
+            updateStatus(`❌ No keys for ${name}`, true);
+            return;
+          }
+
+          // Create and download file
+          const blob = new Blob([lua.join("\n")], { type: "text/plain" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `${appId}.lua`;
+          a.click();
+          URL.revokeObjectURL(url);
+
+          updateStatus(`✅ Generated ${appId}.lua with ${validCount} depots`);
+        }
+
+        // ========== SEARCH FUNCTIONALITY ==========
+        const searchInput = document.getElementById("searchInput");
+        const searchResults = document.getElementById("searchResults");
+
+        searchInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase().trim();
+          searchResults.innerHTML = "";
+
+          if (query.length < 2) return;
+
+          let count = 0;
+          for (const item of searchable) {
+            if (
+              item.nameLower.includes(query) ||
+              item.appIdStr.includes(query)
+            ) {
+              const appId = item.appId;
+              const name = item.name;
+              const type = appTypes[appId] || "game";
+              const depots = appDepots[appId] || [];
+              const depotCount = depots.length;
+
+              const div = document.createElement("div");
+              div.className = "result-item";
+              div.innerHTML = `
+                            <img class="result-img" src="https://cdn.akamai.steamstatic.com/steam/apps/${appId}/capsule_184x69.jpg" alt="${escapeHtml(
+                name
+              )}" loading="lazy" onerror="this.style.display='none'">
+                            <div class="result-info">
+                                <strong>${escapeHtml(name)}</strong>
+                                <div class="result-sub">
+                                    <span class="badge badge-${type}">${type}</span>
+                                    <span class="badge badge-depot">${depotCount} depot${
+                depotCount !== 1 ? "s" : ""
+              }</span>
+                                    <span>AppID ${appId}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="generate-lua-btn bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-1 px-3 rounded transition-colors" data-appid="${appId}" data-name="${escapeHtml(
+                name
+              )}">
+                                    <i class="fas fa-file-code mr-1"></i> LUA
+                                </button>
+                            </div>
+                        `;
+
+              searchResults.appendChild(div);
+              count++;
+              if (count >= 50) break;
+            }
+          }
+
+          if (count === 0) {
+            const div = document.createElement("div");
+            div.className = "no-results";
+            div.innerHTML = "🚫 No supported app matches this search.";
+            searchResults.appendChild(div);
+          }
+        });
+
+        // Event delegation for generate buttons
+        searchResults.addEventListener("click", function (e) {
+          const btn = e.target.closest(".generate-lua-btn");
+          if (btn) {
+            const appId = parseInt(btn.dataset.appid);
+            const name = btn.dataset.name;
+            generateLua(appId, name);
+          }
+        });
+
+        // ========== SMART FALLBACK MANIFEST CHECK ==========
+        const checkBtn = document.getElementById("checkBtn");
+        const gameIdInput = document.getElementById("gameId");
+        const resultsSection = document.getElementById("resultsSection");
+        const terminalOutput = document.getElementById("terminalOutput");
+        const downloadSection = document.getElementById("downloadSection");
+        const downloadLink = document.getElementById("downloadLink");
+        const luaAlternativeSection = document.getElementById(
+          "luaAlternativeSection"
+        );
+        const notFoundSection = document.getElementById("notFoundSection");
+        const notFoundMessage = document.getElementById("notFoundMessage");
+        const generateLuaBtn = document.getElementById("generateLuaBtn");
+
+        async function typeText(text) {
+          for (let i = 0; i < text.length; i++) {
+            terminalOutput.textContent += text.charAt(i);
+            await new Promise((resolve) => setTimeout(resolve, 10));
+          }
+        }
+
+        async function checkManifest() {
+          const gameId = gameIdInput.value.trim();
+
+          if (!gameId || !/^\d+$/.test(gameId)) {
+            alert("Please enter a valid Steam AppID (numbers only)");
+            return;
+          }
+
+          // Reset UI
+          checkBtn.disabled = true;
+          checkBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin mr-2"></i> CHECKING...';
+          resultsSection.classList.remove("hidden");
+          downloadSection.classList.add("hidden");
+          luaAlternativeSection.classList.add("hidden");
+          notFoundSection.classList.add("hidden");
+          terminalOutput.textContent = "";
+
+          await typeText(
+            `> Initiating manifest check for Steam AppID: ${gameId}\n`
+          );
+          await typeText(`> Searching GitHub repository...\n`);
+
+          try {
+            const response = await fetch(
+              `https://api.github.com/repos/sadabx/ManifestHub/branches/${gameId}`
+            );
+
+            if (response.status === 200) {
+              // Manifest found!
+              await typeText(`> ✅ Manifest found in database!\n`);
+              await typeText(`> Preparing download link...\n`);
+
+              const githubUrl = `https://codeload.github.com/sadabx/ManifestHub/zip/refs/heads/${gameId}`;
+              downloadLink.href = githubUrl;
+              downloadSection.classList.remove("hidden");
+
+              checkBtn.innerHTML =
+                '<i class="fas fa-check mr-2"></i> CHECK COMPLETE';
+            } else {
+              // Manifest not found - check if Lua keys are available
+              await typeText(`> ❌ Manifest not found in GitHub.\n`);
+
+              const appIdNum = parseInt(gameId);
+              if (appDepots[appIdNum] && appDepots[appIdNum].length > 0) {
+                // Lua keys are available!
+                await typeText(
+                  `> 🔑 Found ${appDepots[appIdNum].length} Lua keys in local database!\n`
+                );
+                await typeText(`> 💡 You can generate Lua keys instead.\n`);
+
+                currentAppId = appIdNum;
+                currentAppName = appNames[appIdNum] || `AppID ${appIdNum}`;
+                luaAlternativeSection.classList.remove("hidden");
+
+                checkBtn.innerHTML =
+                  '<i class="fas fa-search mr-2"></i> CHECK AGAIN';
+              } else {
+                // No manifest, no Lua keys
+                await typeText(`> No manifests or Lua keys found.\n`);
+                notFoundMessage.textContent =
+                  "No manifests were found for this Steam application. Please request it below.";
+                notFoundSection.classList.remove("hidden");
+
+                checkBtn.innerHTML =
+                  '<i class="fas fa-search mr-2"></i> CHECK AGAIN';
+              }
+            }
+          } catch (error) {
+            await typeText(`> ⚠️ Error checking manifest. Please try again.\n`);
+            checkBtn.innerHTML =
+              '<i class="fas fa-search mr-2"></i> CHECK AGAIN';
+          }
+
+          checkBtn.disabled = false;
+        }
+
+        // Generate Lua from the alternative button
+        generateLuaBtn.addEventListener("click", function () {
+          if (currentAppId) {
+            generateLua(currentAppId, currentAppName);
+          }
+        });
+
+        checkBtn.addEventListener("click", checkManifest);
+        gameIdInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") checkManifest();
+        });
+
+        // ========== REQUEST FORM HANDLING ==========
         const submitBtn = document.getElementById("submitRequestBtn");
-        const requestForm = document.getElementById("requestForm");
         const formFeedback = document.getElementById("formFeedback");
-        const appIdField = document.getElementById("appid");
-        const gameNameField = document.getElementById("gamename");
+        const cooldownContainer = document.getElementById("cooldownContainer");
+        const cooldownSeconds = document.getElementById("cooldownSeconds");
+
+        // Helper functions for checks
+        function isGameBlacklisted(appId) {
+          return blacklistedGames.some(
+            (game) => game.appId === appId.toString().trim()
+          );
+        }
+
+        function getBlacklistedGameInfo(appId) {
+          return blacklistedGames.find(
+            (game) => game.appId === appId.toString().trim()
+          );
+        }
+
+        function isGameAlreadyRequested(appId) {
+          return requestedGames.some(
+            (game) => game.appId === appId.toString().trim()
+          );
+        }
+
+        function getRequestedGameInfo(appId) {
+          return requestedGames.find(
+            (game) => game.appId === appId.toString().trim()
+          );
+        }
 
         function updateCooldown() {
           const now = Date.now();
           if (cooldownUntil > now) {
             const remaining = Math.ceil((cooldownUntil - now) / 1000);
-            cooldownSecondsSpan.textContent = remaining;
+            cooldownSeconds.textContent = remaining;
             cooldownContainer.classList.remove("hidden");
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-50", "cursor-not-allowed");
@@ -645,142 +1202,13 @@
           updateCooldown();
         }
 
-        // Check if game is blacklisted
-        function isGameBlacklisted(appId) {
-          return blacklistedGames.some(
-            (game) => game.appId === appId.toString().trim()
-          );
-        }
-
-        function getBlacklistedGameInfo(appId) {
-          return blacklistedGames.find(
-            (game) => game.appId === appId.toString().trim()
-          );
-        }
-
-        // Check if game has already been requested
-        function isGameAlreadyRequested(appId) {
-          return requestedGames.some(
-            (game) => game.appId === appId.toString().trim()
-          );
-        }
-
-        function getRequestedGameInfo(appId) {
-          return requestedGames.find(
-            (game) => game.appId === appId.toString().trim()
-          );
-        }
-
-        // ----- Main manifest check -----
-        const checkBtn = document.getElementById("checkBtn");
-        const gameIdInput = document.getElementById("gameId");
-        const resultsSection = document.getElementById("resultsSection");
-        const terminalOutput = document.getElementById("terminalOutput");
-        const downloadSection = document.getElementById("downloadSection");
-        const downloadLink = document.getElementById("downloadLink");
-        const notFoundSection = document.getElementById("notFoundSection");
-
-        checkBtn.addEventListener("click", checkManifest);
-        gameIdInput.addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            checkManifest();
-          }
-        });
-
-        async function checkManifest() {
-          const gameId = gameIdInput.value.trim();
-
-          if (!gameId || !/^\d+$/.test(gameId)) {
-            showError("Please enter a valid Steam AppID (numbers only)");
-            return;
-          }
-
-          checkBtn.disabled = true;
-          checkBtn.classList.remove("pulse-animation");
-          checkBtn.innerHTML =
-            '<i class="fas fa-spinner fa-spin mr-2"></i> CHECKING...';
-
-          resultsSection.classList.remove("hidden");
-          downloadSection.classList.add("hidden");
-          notFoundSection.classList.add("hidden");
-          terminalOutput.textContent = "";
-
-          await typeText(
-            `> Initiating manifest check for Steam AppID: ${gameId}\n`
-          );
-          await typeText(`> Searching database...\n`);
-
-          try {
-            const response = await fetch(
-              `https://api.github.com/repos/sadabx/ManifestHub/branches/${gameId}`
-            );
-
-            if (response.status === 200) {
-              await typeText(`> Manifest found in database!\n`);
-              await typeText(`> Preparing download link...\n`);
-              await typeText(`> Ready for download.\n`);
-
-              const githubUrl = `https://codeload.github.com/sadabx/ManifestHub/zip/refs/heads/${gameId}`;
-              downloadLink.href = githubUrl;
-              downloadSection.classList.remove("hidden");
-
-              checkBtn.innerHTML =
-                '<i class="fas fa-check-circle mr-2"></i> CHECK COMPLETE';
-              checkBtn.classList.remove("from-blue-600", "to-purple-600");
-              checkBtn.classList.add("from-green-600", "to-emerald-600");
-            } else {
-              await typeText(`> Manifest not found.\n`);
-              notFoundSection.classList.remove("hidden");
-
-              checkBtn.innerHTML = "CHECK MANIFEST";
-              checkBtn.classList.add("pulse-animation");
-              checkBtn.classList.remove("from-green-600", "to-emerald-600");
-              checkBtn.classList.add("from-blue-600", "to-purple-600");
-            }
-          } catch (error) {
-            await typeText(`> Error checking manifest. Please try again.\n`);
-            checkBtn.innerHTML = "CHECK MANIFEST";
-            checkBtn.classList.add("pulse-animation");
-            checkBtn.classList.remove("from-green-600", "to-emerald-600");
-            checkBtn.classList.add("from-blue-600", "to-purple-600");
-          }
-
-          checkBtn.disabled = false;
-        }
-
-        function typeText(text) {
-          return new Promise((resolve) => {
-            let i = 0;
-            const interval = setInterval(() => {
-              if (i < text.length) {
-                terminalOutput.textContent += text.charAt(i);
-                i++;
-              } else {
-                clearInterval(interval);
-                resolve();
-              }
-            }, 20);
-          });
-        }
-
-        function showError(message) {
-          terminalOutput.textContent = `> ERROR: ${message}\n`;
-          resultsSection.classList.remove("hidden");
-          downloadSection.classList.add("hidden");
-          notFoundSection.classList.add("hidden");
-          checkBtn.disabled = false;
-          checkBtn.innerHTML = "CHECK MANIFEST";
-          checkBtn.classList.add("pulse-animation");
-          checkBtn.classList.remove("from-green-600", "to-emerald-600");
-          checkBtn.classList.add("from-blue-600", "to-purple-600");
-        }
-
-        // ----- Request form handler with Cloudflare Worker -----
+        // Handle form submission
+        const requestForm = document.getElementById("requestForm");
         requestForm.addEventListener("submit", async function (e) {
           e.preventDefault();
 
           const appId = appIdField.value.trim();
-          const gameName = gameNameField.value.trim();
+          const gameName = document.getElementById("gamename").value.trim();
 
           if (!appId || !gameName) {
             formFeedback.textContent = "❌ Both fields are required.";
@@ -788,24 +1216,28 @@
             return;
           }
 
-          // --- BLACKLIST CHECK (using blacklist.json) ---
+          // Blacklist check
           if (isGameBlacklisted(appId)) {
             const blacklistedInfo = getBlacklistedGameInfo(appId);
             const blacklistedName = blacklistedInfo
               ? blacklistedInfo.name
               : gameName;
-            unsupportedGameMessage.innerHTML = `The game <span class="font-bold text-orange-400">"${blacklistedName}" (AppID: ${appId})</span> is not supported and won't work with the current tool.`;
+            document.getElementById(
+              "unsupportedGameMessage"
+            ).innerHTML = `The game <span class="font-bold text-orange-400">"${blacklistedName}" (AppID: ${appId})</span> is not supported.`;
             unsupportedModal.classList.remove("hidden");
             formFeedback.textContent = "❌ This game is blacklisted.";
             formFeedback.classList.add("text-red-400");
             return;
           }
 
-          // --- ALREADY REQUESTED CHECK (using requests.json) ---
+          // Already requested check
           if (isGameAlreadyRequested(appId)) {
             const requestedInfo = getRequestedGameInfo(appId);
             const requestedName = requestedInfo ? requestedInfo.name : gameName;
-            requestedGameMessage.innerHTML = `The game <span class="font-bold text-blue-400">"${requestedName}" (AppID: ${appId})</span> has already been submitted to our request list.`;
+            document.getElementById(
+              "requestedGameMessage"
+            ).innerHTML = `The game <span class="font-bold text-blue-400">"${requestedName}" (AppID: ${appId})</span> has already been requested.`;
             requestedModal.classList.remove("hidden");
             formFeedback.textContent =
               "ℹ️ This game has already been requested.";
@@ -813,7 +1245,7 @@
             return;
           }
 
-          // --- COOLDOWN CHECK ---
+          // Cooldown check
           if (cooldownUntil > Date.now()) {
             const remain = Math.ceil((cooldownUntil - Date.now()) / 1000);
             formFeedback.textContent = `⏳ Please wait ${remain} seconds before requesting again.`;
@@ -821,32 +1253,18 @@
             return;
           }
 
-          // Proceed with Cloudflare Worker submission
+          // Submit
           const originalText = submitBtn.innerHTML;
           submitBtn.disabled = true;
           submitBtn.innerHTML =
             '<i class="fas fa-spinner fa-spin mr-2"></i> SENDING...';
           formFeedback.textContent = "";
-          formFeedback.classList.remove(
-            "text-red-400",
-            "text-green-400",
-            "text-orange-400",
-            "text-blue-400"
-          );
 
           try {
-            // Prepare the data to match what your worker expects
-            const requestData = {
-              appId: appId,
-              gameName: gameName,
-            };
-
             const response = await fetch(requestForm.action, {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(requestData),
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ appId, gameName }),
             });
 
             const result = await response.json();
@@ -869,10 +1287,14 @@
           } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;
-            if (cooldownUntil > Date.now()) {
-              submitBtn.disabled = true;
-            }
           }
+        });
+
+        // ========== INITIALIZE ==========
+        Promise.all([loadBlacklist(), loadRequestedGames()]).then(() => {
+          loadDepotKeys().then(() => {
+            loadAppLists();
+          });
         });
       });
     </script>
