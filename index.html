@@ -636,7 +636,7 @@
               Enter a Steam AppID and the website will verify if the manifest is
               available in the
               <a
-                href="https://github.com/sadabx/ManifestHub/"
+                href="https://github.com/SteamAutoCracks/ManifestHub/"
                 class="text-purple-400 hover:text-purple-300 transition-colors"
                 target="_blank"
                 >ManifestHub Database</a
@@ -1086,16 +1086,25 @@
 
           try {
             const response = await fetch(
-              `https://api.github.com/repos/sadabx/ManifestHub/branches/${gameId}`
+              `https://api.github.com/repos/SteamAutoCracks/ManifestHub/branches/${gameId}`
             );
 
             if (response.status === 200) {
               // Manifest found!
               await typeText(`> ✅ Manifest found in database!\n`);
-              await typeText(`> Preparing download link...\n`);
+              await typeText(`> Preparing download link via Worker...\n`);
 
-              const githubUrl = `https://codeload.github.com/sadabx/ManifestHub/zip/refs/heads/${gameId}`;
-              downloadLink.href = githubUrl;
+              // --- UPDATED TRACKING LOGIC ---
+              const workerUrl =
+                "https://manifesthub-bridge.sadabsiperkhan.workers.dev/";
+              const gameName = appNames[parseInt(gameId)] || "Unknown Game";
+
+              // Pointing to your Worker for counting and logging
+              const trackingUrl = `${workerUrl}?download=${gameId}&name=${encodeURIComponent(
+                gameName
+              )}`;
+
+              downloadLink.href = trackingUrl;
               downloadSection.classList.remove("hidden");
 
               checkBtn.innerHTML =
@@ -1106,7 +1115,6 @@
 
               const appIdNum = parseInt(gameId);
               if (appDepots[appIdNum] && appDepots[appIdNum].length > 0) {
-                // Lua keys are available!
                 await typeText(
                   `> 🔑 Found ${appDepots[appIdNum].length} Lua keys in local database!\n`
                 );
@@ -1119,7 +1127,6 @@
                 checkBtn.innerHTML =
                   '<i class="fas fa-search mr-2"></i> CHECK AGAIN';
               } else {
-                // No manifest, no Lua keys
                 await typeText(`> No manifests or Lua keys found.\n`);
                 notFoundMessage.textContent =
                   "No manifests were found for this Steam application. Please request it below.";
