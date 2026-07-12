@@ -1,5 +1,5 @@
-https://manifestluahub.netlify.app/* https://manifesthub.trionine.xyz/:splat  301!
-http://manifestluahub.netlify.app/* https://manifesthub.trionine.xyz/:splat  301!
+https://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301!
+http://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301!
 
 # Clean URLs
 /profile    /profile.html    200

@@ -23,7 +23,7 @@ Manifest Hub allows users to search through game manifests, view manifest detail
 
 ## Usage
 
-1. Visit the [Manifest Hub website](https://manifesthub.trionine.xyz).
+1. Visit the [Manifest Hub website](https://manifesthub.trionine.com).
 2. Search for a game by name or AppID.
 3. Browse the listed manifest files and Lua depot keys.
 4. Click **Download** on any file, or **Download All** to get everything at once.
@@ -93,7 +93,7 @@ The platform aggregates data from multiple external sources to serve files dynam
 
 ## Credits
 
-- **Developer:** [TRIONINE](https://trionine.xyz)
+- **Developer:** [TRIONINE](https://trionine.com)
 
 ## License
 

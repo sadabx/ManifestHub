@@ -6,7 +6,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://manifesthub.trionine.xyz/</loc>
+    <loc>https://manifesthub.trionine.com/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Profile Page -->
   <url>
-    <loc>https://manifesthub.trionine.xyz/profile.html</loc>
+    <loc>https://manifesthub.trionine.com/profile.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -23,7 +23,7 @@
   <!-- Forum (gitignored — uncomment when published) -->
   <!--
   <url>
-    <loc>https://manifesthub.trionine.xyz/forum/</loc>
+    <loc>https://manifesthub.trionine.com/forum/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -33,7 +33,7 @@
   <!-- Extras: Main Database (gitignored — uncomment when published) -->
   <!--
   <url>
-    <loc>https://manifesthub.trionine.xyz/extras/maindatabase.html</loc>
+    <loc>https://manifesthub.trionine.com/extras/maindatabase.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -43,7 +43,7 @@
   <!-- Extras: OG Legacy (gitignored — uncomment when published) -->
   <!--
   <url>
-    <loc>https://manifesthub.trionine.xyz/extras/oglegacy.html</loc>
+    <loc>https://manifesthub.trionine.com/extras/oglegacy.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
