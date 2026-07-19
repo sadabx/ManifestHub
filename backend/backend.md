@@ -9,8 +9,8 @@ This document describes the backend architecture, data flow, and setup requireme
 The frontend is a static site (`index.html` + `profile.html`). All "backend" work happens through third-party services:
 
 - **Supabase** — primary database, authentication, and realtime presence
-- **Cloudflare Worker** — download bridge, deduplication, Discord alerts, and trending API
-- **Google Apps Script** — backup download logger and legacy trending source (Google Sheets)
+- **Cloudflare Worker** — download bridge, deduplication, Discord alerts, and Supabase event logging
+- **GitHub Actions** — daily rollup from Supabase events into static JSON counters
 
 ---
 
@@ -19,15 +19,16 @@ The frontend is a static site (`index.html` + `profile.html`). All "backend" wor
 ```text
 Frontend (static HTML/JS)
     │
-    ├── Supabase JS Client ──────► Supabase (auth, download_history, RPC)
+    ├── Supabase JS Client ──────► Supabase (auth, download_history)
     │
     ├── Cloudflare Worker ◄──────► Cloudflare KV (dedup)
     │         │
     │         ├──► Discord Webhook (alerts)
     │         │
-    │         ├──► Supabase REST (download_history insert + RPC)
-    │         │
-    │         └──► Google Apps Script Web App (backup log)
+    │         └──► Supabase REST (download_events + download_history insert)
+    │
+    ├── GitHub Action ─────────► Supabase (reads/deletes download_events)
+    │         └──► data/download-counts.json + data/trending-data.json
     │
     └── GitHub / Steam APIs (directly from browser)
 ```
@@ -41,8 +42,9 @@ Frontend (static HTML/JS)
 **Role:** Primary database and auth provider.
 
 **Tables / Functions:**
-- `public.download_history` — one row per logged-in download
-- `public.get_popular_downloads()` — RPC that returns top 50 games by count
+- `public.download_history` — latest 50 downloads per logged-in user
+- `public.download_events` — temporary global raw download events for daily rollups
+- `public.get_popular_downloads()` — optional live RPC over temporary events
 
 **Auth:**
 - Email/password with email confirmation
@@ -52,10 +54,12 @@ Frontend (static HTML/JS)
 
 **Setup:**
 1. Create a Supabase project
-2. Run `supabase.sql` in the SQL Editor
-3. Enable **Email** provider in Auth settings
-4. Note the **Project URL** and **anon/public** key (used in frontend)
-5. Note the **Service Role** key (used in Cloudflare Worker)
+2. For an existing project, run `backend/download-events-rollup.sql` in the SQL Editor
+   to add the temporary rollup table without dropping user history
+3. For a brand-new project, `backend/download-history.sql` can build the full schema
+4. Enable **Email** provider in Auth settings
+5. Note the **Project URL** and **anon/public** key (used in frontend)
+6. Note the **Service Role** key (used in Cloudflare Worker and GitHub Actions)
 
 ---
 
@@ -70,7 +74,7 @@ Frontend (static HTML/JS)
 
 | Method | Path / Query | Description |
 |--------|--------------|-------------|
-| `GET` | `?top=true` | Calls Supabase RPC `get_popular_downloads()` and returns JSON for the Trending panel |
+| `GET` | `?top=true` | Optional live top endpoint over temporary Supabase events |
 | `GET` | `?download={appId}&name={name}&uid={userId}` | Logs a download, deduplicates, alerts Discord, then redirects to GitHub |
 
 **Environment Variables (secrets):**
@@ -80,7 +84,6 @@ Frontend (static HTML/JS)
 | `SUPABASE_URL` | Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (bypasses RLS for inserts) |
 | `DOWNLOAD_WEBHOOK_URL` | Discord webhook URL for download alerts |
-| `DOWNLOAD_SHEET_URL` | Google Apps Script web-app URL (backup logger) |
 | `DEDUP_KV` | Cloudflare KV namespace binding (for 30s dedup) |
 
 
@@ -90,8 +93,8 @@ Frontend (static HTML/JS)
 3. **Deduplicate** using KV: if the same IP + appId + type was logged in the last 30s, skip
 4. Fire-and-forget a background task that:
    - Sends a Discord embed/notification
-   - Inserts a row into `public.download_history` (if `userId` is present)
-   - POSTs to Google Apps Script as a backup
+   - Inserts a row into `public.download_events` for the daily rollup
+   - Inserts a row into `public.download_history` if `userId` is present
 5. If the request is a CORS preflight/ping, return `200 Logged`
 6. Otherwise, `302` redirect to:
    `https://codeload.github.com/SteamAutoCracks/ManifestHub/zip/refs/heads/{appId}`
@@ -104,35 +107,30 @@ Frontend (static HTML/JS)
 
 ---
 
-### 3.3 Google Apps Script
+### 3.3 GitHub Action Rollup
 
-**File:** `manifesthub-record.gs`
+**Files:**
+- `.github/workflows/update-trending.yml`
+- `scripts/update-trending.js`
+- `data/download-counts.json`
+- `data/download-rollup-state.json`
+- `data/trending-data.json`
 
-**Role:** Backup download logger and legacy trending source.
+**Role:** Keep Supabase small by converting temporary raw events into permanent static JSON counts once per day.
 
-**Why it exists:**
-- Supabase is the source of truth for download history
-- Google Sheets provides a human-readable backup and a fallback API
+**Flow:**
+1. Read unprocessed rows from `public.download_events`
+2. Add them to `data/download-counts.json`
+3. Generate the public top 50 list at `data/trending-data.json`
+4. Commit and push the JSON files
+5. Delete processed rows from `public.download_events`
 
-**Endpoints (deployed as a Web App):**
+**GitHub secrets:**
 
-| Method | Params | Description |
-|--------|--------|-------------|
-| `POST` | JSON body | Logs a download row (`Timestamp`, `App ID`, `Game Name`, `Type`, `Real IP`) |
-| `GET` | `action=top` | Returns top downloads from the `Stats` sheet (legacy trending) |
-| `GET` | `ip={address}` | Returns last 50 downloads for a given IP (legacy per-user history) |
-
-**Spreadsheet structure:**
-- Sheet **Downloads** — raw log of every download event
-- Sheet **Stats** — aggregated counts per AppID (used by legacy `top` endpoint)
-
-**Deploy:**
-1. Create a Google Sheet with tabs `Downloads` and `Stats`
-2. Paste `manifesthub-record.gs` into the Apps Script editor
-3. Deploy → **New deployment** → **Web app**
-   - Execute as: **Me**
-   - Who has access: **Anyone** (or **Anyone with link** if used as a backup logger from Worker)
-4. Copy the web-app URL into the Worker secret `DOWNLOAD_SHEET_URL`
+| Name | Purpose |
+|------|---------|
+| `SUPABASE_URL` | Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key used by the Action to read/delete events |
 
 ---
 
@@ -151,36 +149,31 @@ Frontend builds Worker URL:
 Cloudflare Worker
   ├─ Dedup check (KV, 30s TTL)
   ├─ Discord alert (best-effort)
-  ├─ Supabase insert (logged-in users)
-  ├─ Google Sheet insert (backup)
+  ├─ Supabase download_events insert (all users)
+  ├─ Supabase download_history insert (logged-in users)
   └─ 302 Redirect → GitHub codeload ZIP
 ```
 
 **Key points:**
 - The redirect is always to GitHub; the Worker never proxies the file itself
 - Deduplication prevents the same user/IP from spamming logs within 30 seconds
-- Logging is fire-and-forget (`ctx.waitUntil`), so a slow Sheets write does not block the redirect
+- Logging is fire-and-forget (`ctx.waitUntil`), so a slow Supabase write does not block the redirect
 
 ### 4.2 Trending / Popular Downloads Flow
 
 ```text
 Frontend (index.html)
-  └─ GET ?top=true to Worker
+  └─ GET /data/trending-data.json
         │
         ▼
-  Worker calls Supabase RPC:
-    get_popular_downloads()
-        │
-        ▼
-  Returns [{appId, gameName, count}, ...]
+  Small committed JSON file:
+    [{appId, gameName, count}, ...]
         │
         ▼
   Frontend renders "Popular Downloads"
 ```
 
-**Fallback:**
-- The site also loads `data/trending-data.json` as a cached fallback (populated by the daily GitHub Action)
-- If the Worker RPC fails, the UI shows stale cached data instead of breaking
+The browser must not fetch `data/download-counts.json`; that file is only used by GitHub Actions.
 
 ### 4.3 User Download History Flow
 
@@ -205,7 +198,6 @@ Frontend (profile.html)
 | **Cloudflare Worker** | Free Cloudflare account | Free tier (100k requests/day) |
 | **KV Namespace** | Cloudflare account | Free tier included |
 | **Discord Webhook** | Any Discord server | Free |
-| **Google Sheets** | Google account | Free |
 | **GitHub** | Repo: `SteamAutoCracks/ManifestHub` | Free (public repo traffic) |
 
 ---
@@ -220,19 +212,20 @@ Frontend (profile.html)
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `DOWNLOAD_WEBHOOK_URL`
-- `DOWNLOAD_SHEET_URL`
 - `DEDUP_KV` (binding)
 
-### Google Apps Script
-- No secrets required in code; the script runs under the deployer identity
+### GitHub Actions
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 
 ---
 
 ## 7. Maintenance Notes
 
-- **Trending staleness:** If both the Worker RPC and the cached JSON fail, the Trending panel stays empty or shows old data.
+- **Trending staleness:** The browser reads the latest committed `data/trending-data.json`. If the Action fails, the last committed top list remains available.
 - **Supabase RLS:** The `download_history` table uses RLS. The Worker uses the **service role** key to bypass RLS for inserts; the frontend uses the **anon** key and is restricted to its own rows.
 - **History pruning:** The DB trigger automatically keeps only the latest 50 rows per user.
+- **Global event pruning:** `download_events` rows are deleted by the GitHub Action after their counts have been committed.
 - **Discord rate limits:** Discord webhooks have rate limits; very high traffic may drop alerts. This is non-critical.
 
 ---
@@ -243,8 +236,9 @@ Frontend (profile.html)
 ManifestHub/
 ├── backend/
 │   ├── cloudflare-worker.js      # Cloudflare Worker entry point
-│   ├── manifesthub-record.gs     # Google Apps Script backup logger + legacy API
-│   ├── supabase.sql               # Supabase schema + RLS + RPC
+│   ├── download-events-rollup.sql # Non-destructive event rollup migration
+│   ├── manifesthub-record.gs     # Legacy Google Apps Script logger/API
+│   ├── download-history.sql       # Supabase schema + RLS + event rollup table
 │   └── backend.md                 # This file
 ├── js/
 │   ├── script.js                  # Frontend core (calls Worker + Supabase)

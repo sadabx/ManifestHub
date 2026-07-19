@@ -44,7 +44,7 @@ ManifestHub/
 │   └── screenshots/           # Reorganized documentation screenshots
 ├── backend/
 │   ├── cloudflare-worker.js   # Cloudflare Worker bridge source code
-│   ├── manifesthub-record.gs  # Google Apps Script database trigger backup
+│   ├── manifesthub-record.gs  # Legacy Google Apps Script logger
 │   ├── supabase.sql           # Database schema & policies for Supabase
 │   └── backend.md             # Backend architecture documentation
 ├── css/
@@ -55,7 +55,9 @@ ManifestHub/
 │   └── profile-styles.css     # User profile page specific styling
 ├── data/
 │   ├── faq.js                 # Frequently Asked Questions native JS data array
-│   └── trending-data.json     # Cached daily trending downloads statistics
+│   ├── download-counts.json   # Action-only permanent download counters
+│   ├── download-rollup-state.json # Last processed Supabase event timestamp
+│   └── trending-data.json     # Small public top downloads list used by the browser
 ├── extras/
 │   ├── maindatabase.html      # Legacy database search view
 │   ├── oglegacy.html          # Original legacy app design fallback
@@ -73,7 +75,7 @@ ManifestHub/
 │   ├── profile.js             # Profile history dashboard, settings, and cache management
 │   └── main.js                # Shared namespace initializer & orchestrator
 ├── scripts/
-│   └── update-trending.js     # Fetches trending data from Google Sheets API
+│   └── update-trending.js     # Rolls Supabase download events into JSON counters
 ├── _headers                   # Netlify custom HTTP headers (Cache-Control)
 ├── _redirects                 # Netlify clean URLs redirect mapping
 ├── 404.html                   # 404 error page (Lost Like Zoro)

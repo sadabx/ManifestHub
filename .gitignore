@@ -4,6 +4,6 @@ node_modules/
 .env
 .vscode/
 graphify-out/
-backend/tmp-push.sql
+backend/manifesthub-record.gs/
 forum/
 .agents/

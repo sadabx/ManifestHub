@@ -104,7 +104,26 @@ export default {
           }
         }
 
-        // 2. Write real-time download signature row into public.download_history (logged-in users only)
+        // 2. Write global temporary event row for the daily JSON rollup.
+        try {
+          await fetch(`${sbUrl}/rest/v1/download_events`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${sbKey}`,
+              apikey: sbKey,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              app_id: parseInt(downloadId),
+              download_type: downloadType,
+              game_name: gameName,
+            }),
+          });
+        } catch (e) {
+          console.error("Download event insert failed:", e);
+        }
+
+        // 3. Write personal history row into public.download_history (logged-in users only).
         if (userId) {
           try {
             await fetch(`${sbUrl}/rest/v1/download_history`, {
@@ -123,46 +142,6 @@ export default {
             });
           } catch (e) {
             console.error("History insert failed:", e);
-          }
-        }
-
-        // 3. Log to Google Sheets as backup (uses existing DOWNLOAD_SHEET_URL secret)
-        if (env.DOWNLOAD_SHEET_URL) {
-          try {
-            const sheetRes = await fetch(env.DOWNLOAD_SHEET_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                timestamp: new Date().toISOString(),
-                appId: downloadId,
-                gameName: gameName,
-                downloadType: downloadType,
-                ipAddress: userIp,
-              }),
-            });
-            if (!sheetRes.ok) {
-              console.error(
-                "Google Sheet HTTP error:",
-                sheetRes.status,
-                sheetRes.statusText,
-              );
-            } else {
-              const body = await sheetRes.text();
-              let parsed;
-              try {
-                parsed = JSON.parse(body);
-              } catch (_) {
-                parsed = null;
-              }
-              if (parsed && parsed.status === "error") {
-                console.error(
-                  "Google Sheet app error:",
-                  parsed.message || body,
-                );
-              }
-            }
-          } catch (e) {
-            console.error("Google Sheet log failed:", e);
           }
         }
       })();

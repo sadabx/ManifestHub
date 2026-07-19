@@ -1,5 +1,9 @@
 https://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301!
 http://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301!
 
+# Action-only data files; the browser should only use /data/trending-data.json
+/data/download-counts.json       /404.html      404
+/data/download-rollup-state.json /404.html      404
+
 # Clean URLs
 /profile    /profile.html    200
