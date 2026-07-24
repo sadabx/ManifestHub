@@ -56,10 +56,11 @@ Frontend (static HTML/JS)
 1. Create a Supabase project
 2. For an existing project, run `backend/download-events-rollup.sql` in the SQL Editor
    to add the temporary rollup table without dropping user history
-3. For a brand-new project, `backend/download-history.sql` can build the full schema
-4. Enable **Email** provider in Auth settings
-5. Note the **Project URL** and **anon/public** key (used in frontend)
-6. Note the **Service Role** key (used in Cloudflare Worker and GitHub Actions)
+3. Run `backend/download-history-compact.sql` to make profile history upserts compact
+4. For a brand-new project, `backend/download-history.sql` can build the full schema
+5. Enable **Email** provider in Auth settings
+6. Note the **Project URL** and **anon/public** key (used in frontend)
+7. Note the **Service Role** key (used in Cloudflare Worker and GitHub Actions)
 
 ---
 
@@ -94,7 +95,7 @@ Frontend (static HTML/JS)
 4. Fire-and-forget a background task that:
    - Sends a Discord embed/notification
    - Inserts a row into `public.download_events` for the daily rollup
-   - Inserts a row into `public.download_history` if `userId` is present
+   - Upserts a row into `public.download_history` if `userId` is present
 5. If the request is a CORS preflight/ping, return `200 Logged`
 6. Otherwise, `302` redirect to:
    `https://codeload.github.com/SteamAutoCracks/ManifestHub/zip/refs/heads/{appId}`
@@ -150,7 +151,7 @@ Cloudflare Worker
   ├─ Dedup check (KV, 30s TTL)
   ├─ Discord alert (best-effort)
   ├─ Supabase download_events insert (all users)
-  ├─ Supabase download_history insert (logged-in users)
+  ├─ Supabase download_history upsert (logged-in users)
   └─ 302 Redirect → GitHub codeload ZIP
 ```
 
@@ -224,7 +225,7 @@ Frontend (profile.html)
 
 - **Trending staleness:** The browser reads the latest committed `data/trending-data.json`. If the Action fails, the last committed top list remains available.
 - **Supabase RLS:** The `download_history` table uses RLS. The Worker uses the **service role** key to bypass RLS for inserts; the frontend uses the **anon** key and is restricted to its own rows.
-- **History pruning:** The DB trigger automatically keeps only the latest 50 rows per user.
+- **History pruning:** The DB trigger automatically keeps only the latest 50 rows per user. With `download-history-compact.sql`, repeated user/app/type downloads refresh an existing row instead of creating duplicates.
 - **Global event pruning:** `download_events` rows are deleted by the GitHub Action after their counts have been committed.
 - **Discord rate limits:** Discord webhooks have rate limits; very high traffic may drop alerts. This is non-critical.
 
@@ -237,6 +238,7 @@ ManifestHub/
 ├── backend/
 │   ├── cloudflare-worker.js      # Cloudflare Worker entry point
 │   ├── download-events-rollup.sql # Non-destructive event rollup migration
+│   ├── download-history-compact.sql # Non-destructive compact profile history migration
 │   ├── manifesthub-record.gs     # Legacy Google Apps Script logger/API
 │   ├── download-history.sql       # Supabase schema + RLS + event rollup table
 │   └── backend.md                 # This file

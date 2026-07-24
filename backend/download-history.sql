@@ -22,6 +22,8 @@ CREATE TABLE public.download_history (
 
 -- 3. Create index for fast per-user lookups
 CREATE INDEX idx_dl_history_user ON public.download_history(user_id, created_at DESC);
+CREATE UNIQUE INDEX uniq_download_history_user_app_type
+  ON public.download_history(user_id, app_id, download_type);
 
 -- 3b. Create temporary global download event table for daily GitHub Action rollups
 -- This table is written by the Cloudflare Worker with the service role key.

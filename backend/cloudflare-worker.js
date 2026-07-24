@@ -126,22 +126,41 @@ export default {
         // 3. Write personal history row into public.download_history (logged-in users only).
         if (userId) {
           try {
-            await fetch(`${sbUrl}/rest/v1/download_history`, {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${sbKey}`,
-                apikey: sbKey,
-                "Content-Type": "application/json",
+            const historyPayload = {
+              user_id: userId,
+              app_id: parseInt(downloadId),
+              download_type: downloadType,
+              game_name: gameName,
+              created_at: new Date().toISOString(),
+            };
+
+            const historyRes = await fetch(
+              `${sbUrl}/rest/v1/download_history?on_conflict=user_id,app_id,download_type`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${sbKey}`,
+                  apikey: sbKey,
+                  "Content-Type": "application/json",
+                  Prefer: "resolution=merge-duplicates,return=minimal",
+                },
+                body: JSON.stringify(historyPayload),
               },
-              body: JSON.stringify({
-                user_id: userId,
-                app_id: parseInt(downloadId),
-                download_type: downloadType,
-                game_name: gameName,
-              }),
-            });
+            );
+
+            if (!historyRes.ok) {
+              await fetch(`${sbUrl}/rest/v1/download_history`, {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${sbKey}`,
+                  apikey: sbKey,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(historyPayload),
+              });
+            }
           } catch (e) {
-            console.error("History insert failed:", e);
+            console.error("History upsert failed:", e);
           }
         }
       })();

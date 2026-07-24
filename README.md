@@ -37,15 +37,17 @@ The project is organized cleanly into the following folders and files:
 ```text
 ManifestHub/
 ├── .github/workflows/
-│   └── update-trending.yml    # Daily GitHub Action to fetch trending downloads
+│   └── update-trending.yml    # Daily GitHub Action to roll up download events
 ├── assets/
 │   ├── manifesthub.png        # Brand assets & logos
 │   ├── mhub.png
 │   └── screenshots/           # Reorganized documentation screenshots
 ├── backend/
 │   ├── cloudflare-worker.js   # Cloudflare Worker bridge source code
+│   ├── download-events-rollup.sql # Safe Supabase migration for daily rollups
+│   ├── download-history-compact.sql # Safe migration to compact profile history
+│   ├── download-history.sql    # Full Supabase schema for fresh projects
 │   ├── manifesthub-record.gs  # Legacy Google Apps Script logger
-│   ├── supabase.sql           # Database schema & policies for Supabase
 │   └── backend.md             # Backend architecture documentation
 ├── css/
 │   ├── base.css               # Global reset, typography, colors, buttons & inputs
@@ -81,6 +83,50 @@ ManifestHub/
 ├── 404.html                   # 404 error page (Lost Like Zoro)
 ├── index.html                 # Main Search Engine & FAQ UI
 └── profile.html               # User Profile & Download History UI
+```
+
+## Download Analytics
+
+Manifest Hub uses Supabase only as a short-term event buffer. The permanent download totals live in JSON files committed by GitHub Actions.
+
+```text
+Cloudflare Worker
+  └── writes each deduped download to Supabase download_events
+        ↓
+GitHub Action runs daily
+  ├── reads unprocessed Supabase events
+  ├── adds them to data/download-counts.json
+  ├── regenerates data/trending-data.json
+  ├── commits the JSON files
+  └── deletes the processed Supabase rows
+```
+
+The browser only fetches:
+
+```text
+/data/trending-data.json
+```
+
+It should never fetch `data/download-counts.json`; that file is the larger permanent counter used by the daily GitHub Action.
+
+### Supabase Setup
+
+For an existing Supabase project, run only:
+
+```text
+backend/download-events-rollup.sql
+backend/download-history-compact.sql
+```
+
+Do not run `backend/download-history.sql` on production unless you intentionally want to rebuild the whole schema, because it drops existing tables.
+
+`download-history-compact.sql` optimizes the profile history table by keeping one row per user/app/download type. Repeated downloads refresh the existing row timestamp instead of creating duplicate profile-history rows.
+
+GitHub Actions requires these repository secrets:
+
+```text
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
 ```
 
 ## Data Sources
