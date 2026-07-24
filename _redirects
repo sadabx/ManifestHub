@@ -7,3 +7,5 @@ http://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301
 
 # Clean URLs
 /profile    /profile.html    200
+
+/TOST /TOST/ 301!

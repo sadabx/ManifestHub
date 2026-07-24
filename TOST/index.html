@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOST - Download</title>
+  <link rel="icon" type="image/png" href="../assets/tost-logo.png" />
+  <meta name="description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages, from the ManifestHub site." />
+  <meta name="keywords" content="TOST download, OpenSteamTool, floating installer, Steam tools, Windows installer, portable download" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://manifesthub.trionine.com/TOST/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://manifesthub.trionine.com/TOST/" />
+  <meta property="og:title" content="TOST - Download" />
+  <meta property="og:description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages." />
+  <meta property="og:image" content="https://manifesthub.trionine.com/assets/tost-logo.png" />
+  <meta property="og:site_name" content="ManifestHub" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://manifesthub.trionine.com/TOST/" />
+  <meta property="twitter:title" content="TOST - Download" />
+  <meta property="twitter:description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages." />
+  <meta property="twitter:image" content="https://manifesthub.trionine.com/assets/tost-logo.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TOST",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Windows",
+    "url": "https://manifesthub.trionine.com/TOST/",
+    "downloadUrl": "https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe",
+    "image": "https://manifesthub.trionine.com/assets/tost-logo.png",
+    "description": "TOST is a floating installer and launcher for OpenSteamTool packages."
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/base.css?v=1.0" />
+  <link rel="stylesheet" href="../css/components.css?v=1.0" />
+  <link rel="stylesheet" href="../css/layout.css?v=1.1" />
+
+  <style>
+    .tost-page-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .tost-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tost-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid #30363d;
+      background: #0d1117;
+      color: #8b949e;
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .tost-hero-box {
+      background: linear-gradient(180deg, rgba(35, 134, 54, 0.08), rgba(22, 27, 34, 0.96));
+      border: 1px solid rgba(63, 185, 80, 0.18);
+    }
+
+    .tost-hero-copy {
+      color: #c9d1d9;
+      line-height: 1.65;
+      max-width: 60ch;
+    }
+
+    .tost-download-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tost-download-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      min-width: 0;
+    }
+
+    .tost-download-card.featured {
+      border-color: rgba(63, 185, 80, 0.3);
+      box-shadow: 0 0 0 1px rgba(63, 185, 80, 0.08) inset;
+    }
+
+    .tost-download-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .tost-download-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      border: 1px solid #30363d;
+      background: #0d1117;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #3fb950;
+      flex-shrink: 0;
+    }
+
+    .tost-download-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+      color: #c9d1d9;
+    }
+
+    .tost-download-subtitle {
+      margin: 0.15rem 0 0;
+      color: #8b949e;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .tost-download-meta {
+      color: #8b949e;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .tost-download-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .tost-download-actions a,
+    .tost-download-actions button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 0.6rem 0.85rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .tost-download-actions .btn-secondary {
+      text-decoration: none;
+    }
+
+    .tost-steps {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tost-step {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 0.9rem;
+      min-width: 0;
+    }
+
+    .tost-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 999px;
+      background: rgba(63, 185, 80, 0.15);
+      color: #3fb950;
+      font-weight: 800;
+      font-size: 0.82rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .tost-step h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.92rem;
+      color: #c9d1d9;
+    }
+
+    .tost-step p {
+      margin: 0;
+      color: #8b949e;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .tost-footer-inner {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+
+    .tost-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .tost-footer-links a {
+      color: #8b949e;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .tost-footer-links a:hover {
+      color: #c9d1d9;
+    }
+
+    @media (max-width: 960px) {
+      .tost-download-grid,
+      .tost-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .tost-footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="bg-github-canvas text-github-fg">
+  <div class="page-wrapper">
+    <main>
+      <header class="header-center">
+        <div class="header-logo-wrapper" style="flex-wrap: wrap;">
+          <img src="../assets/tost-logo.png" alt="TOST logo" class="header-logo" />
+          <div style="text-align: left;">
+            <h1 class="header-title" style="margin-bottom: 0.25rem;">TOST</h1>
+            <p class="header-subtitle" style="margin: 0;">Floating installer and launcher for OpenSteamTool packages.</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="main-layout-container">
+        <div class="main-content-column">
+          <section class="warning-box tost-hero-box">
+            <div class="tost-page-note">
+              <div class="warning-title" style="margin-bottom: 0;">
+                <i class="fa-solid fa-download"></i>
+                <span>Download TOST</span>
+              </div>
+              <div class="tost-pill-row" aria-label="Project highlights">
+                <span class="tost-pill"><i class="fa-solid fa-windows"></i> Windows</span>
+                <span class="tost-pill"><i class="fa-solid fa-circle-nodes"></i> Drag and drop</span>
+                <span class="tost-pill"><i class="fa-solid fa-folder-open"></i> Auto placement</span>
+              </div>
+            </div>
+            <p class="tost-hero-copy">
+              TOST is the floating helper for supported OpenSteamTool files. Use the setup build if you want an installed copy,
+              or use the portable ZIP if you want everything next to the executable. The page below links directly to the latest
+              release assets.
+            </p>
+          </section>
+
+          <section class="tost-download-grid" aria-label="Download options">
+            <article class="tost-download-card featured">
+              <div class="tost-download-head">
+                <div class="tost-download-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div>
+                  <h2 class="tost-download-title">Setup</h2>
+                  <p class="tost-download-subtitle">Recommended for a normal installed workflow.</p>
+                </div>
+              </div>
+              <div class="tost-download-meta">
+                Download the installer build for the full guided experience.
+              </div>
+              <div class="tost-download-actions">
+                <a class="btn-primary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe">
+                  <i class="fa-solid fa-download"></i>
+                  Download EXE
+                </a>
+                <a class="btn-secondary" href="https://github.com/sadabx/TOST/releases/latest" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  Release notes
+                </a>
+              </div>
+            </article>
+
+            <article class="tost-download-card">
+              <div class="tost-download-head">
+                <div class="tost-download-icon"><i class="fa-solid fa-box-archive"></i></div>
+                <div>
+                  <h2 class="tost-download-title">Portable</h2>
+                  <p class="tost-download-subtitle">Best if you want a self-contained folder.</p>
+                </div>
+              </div>
+              <div class="tost-download-meta">
+                Keep the app, its settings, and its files together in one place.
+              </div>
+              <div class="tost-download-actions">
+                <a class="btn-primary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip">
+                  <i class="fa-solid fa-download"></i>
+                  Download ZIP
+                </a>
+                <a class="btn-secondary" href="https://github.com/sadabx/TOST" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i>
+                  Source
+                </a>
+              </div>
+            </article>
+
+            <article class="tost-download-card">
+              <div class="tost-download-head">
+                <div class="tost-download-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div>
+                  <h2 class="tost-download-title">About</h2>
+                  <p class="tost-download-subtitle">Built around the upstream OpenSteamTool flow.</p>
+                </div>
+              </div>
+              <div class="tost-download-meta">
+                TOST automates the supported install path and keeps the interface close to the Steam-style floating window workflow.
+              </div>
+              <div class="tost-download-actions">
+                <a class="btn-secondary" href="../index.html">
+                  <i class="fa-solid fa-house"></i>
+                  Back to ManifestHub
+                </a>
+                <a class="btn-secondary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip">
+                  <i class="fa-solid fa-file-zipper"></i>
+                  Direct ZIP
+                </a>
+              </div>
+            </article>
+          </section>
+
+          <section class="warning-box">
+            <div class="warning-title">
+              <i class="fa-solid fa-list-ol"></i>
+              <span>How it works</span>
+            </div>
+            <ol class="tost-steps">
+              <li class="tost-step">
+                <div class="tost-step-num">1</div>
+                <h3>Download the build</h3>
+                <p>Choose Setup if you want an installed app, or Portable if you want the app to live inside one folder.</p>
+              </li>
+              <li class="tost-step">
+                <div class="tost-step-num">2</div>
+                <h3>Open the floating icon</h3>
+                <p>Launch TOST and keep the icon available for drag-and-drop or menu actions.</p>
+              </li>
+              <li class="tost-step">
+                <div class="tost-step-num">3</div>
+                <h3>Drop supported files</h3>
+                <p>Drag the expected files into TOST and let it place them in the right destination folders.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="warning-box">
+            <div class="warning-title">
+              <i class="fa-solid fa-shield-heart"></i>
+              <span>Credit and notes</span>
+            </div>
+            <p class="tost-hero-copy" style="max-width: none; margin-bottom: 0.9rem;">
+              TOST is built around the OpenSteamTool ecosystem and its release assets. This page is only the download front-end;
+              the actual binaries still come from the TOST GitHub release.
+            </p>
+            <p class="tost-hero-copy" style="max-width: none; margin-bottom: 0;">
+              Not affiliated with Valve. Steam and the Steam logo are trademarks of Valve Corporation.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner tost-footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-tn">TO</span><span class="logo-tv">ST</span>
+        </div>
+        <p class="footer-tagline">
+          Floating installer and launcher for supported OpenSteamTool files.
+        </p>
+        <div class="footer-dev">
+          Hosted on <a href="https://manifesthub.trionine.com/" target="_blank" rel="noopener noreferrer">ManifestHub</a>
+        </div>
+      </div>
+
+      <div class="footer-links tost-footer-links">
+        <div class="footer-col-label">Links</div>
+        <a href="../index.html">ManifestHub home</a>
+        <a href="https://github.com/sadabx/TOST" target="_blank" rel="noopener noreferrer">GitHub repo</a>
+        <a href="https://github.com/sadabx/TOST/releases/latest" target="_blank" rel="noopener noreferrer">Latest release</a>
+      </div>
+
+      <div class="footer-meta">
+        <div class="footer-col-label">Downloads</div>
+        <p class="footer-note">
+          Setup: <a href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe" target="_blank" rel="noopener noreferrer">EXE</a><br />
+          Portable: <a href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip" target="_blank" rel="noopener noreferrer">ZIP</a>
+        </p>
+        <div class="footer-copy">© 2026 TRIONINE</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

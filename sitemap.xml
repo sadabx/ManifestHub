@@ -50,4 +50,12 @@
   </url>
   -->
 
+  <!-- TOST Download Page -->
+  <url>
+    <loc>https://manifesthub.trionine.com/TOST/</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
