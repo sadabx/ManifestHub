@@ -2,132 +2,137 @@
   {
     "appId": "2483190",
     "gameName": "Forza Horizon 6",
-    "count": 9542
+    "count": 9567
   },
   {
     "appId": "1091500",
     "gameName": "Cyberpunk 2077",
-    "count": 6964
+    "count": 6984
   },
   {
     "appId": "1551360",
     "gameName": "Forza Horizon 5",
-    "count": 6611
+    "count": 6622
   },
   {
     "appId": "227300",
     "gameName": "Euro Truck Simulator 2",
-    "count": 5596
+    "count": 5625
   },
   {
     "appId": "3240220",
     "gameName": "Grand Theft Auto V Enhanced",
-    "count": 5535
+    "count": 5570
   },
   {
     "appId": "2050650",
     "gameName": "Resident Evil 4",
-    "count": 5042
+    "count": 5052
   },
   {
     "appId": "431960",
     "gameName": "Wallpaper Engine",
-    "count": 4857
+    "count": 4887
   },
   {
     "appId": "1174180",
     "gameName": "Red Dead Redemption 2",
-    "count": 4489
+    "count": 4494
   },
   {
     "appId": "1245620",
     "gameName": "ELDEN RING",
-    "count": 4067
+    "count": 4083
   },
   {
     "appId": "2651280",
     "gameName": "Marvel's Spider-Man 2",
-    "count": 3561
+    "count": 3584
   },
   {
     "appId": "284160",
     "gameName": "BeamNG.drive",
-    "count": 3534
+    "count": 3554
   },
   {
     "appId": "322170",
     "gameName": "Geometry Dash",
-    "count": 3273
+    "count": 3283
   },
   {
     "appId": "2358720",
     "gameName": "Black Myth: Wukong",
-    "count": 3211
+    "count": 3214
   },
   {
     "appId": "244210",
     "gameName": "Assetto Corsa",
-    "count": 3193
+    "count": 3197
   },
   {
     "appId": "3164500",
     "gameName": "Schedule I",
-    "count": 2713
+    "count": 2719
   },
   {
     "appId": "3768760",
     "gameName": "007 First Light",
-    "count": 2676
+    "count": 2682
   },
   {
     "appId": "1888930",
     "gameName": "The Last of Us™ Part I",
-    "count": 2668
+    "count": 2678
   },
   {
     "appId": "883710",
     "gameName": "Resident Evil 2",
-    "count": 2601
+    "count": 2605
   },
   {
     "appId": "1962700",
     "gameName": "Subnautica 2",
-    "count": 2507
+    "count": 2511
   },
   {
     "appId": "1593500",
     "gameName": "God of War",
-    "count": 2457
+    "count": 2458
   },
   {
     "appId": "2322010",
     "gameName": "God of War Ragnarök",
-    "count": 2378
+    "count": 2380
   },
   {
     "appId": "271590",
     "gameName": "Unknown Game",
-    "count": 2162
+    "count": 2165
   },
   {
     "appId": "311210",
     "gameName": "Call of Duty®: Black Ops III",
-    "count": 2153
+    "count": 2160
   },
   {
     "appId": "1817070",
     "gameName": "Marvel’s Spider-Man Remastered",
-    "count": 2138
+    "count": 2153
   },
   {
     "appId": "2215430",
     "gameName": "Ghost of Tsushima DIRECTOR'S CUT",
-    "count": 2115
+    "count": 2126
   },
   {
     "appId": "2531310",
     "gameName": "The Last of Us™ Part II Remastered",
-    "count": 2027
+    "count": 2031
+  },
+  {
+    "appId": "3405690",
+    "gameName": "EA SPORTS FC™ 26",
+    "count": 1991
   },
   {
     "appId": "264710",
@@ -135,14 +140,9 @@
     "count": 1990
   },
   {
-    "appId": "3405690",
-    "gameName": "EA SPORTS FC™ 26",
-    "count": 1985
-  },
-  {
     "appId": "367520",
     "gameName": "Hollow Knight",
-    "count": 1968
+    "count": 1971
   },
   {
     "appId": "1196590",
@@ -150,29 +150,29 @@
     "count": 1735
   },
   {
-    "appId": "945360",
-    "gameName": "Among Us",
-    "count": 1624
-  },
-  {
     "appId": "4000",
     "gameName": "Garry's Mod",
-    "count": 1621
+    "count": 1628
+  },
+  {
+    "appId": "945360",
+    "gameName": "Among Us",
+    "count": 1626
   },
   {
     "appId": "2215200",
     "gameName": "LEGO® Batman™: Legacy of the Dark Knight",
-    "count": 1595
+    "count": 1596
   },
   {
     "appId": "418370",
     "gameName": "Resident Evil 7 Biohazard",
-    "count": 1485
+    "count": 1490
   },
   {
     "appId": "1817190",
     "gameName": "Marvel’s Spider-Man: Miles Morales",
-    "count": 1448
+    "count": 1460
   },
   {
     "appId": "949230",
@@ -182,17 +182,17 @@
   {
     "appId": "1144200",
     "gameName": "Ready or Not",
-    "count": 1430
+    "count": 1432
   },
   {
     "appId": "1659040",
     "gameName": "HITMAN World of Assassination",
-    "count": 1410
+    "count": 1420
   },
   {
     "appId": "292030",
     "gameName": "The Witcher 3: Wild Hunt",
-    "count": 1405
+    "count": 1407
   },
   {
     "appId": "3656800",
@@ -202,47 +202,47 @@
   {
     "appId": "3241660",
     "gameName": "R.E.P.O.",
-    "count": 1385
+    "count": 1388
   },
   {
     "appId": "1943950",
     "gameName": "Escape the Backrooms",
-    "count": 1374
+    "count": 1377
   },
   {
     "appId": "3321460",
     "gameName": "Crimson Desert",
-    "count": 1340
-  },
-  {
-    "appId": "1817490",
-    "gameName": "Poppy Playtime - Chapter 2",
-    "count": 1291
+    "count": 1342
   },
   {
     "appId": "814380",
     "gameName": "Sekiro™: Shadows Die Twice - GOTY Edition",
-    "count": 1290
+    "count": 1294
+  },
+  {
+    "appId": "1817490",
+    "gameName": "Poppy Playtime - Chapter 2",
+    "count": 1293
   },
   {
     "appId": "739630",
     "gameName": "Phasmophobia",
-    "count": 1249
+    "count": 1253
   },
   {
     "appId": "1659420",
     "gameName": "UNCHARTED™: Legacy of Thieves Collection",
-    "count": 1244
+    "count": 1250
   },
   {
     "appId": "2300320",
     "gameName": "Farming Simulator 25",
-    "count": 1233
+    "count": 1244
   },
   {
     "appId": "12210",
     "gameName": "Grand Theft Auto IV: The Complete Edition",
-    "count": 1198
+    "count": 1199
   },
   {
     "appId": "252490",
