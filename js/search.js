@@ -64,7 +64,7 @@ async function fetchLiveManifests(appId) {
     const data = await response.json();
     if (data.status === "success" && data.data[appId]) {
       const depots = data.data[appId].depots;
-      const manifests = [];
+      const candidates = [];
       for (const depotId in depots) {
         if (
           !isNaN(depotId) &&
@@ -73,7 +73,7 @@ async function fetchLiveManifests(appId) {
         ) {
           const manifestId = depots[depotId].manifests.public.gid;
           const depotName = depots[depotId].name || `Depot ${depotId}`;
-          manifests.push({
+          candidates.push({
             depotId,
             manifestId,
             depotName,
@@ -83,10 +83,27 @@ async function fetchLiveManifests(appId) {
           });
         }
       }
-      return manifests;
+
+      const availability = await Promise.all(
+        candidates.map(async (manifest) => {
+          try {
+            const response = await fetch(manifest.downloadUrl, {
+              method: "HEAD",
+            });
+            return response.ok ? manifest : null;
+          } catch (error) {
+            return null;
+          }
+        }),
+      );
+      const manifests = availability.filter(Boolean);
+      return {
+        manifests,
+        unavailableCount: candidates.length - manifests.length,
+      };
     }
   } catch (e) { }
-  return [];
+  return { manifests: [], unavailableCount: 0 };
 }
 
 // ---- Denuvo Check ----
@@ -157,7 +174,8 @@ window.MH_displayGameFiles = async function (appId, gameName) {
     }
   }
 
-  const liveManifests = await fetchLiveManifests(appId);
+  const { manifests: liveManifests, unavailableCount } =
+    await fetchLiveManifests(appId);
   for (const manifest of liveManifests) {
     files.push({
       name: `${manifest.depotId}_${manifest.manifestId}.manifest`,
@@ -190,8 +208,9 @@ window.MH_displayGameFiles = async function (appId, gameName) {
   } catch (e) { }
 
   if (files.length === 0) {
-    filesList.innerHTML =
-      '<div class="text-center py-4 text-github-muted">No files available for this game yet.</div>';
+    filesList.innerHTML = unavailableCount
+      ? '<div class="text-center py-4 text-github-muted"><strong>No verified downloads are available on ManifestHub for this game yet.</strong><br>The current Steam manifest is known, but our sources do not have the matching manifest file and depot key needed to create a working package. Please check again after the database updates.</div>'
+      : '<div class="text-center py-4 text-github-muted">No files available for this game yet.</div>';
     document.getElementById("downloadAllZipBtn").classList.add("hidden");
     currentFiles = [];
     return;
@@ -224,6 +243,13 @@ window.MH_displayGameFiles = async function (appId, gameName) {
     filesList.appendChild(fileDiv);
   });
 
+  if (unavailableCount) {
+    const notice = document.createElement("div");
+    notice.className = "text-center py-4 text-github-muted";
+    notice.textContent = `${unavailableCount} current manifest file${unavailableCount === 1 ? " is" : "s are"} not yet available on ManifestHub. Only the verified files shown above will be downloaded.`;
+    filesList.appendChild(notice);
+  }
+
   document.getElementById("downloadAllZipBtn").classList.remove("hidden");
   currentFiles = files;
 };
@@ -249,6 +275,7 @@ function initZipDownload() {
           '<i class="fas fa-spinner fa-spin mr-2"></i> Zipping...';
 
         const zip = new JSZip();
+        const failedFiles = [];
         for (const file of currentFiles) {
           if (file.blob) {
             const content = await file.blob.text();
@@ -256,10 +283,23 @@ function initZipDownload() {
           } else if (file.url) {
             try {
               const response = await fetch(file.url);
+              if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+              }
               const blob = await response.blob();
               zip.file(file.name, blob);
-            } catch (e) { }
+            } catch (e) {
+              failedFiles.push(file.name);
+            }
           }
+        }
+
+        if (Object.keys(zip.files).length === 0) {
+          zipBtn.disabled = false;
+          zipBtn.innerHTML =
+            '<i class="fas fa-file-archive mr-2"></i> Download All';
+          alert("No files could be downloaded. Please try again later.");
+          return;
         }
 
         const content = await zip.generateAsync({ type: "blob" });
@@ -271,6 +311,12 @@ function initZipDownload() {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(downloadUrl);
+
+        if (failedFiles.length) {
+          alert(
+            `Downloaded the available files. Skipped ${failedFiles.length} file${failedFiles.length === 1 ? "" : "s"} that could not be fetched.`,
+          );
+        }
 
         zipBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Complete!';
         setTimeout(() => {
