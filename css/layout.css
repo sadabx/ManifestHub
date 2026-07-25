@@ -20,17 +20,21 @@
 }
 
 .header-logo {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
 
 .header-title {
-  font-size: 2.25rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
   margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.header-title span {
+  color: #3fb950;
 }
 
 .header-subtitle {
@@ -576,27 +580,6 @@
     font-size: 0.95rem;
   }
 
-  .user-auth-fixed {
-    position: static;
-    margin: 0.75rem 0.75rem 0;
-    display: flex;
-    justify-content: center;
-    z-index: 10;
-  }
-
-  #authSection {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  #authSection .btn-primary,
-  #authSection .btn-secondary {
-    flex: 1 1 8rem;
-    min-width: 7rem;
-    justify-content: center;
-  }
-
   #infoBox {
     align-items: flex-start;
     gap: 0.5rem;
@@ -704,35 +687,6 @@
     padding: 0.75rem;
   }
 
-  .floating-sidebar {
-    left: 50%;
-    right: auto;
-    top: auto;
-    bottom: calc(0.9rem + env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    flex-direction: row;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background: rgba(13, 17, 23, 0.95);
-    border: 1px solid #30363d;
-    border-radius: 999px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-  }
-
-  .floating-btn {
-    width: 42px;
-    height: 42px;
-  }
-
-  .floating-btn:hover {
-    width: 42px;
-    padding-left: 0;
-    justify-content: center;
-  }
-
-  .floating-btn i {
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -909,6 +863,3 @@
 .trending-fire-icon {
   color: #f97316;
 }
-
-
-

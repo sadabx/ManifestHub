@@ -56,18 +56,37 @@
 </head>
 
 <body class="bg-github-canvas text-github-fg">
-  <!-- User Authentication Section (Fixed Top-Right) -->
-  <div class="user-auth-fixed auth-bar">
-    <div id="viewerCount" class="viewer-count" aria-label="Live viewers">
-      <span class="viewer-dot" aria-hidden="true"></span>
-      <span id="viewerCountNum">-</span>
-      <i class="fa-solid fa-eye viewer-icon" aria-hidden="true"></i>
+  <nav class="site-nav" aria-label="ManifestHub navigation">
+    <a class="site-nav-brand" href="./" aria-label="ManifestHub home">
+      <img src="assets/mhub.png" alt="" />
+      <span>Manifest Hub</span>
+    </a>
+
+    <div class="site-nav-right">
+      <div class="site-nav-links">
+        <a class="site-nav-action" href="/TOST/">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span>TOST</span>
+        </a>
+        <a class="site-nav-link" href="https://github.com/sadabx/ManifestHub" target="_blank"
+          rel="noopener noreferrer">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <div class="site-nav-account auth-bar">
+        <div id="viewerCount" class="viewer-count" aria-label="Live viewers">
+          <span class="viewer-dot" aria-hidden="true"></span>
+          <span id="viewerCountNum">-</span>
+          <i class="fa-solid fa-eye viewer-icon" aria-hidden="true"></i>
+        </div>
+        <div id="authSection">
+          <button id="loginBtn" class="btn-primary">Sign in</button>
+        </div>
+      </div>
     </div>
-    <div id="authSection">
-      <button id="loginBtn" class="btn-secondary">Sign in</button>
-      <button id="signupBtn" class="btn-primary">Sign up</button>
-    </div>
-  </div>
+  </nav>
 
   <!-- ===== MODALS ===== -->
 
@@ -149,7 +168,7 @@
       <header class="header-center">
         <div class="header-logo-wrapper">
           <img src="assets/mhub.png" alt="Manifest Hub Logo" class="header-logo" />
-          <h1 class="header-title">Manifest Hub</h1>
+          <h1 class="header-title">Manifest<span>Hub</span></h1>
         </div>
         <p class="header-subtitle">
           Find Steam manifests and Lua depot keys.
@@ -344,20 +363,17 @@
 
   <!-- ===== FLOATING SIDEBAR LINKS ===== -->
   <div class="floating-sidebar">
-    <a href="https://steamdb.info/" target="_blank" class="floating-btn" title="SteamDB">
+    <a href="https://steamdb.info/" target="_blank" rel="noopener noreferrer" class="floating-btn" title="SteamDB">
       <i class="fas fa-database"></i>
       <span class="btn-label">SteamDB</span>
     </a>
-    <a href="/TOST/" class="floating-btn" title="TOST Download">
-      <i class="fas fa-download"></i>
-      <span class="btn-label">TOST</span>
-    </a>
-    <a href="https://discord.com/invite/x6AjUMngpF" target="_blank" class="floating-btn" title="Discord">
+    <a href="https://discord.com/invite/x6AjUMngpF" target="_blank" rel="noopener noreferrer"
+      class="floating-btn" title="Discord">
       <i class="fab fa-discord"></i>
       <span class="btn-label">Discord</span>
     </a>
-    <a href="https://github.com/sadabx/ManifestHub/discussions" target="_blank" class="floating-btn"
-      title="Discussions">
+    <a href="https://github.com/sadabx/ManifestHub/discussions" target="_blank" rel="noopener noreferrer"
+      class="floating-btn" title="Discussions">
       <i class="fas fa-comments"></i>
       <span class="btn-label">Discussions</span>
     </a>

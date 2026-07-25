@@ -79,7 +79,6 @@ window.MH_initAuth = function (supabase) {
 
   const authModal = document.getElementById("authModal");
   const loginBtn = document.getElementById("loginBtn");
-  const signupBtn = document.getElementById("signupBtn");
   const closeAuthModal = document.getElementById("closeAuthModal");
   const authForm = document.getElementById("authForm");
   const authSwitchBtn = document.getElementById("authSwitchBtn");
@@ -108,8 +107,6 @@ window.MH_initAuth = function (supabase) {
   // Open modal buttons
   if (loginBtn)
     loginBtn.addEventListener("click", () => window.MH_openAuthModal("login"));
-  if (signupBtn)
-    signupBtn.addEventListener("click", () => window.MH_openAuthModal("signup"));
   if (closeAuthModal)
     closeAuthModal.addEventListener("click", () =>
       authModal.classList.add("hidden"),
@@ -197,7 +194,7 @@ window.MH_initAuth = function (supabase) {
 
   /**
    * Updates the #authSection in the header based on login state.
-   * Shows user avatar + dropdown when logged in, sign in/up buttons when not.
+   * Shows the user menu when logged in and a sign-in button when logged out.
    */
   function updateAuthUI() {
     const authSection = document.getElementById("authSection");
@@ -251,15 +248,11 @@ window.MH_initAuth = function (supabase) {
         });
     } else {
       authSection.innerHTML = `
-        <button id="loginBtn" class="btn-secondary auth-btn-small">Sign in</button>
-        <button id="signupBtn" class="btn-primary auth-btn-small">Sign up</button>
+        <button id="loginBtn" class="btn-primary auth-btn-small">Sign in</button>
       `;
       document
         .getElementById("loginBtn")
         .addEventListener("click", () => window.MH_openAuthModal("login"));
-      document
-        .getElementById("signupBtn")
-        .addEventListener("click", () => window.MH_openAuthModal("signup"));
     }
   }
 
