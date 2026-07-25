@@ -1,429 +1,1881 @@
+
 <!doctype html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOST - Download</title>
-  <link rel="icon" type="image/png" href="../assets/tost-logo.png" />
-  <meta name="description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages, from the ManifestHub site." />
-  <meta name="keywords" content="TOST download, OpenSteamTool, floating installer, Steam tools, Windows installer, portable download" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://manifesthub.trionine.com/TOST/" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://manifesthub.trionine.com/TOST/" />
-  <meta property="og:title" content="TOST - Download" />
-  <meta property="og:description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages." />
-  <meta property="og:image" content="https://manifesthub.trionine.com/assets/tost-logo.png" />
-  <meta property="og:site_name" content="ManifestHub" />
+<meta charset="UTF-8" />
 
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://manifesthub.trionine.com/TOST/" />
-  <meta property="twitter:title" content="TOST - Download" />
-  <meta property="twitter:description" content="Download TOST, a floating installer and launcher for OpenSteamTool packages." />
-  <meta property="twitter:image" content="https://manifesthub.trionine.com/assets/tost-logo.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TOST",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Windows",
-    "url": "https://manifesthub.trionine.com/TOST/",
-    "downloadUrl": "https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe",
-    "image": "https://manifesthub.trionine.com/assets/tost-logo.png",
-    "description": "TOST is a floating installer and launcher for OpenSteamTool packages."
-  }
-  </script>
+<title>TOST - Open-source OpenSteamTool installer</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/base.css?v=1.0" />
-  <link rel="stylesheet" href="../css/components.css?v=1.0" />
-  <link rel="stylesheet" href="../css/layout.css?v=1.1" />
+<link rel="icon" type="image/png" href="../assets/TOST/tost-logo.png" />
 
-  <style>
-    .tost-page-note {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
+<meta
 
-    .tost-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+name="description"
 
-    .tost-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      border: 1px solid #30363d;
-      background: #0d1117;
-      color: #8b949e;
-      border-radius: 999px;
-      padding: 0.35rem 0.7rem;
-      font-size: 0.78rem;
-      white-space: nowrap;
-    }
+content="Download TOST, an open-source floating installer for supported OpenSteamTool packages on Windows."
 
-    .tost-hero-box {
-      background: linear-gradient(180deg, rgba(35, 134, 54, 0.08), rgba(22, 27, 34, 0.96));
-      border: 1px solid rgba(63, 185, 80, 0.18);
-    }
+/>
 
-    .tost-hero-copy {
-      color: #c9d1d9;
-      line-height: 1.65;
-      max-width: 60ch;
-    }
+<meta
 
-    .tost-download-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
+name="keywords"
 
-    .tost-download-card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      min-width: 0;
-    }
+content="TOST download, OpenSteamTool, floating installer, Steam tools, Windows installer, portable download"
 
-    .tost-download-card.featured {
-      border-color: rgba(63, 185, 80, 0.3);
-      box-shadow: 0 0 0 1px rgba(63, 185, 80, 0.08) inset;
-    }
+/>
 
-    .tost-download-head {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      min-width: 0;
-    }
+<meta name="robots" content="index, follow" />
 
-    .tost-download-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 6px;
-      border: 1px solid #30363d;
-      background: #0d1117;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #3fb950;
-      flex-shrink: 0;
-    }
+<link rel="canonical" href="https://manifesthub.trionine.com/TOST/" />
 
-    .tost-download-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0;
-      color: #c9d1d9;
-    }
 
-    .tost-download-subtitle {
-      margin: 0.15rem 0 0;
-      color: #8b949e;
-      font-size: 0.86rem;
-      line-height: 1.45;
-    }
+<meta property="og:type" content="website" />
 
-    .tost-download-meta {
-      color: #8b949e;
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
+<meta property="og:url" content="https://manifesthub.trionine.com/TOST/" />
 
-    .tost-download-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: auto;
-    }
+<meta property="og:title" content="TOST - Open-source OpenSteamTool installer" />
 
-    .tost-download-actions a,
-    .tost-download-actions button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      text-decoration: none;
-      border-radius: 6px;
-      padding: 0.6rem 0.85rem;
-      font-weight: 700;
-      font-size: 0.85rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
+<meta
 
-    .tost-download-actions .btn-secondary {
-      text-decoration: none;
-    }
+property="og:description"
 
-    .tost-steps {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin: 0;
-      padding: 0;
-    }
+content="A compact floating installer that routes supported OpenSteamTool files to the correct Steam folders."
 
-    .tost-step {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      padding: 0.9rem;
-      min-width: 0;
-    }
+/>
 
-    .tost-step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.6rem;
-      height: 1.6rem;
-      border-radius: 999px;
-      background: rgba(63, 185, 80, 0.15);
-      color: #3fb950;
-      font-weight: 800;
-      font-size: 0.82rem;
-      margin-bottom: 0.6rem;
-    }
+<meta property="og:image" content="https://manifesthub.trionine.com/assets/TOST/TOST.png" />
 
-    .tost-step h3 {
-      margin: 0 0 0.35rem;
-      font-size: 0.92rem;
-      color: #c9d1d9;
-    }
+<meta property="og:site_name" content="ManifestHub" />
 
-    .tost-step p {
-      margin: 0;
-      color: #8b949e;
-      font-size: 0.84rem;
-      line-height: 1.55;
-    }
 
-    .tost-footer-inner {
-      grid-template-columns: 1.4fr 1fr 1fr;
-    }
+<meta name="twitter:card" content="summary_large_image" />
 
-    .tost-footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
+<meta name="twitter:title" content="TOST - Open-source OpenSteamTool installer" />
 
-    .tost-footer-links a {
-      color: #8b949e;
-      text-decoration: none;
-      width: fit-content;
-    }
+<meta
 
-    .tost-footer-links a:hover {
-      color: #c9d1d9;
-    }
+name="twitter:description"
 
-    @media (max-width: 960px) {
-      .tost-download-grid,
-      .tost-steps {
-        grid-template-columns: 1fr;
-      }
+content="A compact floating installer that routes supported OpenSteamTool files to the correct Steam folders."
 
-      .tost-footer-inner {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+/>
+
+<meta name="twitter:image" content="https://manifesthub.trionine.com/assets/TOST/TOST.png" />
+
+
+<script type="application/ld+json">
+
+{
+
+"@context": "https://schema.org",
+
+"@type": "SoftwareApplication",
+
+"name": "TOST",
+
+"applicationCategory": "UtilityApplication",
+
+"operatingSystem": "Windows 10, Windows 11",
+
+"url": "https://manifesthub.trionine.com/TOST/",
+
+"downloadUrl": "https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe",
+
+"image": "https://manifesthub.trionine.com/assets/TOST/TOST.png",
+
+"description": "TOST is an open-source floating installer for supported OpenSteamTool packages."
+
+}
+
+</script>
+
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+<link
+
+rel="stylesheet"
+
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+
+/>
+
+<link rel="stylesheet" href="../css/base.css?v=1.0" />
+
+<link rel="stylesheet" href="../css/components.css?v=1.0" />
+
+<link rel="stylesheet" href="../css/layout.css?v=1.1" />
+
+
+<style>
+
+:root {
+
+--tost-bg: #0a0d10;
+
+--tost-surface: #15191e;
+
+--tost-surface-raised: #1b2026;
+
+--tost-border: #303841;
+
+--tost-text: #f0f3f6;
+
+--tost-muted: #9aa4af;
+
+--tost-green: #3fb950;
+
+--tost-green-hover: #4dcc5f;
+
+--tost-blue: #58a6ff;
+
+--tost-violet: #a371f7;
+
+}
+
+
+html {
+
+scroll-behavior: smooth;
+
+}
+
+
+body.tost-page {
+
+background: var(--tost-bg);
+
+color: var(--tost-text);
+
+overflow-x: hidden;
+
+}
+
+
+.tost-shell {
+
+width: min(100% - 2rem, 1100px);
+
+margin-inline: auto;
+
+}
+
+
+.tost-topbar {
+
+position: relative;
+
+z-index: 10;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+min-height: 64px;
+
+margin-top: 1.25rem;
+
+padding: 0.65rem 0.75rem 0.65rem 1rem;
+
+background: var(--tost-surface);
+
+border: 1px solid var(--tost-border);
+
+border-radius: 8px;
+
+box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+
+}
+
+
+.tost-brand,
+
+.tost-nav,
+
+.tost-button,
+
+.tost-meta,
+
+.tost-download-actions,
+
+.tost-footer-links {
+
+display: flex;
+
+align-items: center;
+
+}
+
+
+.tost-brand {
+
+gap: 0.65rem;
+
+color: var(--tost-text);
+
+text-decoration: none;
+
+font-weight: 800;
+
+}
+
+
+.tost-brand img {
+
+width: 38px;
+
+height: 38px;
+
+object-fit: contain;
+
+}
+
+
+.tost-brand span {
+
+font-size: 1rem;
+
+}
+
+
+.tost-nav {
+
+gap: 0.35rem;
+
+}
+
+
+.tost-nav-link {
+
+display: inline-flex;
+
+align-items: center;
+
+gap: 0.45rem;
+
+min-height: 40px;
+
+padding: 0 0.75rem;
+
+color: var(--tost-muted);
+
+text-decoration: none;
+
+font-size: 0.88rem;
+
+font-weight: 600;
+
+border-radius: 6px;
+
+}
+
+
+.tost-nav-link:hover {
+
+color: var(--tost-text);
+
+background: var(--tost-surface-raised);
+
+}
+
+
+.tost-button {
+
+justify-content: center;
+
+gap: 0.5rem;
+
+min-height: 42px;
+
+padding: 0 1rem;
+
+border: 1px solid var(--tost-border);
+
+border-radius: 6px;
+
+color: var(--tost-text);
+
+background: var(--tost-surface-raised);
+
+text-decoration: none;
+
+font-size: 0.9rem;
+
+font-weight: 700;
+
+transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+
+}
+
+
+.tost-button:hover {
+
+border-color: #59636e;
+
+background: #242a31;
+
+transform: translateY(-1px);
+
+}
+
+
+.tost-button-primary {
+
+color: #fff;
+
+background: #238636;
+
+border-color: #2ea043;
+
+}
+
+
+.tost-button-primary:hover {
+
+background: #2ea043;
+
+border-color: var(--tost-green-hover);
+
+}
+
+
+.tost-hero {
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 2.5rem 0 1rem;
+
+text-align: center;
+
+}
+
+
+.tost-hero-logo {
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 1rem;
+
+margin-bottom: 0.8rem;
+
+}
+
+
+.tost-hero-logo img {
+
+width: 84px;
+
+height: 84px;
+
+object-fit: contain;
+
+filter: drop-shadow(0 12px 24px rgba(63, 185, 80, 0.2));
+
+}
+
+
+.tost-hero h1 {
+
+margin: 0;
+
+color: var(--tost-text);
+
+font-size: clamp(3rem, 9vw, 5.4rem);
+
+line-height: 1;
+
+font-weight: 800;
+
+letter-spacing: 0;
+
+}
+
+
+.tost-hero h1 span {
+
+color: var(--tost-green);
+
+}
+
+
+.tost-kicker {
+
+margin: 0 0 1.65rem;
+
+color: var(--tost-muted);
+
+font-size: 0.95rem;
+
+}
+
+
+.tost-intro {
+
+max-width: 660px;
+
+margin: 0 auto 1.25rem;
+
+color: #c7ced6;
+
+font-size: 1.08rem;
+
+line-height: 1.65;
+
+}
+
+
+.tost-meta {
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+gap: 0.45rem 1rem;
+
+margin-bottom: 1.4rem;
+
+color: var(--tost-muted);
+
+font-size: 0.82rem;
+
+}
+
+
+.tost-meta span {
+
+display: inline-flex;
+
+align-items: center;
+
+gap: 0.4rem;
+
+}
+
+
+.tost-meta i {
+
+color: var(--tost-green);
+
+}
+
+
+.tost-hero-actions {
+
+display: flex;
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+gap: 0.65rem;
+
+margin-bottom: 2rem;
+
+}
+
+
+.tost-product-shot {
+
+width: min(100%, 740px);
+
+margin: 0 auto;
+
+}
+
+
+.tost-product-shot img {
+
+display: block;
+
+width: 100%;
+
+height: auto;
+
+object-fit: contain;
+
+border: 1px solid #252b31;
+
+border-radius: 6px;
+
+box-shadow: 0 28px 65px rgba(0, 0, 0, 0.46);
+
+}
+
+
+.tost-section {
+
+padding: 4.75rem 0;
+
+border-top: 1px solid #232930;
+
+}
+
+
+#downloads {
+
+padding-top: 1.5rem;
+
+}
+
+
+.tost-section-heading {
+
+max-width: 700px;
+
+margin-bottom: 2rem;
+
+}
+
+
+.tost-eyebrow {
+
+display: block;
+
+margin-bottom: 0.5rem;
+
+color: var(--tost-green);
+
+font-size: 0.78rem;
+
+font-weight: 800;
+
+text-transform: uppercase;
+
+}
+
+
+.tost-section h2 {
+
+margin: 0 0 0.65rem;
+
+color: var(--tost-text);
+
+font-size: clamp(1.75rem, 4vw, 2.35rem);
+
+line-height: 1.2;
+
+letter-spacing: 0;
+
+}
+
+
+.tost-section-heading p {
+
+margin: 0;
+
+color: var(--tost-muted);
+
+line-height: 1.65;
+
+}
+
+
+.tost-download-table {
+
+overflow: hidden;
+
+border: 1px solid var(--tost-border);
+
+border-radius: 8px;
+
+background: var(--tost-surface);
+
+}
+
+
+.tost-download-header,
+
+.tost-download-row {
+
+display: grid;
+
+grid-template-columns: minmax(180px, 0.9fr) minmax(260px, 1.4fr) minmax(240px, auto);
+
+align-items: center;
+
+gap: 1rem;
+
+padding: 1rem 1.15rem;
+
+}
+
+
+.tost-download-header {
+
+min-height: 42px;
+
+padding-block: 0.65rem;
+
+color: #7f8994;
+
+background: #101419;
+
+border-bottom: 1px solid var(--tost-border);
+
+font-size: 0.72rem;
+
+font-weight: 800;
+
+text-transform: uppercase;
+
+}
+
+
+.tost-download-row + .tost-download-row {
+
+border-top: 1px solid var(--tost-border);
+
+}
+
+
+.tost-download-row:hover {
+
+background: var(--tost-surface-raised);
+
+}
+
+
+.tost-build-name {
+
+display: flex;
+
+align-items: center;
+
+gap: 0.75rem;
+
+min-width: 0;
+
+}
+
+
+.tost-build-icon {
+
+display: inline-flex;
+
+align-items: center;
+
+justify-content: center;
+
+width: 38px;
+
+height: 38px;
+
+flex: 0 0 38px;
+
+color: var(--tost-green);
+
+background: #101419;
+
+border: 1px solid var(--tost-border);
+
+border-radius: 6px;
+
+}
+
+
+.tost-build-name strong {
+
+display: block;
+
+color: var(--tost-text);
+
+font-size: 0.95rem;
+
+}
+
+
+.tost-recommended {
+
+display: block;
+
+margin-top: 0.15rem;
+
+color: var(--tost-green);
+
+font-size: 0.72rem;
+
+font-weight: 700;
+
+}
+
+
+.tost-build-detail {
+
+color: var(--tost-muted);
+
+font-size: 0.86rem;
+
+line-height: 1.55;
+
+}
+
+
+.tost-download-actions {
+
+justify-content: flex-end;
+
+gap: 0.5rem;
+
+}
+
+
+.tost-download-actions .tost-button {
+
+min-height: 38px;
+
+padding-inline: 0.8rem;
+
+font-size: 0.82rem;
+
+}
+
+
+.tost-comparison-wrap {
+
+overflow-x: auto;
+
+border: 1px solid var(--tost-border);
+
+border-radius: 8px;
+
+}
+
+
+.tost-comparison {
+
+width: 100%;
+
+min-width: 760px;
+
+border-collapse: collapse;
+
+font-size: 0.86rem;
+
+}
+
+
+.tost-comparison th,
+
+.tost-comparison td {
+
+padding: 0.9rem 1rem;
+
+border-right: 1px solid var(--tost-border);
+
+border-bottom: 1px solid var(--tost-border);
+
+text-align: left;
+
+vertical-align: middle;
+
+line-height: 1.5;
+
+}
+
+
+.tost-comparison th:last-child,
+
+.tost-comparison td:last-child {
+
+border-right: 0;
+
+}
+
+
+.tost-comparison tbody tr:last-child th,
+
+.tost-comparison tbody tr:last-child td {
+
+border-bottom: 0;
+
+}
+
+
+.tost-comparison thead th {
+
+color: #7f8994;
+
+background: #101419;
+
+font-size: 0.72rem;
+
+font-weight: 800;
+
+text-transform: uppercase;
+
+}
+
+
+.tost-comparison tbody th {
+
+width: 20%;
+
+color: var(--tost-text);
+
+background: #101419;
+
+}
+
+
+.tost-comparison tbody td {
+
+color: #cbd2d9;
+
+background: var(--tost-surface);
+
+}
+
+
+.tost-comparison .tost-positive {
+
+color: #d8f5de;
+
+background: rgba(46, 160, 67, 0.15);
+
+}
+
+
+.tost-comparison .tost-unverified {
+
+background: rgba(248, 81, 73, 0.08);
+
+}
+
+
+.tost-comparison-note {
+
+margin: 0.85rem 0 0;
+
+color: #78828d;
+
+font-size: 0.78rem;
+
+line-height: 1.6;
+
+}
+
+
+.tost-feature-grid {
+
+display: grid;
+
+grid-template-columns: repeat(3, minmax(0, 1fr));
+
+border-top: 1px solid var(--tost-border);
+
+border-bottom: 1px solid var(--tost-border);
+
+}
+
+
+.tost-feature {
+
+padding: 1.7rem;
+
+}
+
+
+.tost-feature + .tost-feature {
+
+border-left: 1px solid var(--tost-border);
+
+}
+
+
+.tost-feature i {
+
+margin-bottom: 1rem;
+
+font-size: 1.35rem;
+
+}
+
+
+.tost-feature:nth-child(1) i {
+
+color: var(--tost-green);
+
+}
+
+
+.tost-feature:nth-child(2) i {
+
+color: var(--tost-blue);
+
+}
+
+
+.tost-feature:nth-child(3) i {
+
+color: var(--tost-violet);
+
+}
+
+
+.tost-feature h3 {
+
+margin: 0 0 0.45rem;
+
+color: var(--tost-text);
+
+font-size: 1rem;
+
+}
+
+
+.tost-feature p {
+
+margin: 0;
+
+color: var(--tost-muted);
+
+font-size: 0.88rem;
+
+line-height: 1.6;
+
+}
+
+
+.tost-workflow {
+
+display: grid;
+
+grid-template-columns: repeat(3, minmax(0, 1fr));
+
+gap: 1.5rem;
+
+counter-reset: tost-step;
+
+}
+
+
+.tost-step {
+
+position: relative;
+
+padding-top: 3rem;
+
+counter-increment: tost-step;
+
+}
+
+
+.tost-step::before {
+
+content: "0" counter(tost-step);
+
+position: absolute;
+
+inset: 0 auto auto 0;
+
+color: var(--tost-green);
+
+font-size: 0.78rem;
+
+font-weight: 800;
+
+}
+
+
+.tost-step::after {
+
+content: "";
+
+position: absolute;
+
+top: 1.65rem;
+
+left: 0;
+
+width: 100%;
+
+height: 1px;
+
+background: var(--tost-border);
+
+}
+
+
+.tost-step h3 {
+
+margin: 0 0 0.45rem;
+
+color: var(--tost-text);
+
+font-size: 1rem;
+
+}
+
+
+.tost-step p {
+
+margin: 0;
+
+color: var(--tost-muted);
+
+font-size: 0.88rem;
+
+line-height: 1.6;
+
+}
+
+
+.tost-open-source {
+
+display: grid;
+
+grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+
+align-items: center;
+
+gap: 2rem;
+
+padding: 2rem;
+
+background: var(--tost-surface);
+
+border: 1px solid var(--tost-border);
+
+border-radius: 8px;
+
+}
+
+
+.tost-open-source h2 {
+
+font-size: 1.65rem;
+
+}
+
+
+.tost-open-source p {
+
+margin: 0;
+
+color: var(--tost-muted);
+
+line-height: 1.65;
+
+}
+
+
+.tost-open-source .tost-button {
+
+justify-self: end;
+
+}
+
+
+.tost-note {
+
+margin-top: 1.5rem;
+
+color: #78828d;
+
+font-size: 0.8rem;
+
+line-height: 1.6;
+
+}
+
+
+.tost-footer {
+
+border-top: 1px solid #232930;
+
+padding: 1.5rem 0 2rem;
+
+}
+
+
+.tost-footer-inner {
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 1rem;
+
+color: #78828d;
+
+font-size: 0.8rem;
+
+}
+
+
+.tost-footer-links {
+
+flex-wrap: wrap;
+
+gap: 1rem;
+
+}
+
+
+.tost-footer a {
+
+color: var(--tost-muted);
+
+text-decoration: none;
+
+}
+
+
+.tost-footer a:hover {
+
+color: var(--tost-text);
+
+}
+
+
+@media (max-width: 800px) {
+
+.tost-topbar {
+
+margin-top: 0.75rem;
+
+}
+
+
+.tost-nav-link span {
+
+display: none;
+
+}
+
+
+.tost-hero {
+
+padding: 4rem 0 2.5rem;
+
+}
+
+
+.tost-download-header {
+
+display: none;
+
+}
+
+
+.tost-download-row {
+
+grid-template-columns: 1fr;
+
+gap: 0.8rem;
+
+}
+
+
+.tost-download-actions {
+
+justify-content: flex-start;
+
+}
+
+
+.tost-feature-grid,
+
+.tost-workflow,
+
+.tost-open-source {
+
+grid-template-columns: 1fr;
+
+}
+
+
+.tost-feature + .tost-feature {
+
+border-top: 1px solid var(--tost-border);
+
+border-left: 0;
+
+}
+
+
+.tost-open-source .tost-button {
+
+justify-self: start;
+
+}
+
+}
+
+
+@media (max-width: 520px) {
+
+.tost-shell {
+
+width: min(100% - 1rem, 1100px);
+
+}
+
+
+.tost-topbar {
+
+padding-left: 0.7rem;
+
+}
+
+
+.tost-brand span,
+
+.tost-nav-link:not(.tost-nav-download) {
+
+display: none;
+
+}
+
+
+.tost-nav-link {
+
+padding-inline: 0.65rem;
+
+}
+
+
+.tost-hero-logo {
+
+gap: 0.65rem;
+
+}
+
+
+.tost-hero-logo img {
+
+width: 58px;
+
+height: 58px;
+
+}
+
+
+.tost-intro {
+
+font-size: 0.98rem;
+
+}
+
+
+.tost-hero-actions,
+
+.tost-hero-actions .tost-button,
+
+.tost-download-actions,
+
+.tost-download-actions .tost-button {
+
+width: 100%;
+
+}
+
+
+.tost-section {
+
+padding: 3.5rem 0;
+
+}
+
+
+.tost-open-source {
+
+padding: 1.25rem;
+
+}
+
+
+.tost-footer-inner {
+
+align-items: flex-start;
+
+flex-direction: column;
+
+}
+
+}
+
+</style>
+
 </head>
-<body class="bg-github-canvas text-github-fg">
-  <div class="page-wrapper">
-    <main>
-      <header class="header-center">
-        <div class="header-logo-wrapper" style="flex-wrap: wrap;">
-          <img src="../assets/tost-logo.png" alt="TOST logo" class="header-logo" />
-          <div style="text-align: left;">
-            <h1 class="header-title" style="margin-bottom: 0.25rem;">TOST</h1>
-            <p class="header-subtitle" style="margin: 0;">Floating installer and launcher for OpenSteamTool packages.</p>
-          </div>
-        </div>
-      </header>
 
-      <div class="main-layout-container">
-        <div class="main-content-column">
-          <section class="warning-box tost-hero-box">
-            <div class="tost-page-note">
-              <div class="warning-title" style="margin-bottom: 0;">
-                <i class="fa-solid fa-download"></i>
-                <span>Download TOST</span>
-              </div>
-              <div class="tost-pill-row" aria-label="Project highlights">
-                <span class="tost-pill"><i class="fa-solid fa-windows"></i> Windows</span>
-                <span class="tost-pill"><i class="fa-solid fa-circle-nodes"></i> Drag and drop</span>
-                <span class="tost-pill"><i class="fa-solid fa-folder-open"></i> Auto placement</span>
-              </div>
-            </div>
-            <p class="tost-hero-copy">
-              TOST is the floating helper for supported OpenSteamTool files. Use the setup build if you want an installed copy,
-              or use the portable ZIP if you want everything next to the executable. The page below links directly to the latest
-              release assets.
-            </p>
-          </section>
+<body class="tost-page">
 
-          <section class="tost-download-grid" aria-label="Download options">
-            <article class="tost-download-card featured">
-              <div class="tost-download-head">
-                <div class="tost-download-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <div>
-                  <h2 class="tost-download-title">Setup</h2>
-                  <p class="tost-download-subtitle">Recommended for a normal installed workflow.</p>
-                </div>
-              </div>
-              <div class="tost-download-meta">
-                Download the installer build for the full guided experience.
-              </div>
-              <div class="tost-download-actions">
-                <a class="btn-primary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe">
-                  <i class="fa-solid fa-download"></i>
-                  Download EXE
-                </a>
-                <a class="btn-secondary" href="https://github.com/sadabx/TOST/releases/latest" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                  Release notes
-                </a>
-              </div>
-            </article>
+<div class="tost-shell">
 
-            <article class="tost-download-card">
-              <div class="tost-download-head">
-                <div class="tost-download-icon"><i class="fa-solid fa-box-archive"></i></div>
-                <div>
-                  <h2 class="tost-download-title">Portable</h2>
-                  <p class="tost-download-subtitle">Best if you want a self-contained folder.</p>
-                </div>
-              </div>
-              <div class="tost-download-meta">
-                Keep the app, its settings, and its files together in one place.
-              </div>
-              <div class="tost-download-actions">
-                <a class="btn-primary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip">
-                  <i class="fa-solid fa-download"></i>
-                  Download ZIP
-                </a>
-                <a class="btn-secondary" href="https://github.com/sadabx/TOST" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-github"></i>
-                  Source
-                </a>
-              </div>
-            </article>
+<nav class="tost-topbar" aria-label="TOST navigation">
 
-            <article class="tost-download-card">
-              <div class="tost-download-head">
-                <div class="tost-download-icon"><i class="fa-solid fa-circle-info"></i></div>
-                <div>
-                  <h2 class="tost-download-title">About</h2>
-                  <p class="tost-download-subtitle">Built around the upstream OpenSteamTool flow.</p>
-                </div>
-              </div>
-              <div class="tost-download-meta">
-                TOST automates the supported install path and keeps the interface close to the Steam-style floating window workflow.
-              </div>
-              <div class="tost-download-actions">
-                <a class="btn-secondary" href="../index.html">
-                  <i class="fa-solid fa-house"></i>
-                  Back to ManifestHub
-                </a>
-                <a class="btn-secondary" href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip">
-                  <i class="fa-solid fa-file-zipper"></i>
-                  Direct ZIP
-                </a>
-              </div>
-            </article>
-          </section>
+<a class="tost-brand" href="./" aria-label="TOST home">
 
-          <section class="warning-box">
-            <div class="warning-title">
-              <i class="fa-solid fa-list-ol"></i>
-              <span>How it works</span>
-            </div>
-            <ol class="tost-steps">
-              <li class="tost-step">
-                <div class="tost-step-num">1</div>
-                <h3>Download the build</h3>
-                <p>Choose Setup if you want an installed app, or Portable if you want the app to live inside one folder.</p>
-              </li>
-              <li class="tost-step">
-                <div class="tost-step-num">2</div>
-                <h3>Open the floating icon</h3>
-                <p>Launch TOST and keep the icon available for drag-and-drop or menu actions.</p>
-              </li>
-              <li class="tost-step">
-                <div class="tost-step-num">3</div>
-                <h3>Drop supported files</h3>
-                <p>Drag the expected files into TOST and let it place them in the right destination folders.</p>
-              </li>
-            </ol>
-          </section>
+<img src="../assets/TOST/tost-logo.png" alt="" />
 
-          <section class="warning-box">
-            <div class="warning-title">
-              <i class="fa-solid fa-shield-heart"></i>
-              <span>Credit and notes</span>
-            </div>
-            <p class="tost-hero-copy" style="max-width: none; margin-bottom: 0.9rem;">
-              TOST is built around the OpenSteamTool ecosystem and its release assets. This page is only the download front-end;
-              the actual binaries still come from the TOST GitHub release.
-            </p>
-            <p class="tost-hero-copy" style="max-width: none; margin-bottom: 0;">
-              Not affiliated with Valve. Steam and the Steam logo are trademarks of Valve Corporation.
-            </p>
-          </section>
-        </div>
-      </div>
-    </main>
-  </div>
+<span>TOST</span>
 
-  <footer class="site-footer">
-    <div class="footer-inner tost-footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-tn">TO</span><span class="logo-tv">ST</span>
-        </div>
-        <p class="footer-tagline">
-          Floating installer and launcher for supported OpenSteamTool files.
-        </p>
-        <div class="footer-dev">
-          Hosted on <a href="https://manifesthub.trionine.com/" target="_blank" rel="noopener noreferrer">ManifestHub</a>
-        </div>
-      </div>
+</a>
 
-      <div class="footer-links tost-footer-links">
-        <div class="footer-col-label">Links</div>
-        <a href="../index.html">ManifestHub home</a>
-        <a href="https://github.com/sadabx/TOST" target="_blank" rel="noopener noreferrer">GitHub repo</a>
-        <a href="https://github.com/sadabx/TOST/releases/latest" target="_blank" rel="noopener noreferrer">Latest release</a>
-      </div>
+<div class="tost-nav">
 
-      <div class="footer-meta">
-        <div class="footer-col-label">Downloads</div>
-        <p class="footer-note">
-          Setup: <a href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe" target="_blank" rel="noopener noreferrer">EXE</a><br />
-          Portable: <a href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip" target="_blank" rel="noopener noreferrer">ZIP</a>
-        </p>
-        <div class="footer-copy">© 2026 TRIONINE</div>
-      </div>
-    </div>
-  </footer>
+<a class="tost-nav-link" href="../">
+
+<i class="fa-solid fa-house"></i>
+
+<span>ManifestHub</span>
+
+</a>
+
+<a
+
+class="tost-nav-link"
+
+href="https://github.com/sadabx/TOST"
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+>
+
+<i class="fa-brands fa-github"></i>
+
+<span>Source</span>
+
+</a>
+
+<a class="tost-button tost-nav-download" href="#downloads">
+
+<i class="fa-solid fa-download"></i>
+
+Download
+
+</a>
+
+</div>
+
+</nav>
+
+
+<main>
+
+<section class="tost-hero" aria-labelledby="tost-title">
+
+<div class="tost-hero-logo">
+
+<img src="../assets/TOST/tost-logo.png" alt="TOST logo" />
+
+<h1 id="tost-title">TO<span>ST</span></h1>
+
+</div>
+
+<p class="tost-kicker">Open-source installer for OpenSteamTool</p>
+
+<p class="tost-intro">
+
+A compact floating installer that routes supported OpenSteamTool files
+
+to the correct Steam folders.
+
+</p>
+
+<div class="tost-meta" aria-label="Platform details">
+
+<span><i class="fa-brands fa-windows"></i> Windows 10+</span>
+
+<span><i class="fa-solid fa-code-branch"></i> Open source</span>
+
+<span><i class="fa-solid fa-box-open"></i> Setup and portable</span>
+
+</div>
+
+<div class="tost-hero-actions">
+
+<a class="tost-button tost-button-primary" href="#downloads">
+
+<i class="fa-solid fa-download"></i>
+
+Get TOST
+
+</a>
+
+<a
+
+class="tost-button"
+
+href="https://github.com/sadabx/TOST"
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+>
+
+<i class="fa-brands fa-github"></i>
+
+View source
+
+</a>
+
+</div>
+
+<figure class="tost-product-shot">
+
+<img
+
+src="../assets/TOST/TOST.png"
+
+alt="TOST floating icon with its Steam-style application menu open"
+
+width="860"
+
+height="559"
+
+/>
+
+</figure>
+
+</section>
+
+
+<section class="tost-section" id="downloads" aria-labelledby="downloads-title">
+
+<div class="tost-section-heading">
+
+<span class="tost-eyebrow">Latest release</span>
+
+<h2 id="downloads-title">Choose your build</h2>
+
+<p>
+
+Setup is recommended for automatic updates. Portable keeps the
+
+application and its data together in one folder.
+
+</p>
+
+</div>
+
+
+<div class="tost-download-table" role="table" aria-label="TOST downloads">
+
+<div class="tost-download-header" role="row">
+
+<span role="columnheader">Build</span>
+
+<span role="columnheader">Best for</span>
+
+<span role="columnheader">Download</span>
+
+</div>
+
+
+<div class="tost-download-row" role="row">
+
+<div class="tost-build-name" role="cell">
+
+<span class="tost-build-icon"><i class="fa-solid fa-display"></i></span>
+
+<span>
+
+<strong>Windows Setup</strong>
+
+<span class="tost-recommended">Recommended</span>
+
+</span>
+
+</div>
+
+<p class="tost-build-detail" role="cell">
+
+Normal installation with shortcuts and in-place update support.
+
+</p>
+
+<div class="tost-download-actions" role="cell">
+
+<a
+
+class="tost-button tost-button-primary"
+
+href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe"
+
+>
+
+<i class="fa-solid fa-download"></i>
+
+Setup EXE
+
+</a>
+
+<a
+
+class="tost-button"
+
+href="https://github.com/sadabx/TOST/releases/latest"
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+title="View release notes"
+
+aria-label="View release notes"
+
+>
+
+<i class="fa-solid fa-file-lines"></i>
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="tost-download-row" role="row">
+
+<div class="tost-build-name" role="cell">
+
+<span class="tost-build-icon"><i class="fa-solid fa-box-archive"></i></span>
+
+<span><strong>Windows Portable</strong></span>
+
+</div>
+
+<p class="tost-build-detail" role="cell">
+
+A movable folder-based build with no installation required.
+
+</p>
+
+<div class="tost-download-actions" role="cell">
+
+<a
+
+class="tost-button"
+
+href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip"
+
+>
+
+<i class="fa-solid fa-download"></i>
+
+Portable ZIP
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="tost-section" id="comparison" aria-labelledby="comparison-title">
+
+<div class="tost-section-heading">
+
+<span class="tost-eyebrow">Publicly verifiable differences</span>
+
+<h2 id="comparison-title">Why choose TOST?</h2>
+
+<p>
+
+TOST favors inspectable code, explicit local file selection, and
+
+visible changes instead of unverifiable security promises.
+
+</p>
+
+</div>
+
+
+<div class="tost-comparison-wrap">
+
+<table class="tost-comparison">
+
+<thead>
+
+<tr>
+
+<th scope="col">Feature</th>
+
+<th scope="col">TOST + OpenSteamTool</th>
+
+<th scope="col">Original SteamTools</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th scope="row">Code</th>
+
+<td class="tost-positive">Public source under GPL-3.0</td>
+
+<td class="tost-unverified">No public source linked from official downloads</td>
+
+</tr>
+
+<tr>
+
+<th scope="row">Packages</th>
+
+<td class="tost-positive">Local files explicitly selected or dropped by the user</td>
+
+<td class="tost-unverified">Handling cannot be verified from public source</td>
+
+</tr>
+
+<tr>
+
+<th scope="row">File changes</th>
+
+<td class="tost-positive">Recognized names, optional backups, summaries, and logs</td>
+
+<td class="tost-unverified">No comparable source-level verification available</td>
+
+</tr>
+
+<tr>
+
+<th scope="row">Updates</th>
+
+<td class="tost-positive">GitHub checks can be disabled; downloads need confirmation</td>
+
+<td class="tost-unverified">Implementation cannot be independently audited</td>
+
+</tr>
+
+<tr>
+
+<th scope="row">Builds</th>
+
+<td class="tost-positive">Setup and Portable published with source on GitHub</td>
+
+<td>Setup and Portable binaries</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<p class="tost-comparison-note">
+
+Closed source does not itself prove malicious behavior. This comparison
+
+is limited to properties that can be checked from public source and
+
+release materials.
+
+</p>
+
+</section>
+
+
+<section class="tost-section" aria-labelledby="features-title">
+
+<div class="tost-section-heading">
+
+<span class="tost-eyebrow">Focused utility</span>
+
+<h2 id="features-title">Built for the files you already have</h2>
+
+<p>
+
+TOST does not bundle third-party payloads. You select trusted local
+
+packages, then TOST handles the expected Steam folder layout.
+
+</p>
+
+</div>
+
+
+<div class="tost-feature-grid">
+
+<article class="tost-feature">
+
+<i class="fa-solid fa-hand-pointer"></i>
+
+<h3>Drag and drop</h3>
+
+<p>Drop supported files, folders, or ZIP packages onto the floating icon.</p>
+
+</article>
+
+<article class="tost-feature">
+
+<i class="fa-solid fa-folder-tree"></i>
+
+<h3>Automatic routing</h3>
+
+<p>Steam is detected and recognized files are copied to their expected locations.</p>
+
+</article>
+
+<article class="tost-feature">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Controlled changes</h3>
+
+<p>Validation, overwrite backups, import summaries, and logs keep actions visible.</p>
+
+</article>
+
+</div>
+
+</section>
+
+
+<section class="tost-section" aria-labelledby="workflow-title">
+
+<div class="tost-section-heading">
+
+<span class="tost-eyebrow">How it works</span>
+
+<h2 id="workflow-title">Three steps from package to Steam</h2>
+
+</div>
+
+<div class="tost-workflow">
+
+<article class="tost-step">
+
+<h3>Install or extract</h3>
+
+<p>Use the Setup build or extract the complete Portable archive.</p>
+
+</article>
+
+<article class="tost-step">
+
+<h3>Launch TOST</h3>
+
+<p>The floating icon stays available for file drops and menu actions.</p>
+
+</article>
+
+<article class="tost-step">
+
+<h3>Choose local files</h3>
+
+<p>Drop supported files or select a package through Install / Repair.</p>
+
+</article>
+
+</div>
+
+</section>
+
+
+<section class="tost-section" aria-labelledby="source-title">
+
+<div class="tost-open-source">
+
+<div>
+
+<span class="tost-eyebrow">Transparent by design</span>
+
+<h2 id="source-title">Open source on GitHub</h2>
+
+<p>
+
+Inspect the code, review how files are routed, report issues, or
+
+build TOST yourself under the GPL-3.0 license.
+
+</p>
+
+</div>
+
+<a
+
+class="tost-button"
+
+href="https://github.com/sadabx/TOST"
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+>
+
+<i class="fa-brands fa-github"></i>
+
+Browse repository
+
+</a>
+
+</div>
+
+<p class="tost-note">
+
+TOST is an independent Trionine project built around the separately
+
+maintained OpenSteamTool file layout. It is not owned, maintained, or
+
+endorsed by OpenSteamTool, Valve, or Steam. Steam is a trademark of
+
+Valve Corporation.
+
+</p>
+
+</section>
+
+</main>
+
+</div>
+
+
+<footer class="tost-footer">
+
+<div class="tost-shell tost-footer-inner">
+
+<span>© 2026 TRIONINE · TOST</span>
+
+<div class="tost-footer-links">
+
+<a href="../">ManifestHub</a>
+
+<a href="https://github.com/sadabx/TOST" target="_blank" rel="noopener noreferrer">Source</a>
+
+<a href="https://github.com/sadabx/TOST/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+
+<a href="https://github.com/sadabx/TOST/releases/latest" target="_blank" rel="noopener noreferrer">Releases</a>
+
+</div>
+
+</div>
+
+</footer>
+
 </body>
+
 </html>
