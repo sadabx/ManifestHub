@@ -203,6 +203,7 @@ window.MH_displayGameFiles = async function (appId, gameName) {
         // Purpose: Direct URL to download the branch as a ZIP file.
         url: `https://codeload.github.com/${REPO_OWNER}/ManifestHub2/zip/refs/heads/${appId}`,
         isExternal: true,
+        includeInBundle: false,
       });
     }
   } catch (e) { }
@@ -250,8 +251,10 @@ window.MH_displayGameFiles = async function (appId, gameName) {
     filesList.appendChild(notice);
   }
 
-  document.getElementById("downloadAllZipBtn").classList.remove("hidden");
-  currentFiles = files;
+  currentFiles = files.filter((file) => file.includeInBundle !== false);
+  document
+    .getElementById("downloadAllZipBtn")
+    .classList.toggle("hidden", currentFiles.length === 0);
 };
 
 // ---- ZIP Download ----
@@ -313,8 +316,9 @@ function initZipDownload() {
         URL.revokeObjectURL(downloadUrl);
 
         if (failedFiles.length) {
+          const failedList = failedFiles.map((name) => `- ${name}`).join("\n");
           alert(
-            `Downloaded the available files. Skipped ${failedFiles.length} file${failedFiles.length === 1 ? "" : "s"} that could not be fetched.`,
+            `Downloaded the available files, but ${failedFiles.length} file${failedFiles.length === 1 ? "" : "s"} could not be fetched:\n\n${failedList}\n\nTry the individual download button or retry later.`,
           );
         }
 
