@@ -77,7 +77,7 @@ ManifestHub/
 ├── forum/index.html           # Community forum
 ├── index.html                 # Main search and FAQ page
 ├── profile/index.html         # User profile and download history
-└── TOST/index.html            # TOST download page
+└── tost/index.html            # TOST download page
 ```
 
 See [`src/README.md`](src/README.md) for source ownership and script load

@@ -42,8 +42,8 @@
 
   <!-- TOST Download Page -->
   <url>
-    <loc>https://manifesthub.trionine.com/TOST/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <loc>https://manifesthub.trionine.com/tost/</loc>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

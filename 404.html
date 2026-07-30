@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Lost Like Zoro | ManifestHub</title>
+    <script>
+        const normalizedPath = window.location.pathname
+            .replace(/\/+$/, "")
+            .toLowerCase();
+        const isCanonicalTostPath =
+            window.location.pathname === "/tost" ||
+            window.location.pathname === "/tost/";
+
+        if (normalizedPath === "/tost" && !isCanonicalTostPath) {
+            window.location.replace(
+                `/tost/${window.location.search}${window.location.hash}`,
+            );
+        }
+    </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
@@ -27,7 +41,7 @@
                     <i class="fa-solid fa-house" aria-hidden="true"></i>
                     <span>Home</span>
                 </a>
-                <a class="site-nav-action" href="/TOST/">
+                <a class="site-nav-action" href="/tost/">
                     <i class="fa-solid fa-download" aria-hidden="true"></i>
                     <span>TOST</span>
                 </a>
