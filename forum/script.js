@@ -52,6 +52,7 @@
   };
 
   let toastTimer = null;
+  let accountMenuController = null;
 
   function escape(value) {
     return window.escapeHtml(value == null ? "" : String(value));
@@ -112,6 +113,11 @@
   }
 
   function renderAuth() {
+    if (accountMenuController) {
+      accountMenuController.abort();
+      accountMenuController = null;
+    }
+
     if (!state.currentUser) {
       elements.auth.innerHTML =
         '<a class="forum-sign-in" href="../?auth=login&amp;returnTo=/forum/">Sign in</a>';
@@ -120,10 +126,59 @@
 
     const name = displayName(state.currentUser);
     elements.auth.innerHTML = `
-      <span class="forum-user-button" title="Signed in as ${escape(name)}">
-        <span class="forum-user-avatar">${escape(name.charAt(0).toUpperCase())}</span>
-        <span>${escape(name)}</span>
-      </span>`;
+      <div class="user-menu-wrap">
+        <button class="user-menu-btn" id="forumUserMenuButton" type="button"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="user-menu-avatar">${escape(name.charAt(0).toUpperCase())}</span>
+          <span>${escape(name)}</span>
+          <i class="fas fa-chevron-down user-menu-chevron" aria-hidden="true"></i>
+        </button>
+        <div class="user-dropdown hidden" id="forumUserDropdown">
+          <div class="user-dropdown-header">
+            Signed in as<br>
+            <strong class="user-dropdown-email">${escape(state.currentUser.email || "")}</strong>
+          </div>
+          <a href="../profile" class="user-dropdown-link">
+            <i class="fas fa-user user-dropdown-icon" aria-hidden="true"></i>
+            Your Profile
+          </a>
+          <div class="user-dropdown-divider">
+            <button class="user-dropdown-btn" id="forumLogoutButton" type="button">
+              <i class="fas fa-sign-out-alt user-dropdown-icon" aria-hidden="true"></i>
+              Sign out
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    const menuButton = document.getElementById("forumUserMenuButton");
+    const dropdown = document.getElementById("forumUserDropdown");
+    const logoutButton = document.getElementById("forumLogoutButton");
+    const setOpen = (open) => {
+      dropdown.classList.toggle("hidden", !open);
+      menuButton.setAttribute("aria-expanded", String(open));
+    };
+
+    menuButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setOpen(dropdown.classList.contains("hidden"));
+    });
+    logoutButton.addEventListener("click", async () => {
+      setOpen(false);
+      await client.auth.signOut();
+    });
+
+    accountMenuController = new AbortController();
+    document.addEventListener("click", () => setOpen(false), {
+      signal: accountMenuController.signal,
+    });
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") setOpen(false);
+      },
+      { signal: accountMenuController.signal },
+    );
   }
 
   function replyCount(postId) {
