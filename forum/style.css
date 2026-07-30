@@ -432,6 +432,16 @@ textarea {
   font-weight: 700;
 }
 
+.post-author.is-admin,
+.reply-author.is-admin {
+  color: #e3b341;
+}
+
+.admin-mark {
+  margin-left: 0.18rem;
+  font-size: 0.68rem;
+}
+
 .post-title-button {
   display: block;
   width: 100%;
@@ -503,11 +513,13 @@ textarea {
   background: #21262d;
 }
 
-.post-action.is-danger {
+.post-action.is-danger,
+.reply-action.is-danger {
   color: var(--forum-red);
 }
 
-.post-action.is-danger:hover {
+.post-action.is-danger:hover,
+.reply-action.is-danger:hover {
   color: #ff7b72;
   background: rgba(248, 81, 73, 0.1);
 }

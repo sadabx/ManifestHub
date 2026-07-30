@@ -13,10 +13,12 @@
     posts: [],
     replies: [],
     profiles: new Map(),
+    adminIds: new Set(),
     postVotes: new Map(),
     replyVotes: new Map(),
     expandedPosts: new Set(),
     currentUser: null,
+    isAdmin: false,
     category: "all",
     sort: "hot",
     search: "",
@@ -171,6 +173,9 @@
 
   function renderReply(reply, depth = 0) {
     const name = state.profiles.get(reply.author_id) || "Member";
+    const isAdminAuthor = state.adminIds.has(reply.author_id);
+    const canDelete =
+      state.currentUser?.id === reply.author_id || state.isAdmin;
     const vote = state.replyVotes.get(reply.id) || 0;
     const children = state.replies.filter(
       (candidate) => candidate.parent_id === reply.id,
@@ -180,7 +185,7 @@
     return `
       <article class="reply-item${depth ? " is-nested" : ""}" id="reply-${reply.id}">
         <div class="reply-meta">
-          <span class="reply-author">${escape(name)}</span>
+          <span class="reply-author${isAdminAuthor ? " is-admin" : ""}">${escape(name)}${isAdminAuthor ? ' <i class="fa-solid fa-shield-halved admin-mark" title="Administrator" aria-label="Administrator"></i>' : ""}</span>
           <time datetime="${escape(reply.created_at)}">${escape(relativeTime(reply.created_at))}</time>
         </div>
         <p class="reply-content">${escape(reply.content)}</p>
@@ -198,6 +203,11 @@
             <button class="reply-action" type="button" data-action="show-reply-form"
               data-post-id="${reply.post_id}" data-parent-id="${reply.id}">
               <i class="fa-solid fa-reply" aria-hidden="true"></i> Reply
+            </button>` : ""}
+          ${canDelete ? `
+            <button class="reply-action is-danger" type="button" data-action="delete-reply"
+              data-reply-id="${reply.id}" data-post-id="${reply.post_id}">
+              <i class="fa-regular fa-trash-can" aria-hidden="true"></i> Delete
             </button>` : ""}
         </div>
         ${canNest ? renderReplyForm(reply.post_id, reply.id) : ""}
@@ -219,13 +229,14 @@
 
   function renderPost(post) {
     const name = state.profiles.get(post.author_id) || "Member";
+    const isAdminAuthor = state.adminIds.has(post.author_id);
     const replies = state.replies.filter(
       (reply) => reply.post_id === post.id && reply.parent_id === null,
     );
     const totalReplies = replyCount(post.id);
     const vote = state.postVotes.get(post.id) || 0;
     const expanded = state.expandedPosts.has(post.id);
-    const isOwner = state.currentUser?.id === post.author_id;
+    const canDelete = state.currentUser?.id === post.author_id || state.isAdmin;
 
     return `
       <article class="post-card${expanded ? " is-expanded" : ""}" id="post-${post.id}" data-post-id="${post.id}">
@@ -243,7 +254,7 @@
         <div class="post-main">
           <div class="post-meta">
             <span class="post-category">${escape(CATEGORIES[post.category] || post.category)}</span>
-            <span class="post-author">${escape(name)}</span>
+            <span class="post-author${isAdminAuthor ? " is-admin" : ""}">${escape(name)}${isAdminAuthor ? ' <i class="fa-solid fa-shield-halved admin-mark" title="Administrator" aria-label="Administrator"></i>' : ""}</span>
             <time datetime="${escape(post.created_at)}">${escape(relativeTime(post.created_at))}</time>
           </div>
           <button class="post-title-button" type="button" data-action="toggle-post" data-post-id="${post.id}">
@@ -263,7 +274,7 @@
             <button class="post-action" type="button" data-action="share-post" data-post-id="${post.id}">
               <i class="fa-solid fa-link" aria-hidden="true"></i> Share
             </button>
-            ${isOwner ? `
+            ${canDelete ? `
               <button class="post-action is-danger" type="button" data-action="delete-post" data-post-id="${post.id}">
                 <i class="fa-regular fa-trash-can" aria-hidden="true"></i> Delete
               </button>` : ""}
@@ -311,6 +322,35 @@
       replyResult.data.forEach((vote) =>
         state.replyVotes.set(vote.reply_id, vote.value),
       );
+    }
+  }
+
+  async function loadAdminState(authorIds) {
+    state.adminIds.clear();
+    state.isAdmin = false;
+
+    const requests = [
+      authorIds.length
+        ? client.rpc("get_forum_admin_ids", { candidate_ids: authorIds })
+        : Promise.resolve({ data: [], error: null }),
+      state.currentUser
+        ? client.rpc("is_forum_admin")
+        : Promise.resolve({ data: false, error: null }),
+    ];
+    const [authorsResult, currentUserResult] = await Promise.all(requests);
+
+    if (!authorsResult.error) {
+      (authorsResult.data || []).forEach((admin) =>
+        state.adminIds.add(admin.user_id),
+      );
+    } else {
+      console.error("Forum admin labels failed:", authorsResult.error);
+    }
+
+    if (!currentUserResult.error) {
+      state.isAdmin = currentUserResult.data === true;
+    } else {
+      console.error("Forum admin check failed:", currentUserResult.error);
     }
   }
 
@@ -379,6 +419,7 @@
       }
     }
 
+    await loadAdminState(authorIds);
     await loadVotes();
     state.loading = false;
 
@@ -542,19 +583,19 @@
   async function deletePost(postId, button) {
     if (!requireAuth()) return;
     const post = state.posts.find((candidate) => candidate.id === postId);
-    if (!post || post.author_id !== state.currentUser.id) {
-      showToast("You can only delete your own posts.", "error");
+    if (!post || (post.author_id !== state.currentUser.id && !state.isAdmin)) {
+      showToast("You do not have permission to delete this post.", "error");
       return;
     }
     if (!window.confirm("Delete this post and all of its replies?")) return;
 
     button.disabled = true;
-    const result = await client
+    let query = client
       .from("forum_posts")
       .delete()
-      .eq("id", postId)
-      .eq("author_id", state.currentUser.id)
-      .select("id");
+      .eq("id", postId);
+    if (!state.isAdmin) query = query.eq("author_id", state.currentUser.id);
+    const result = await query.select("id");
 
     if (result.error || result.data?.length !== 1) {
       button.disabled = false;
@@ -570,6 +611,32 @@
     }
     await loadForum();
     showToast("Post deleted.");
+  }
+
+  async function deleteReply(replyId, postId, button) {
+    if (!requireAuth()) return;
+    const reply = state.replies.find((candidate) => candidate.id === replyId);
+    if (!reply || (reply.author_id !== state.currentUser.id && !state.isAdmin)) {
+      showToast("You do not have permission to delete this reply.", "error");
+      return;
+    }
+    if (!window.confirm("Delete this reply?")) return;
+
+    button.disabled = true;
+    let query = client.from("forum_replies").delete().eq("id", replyId);
+    if (!state.isAdmin) query = query.eq("author_id", state.currentUser.id);
+    const result = await query.select("id");
+
+    if (result.error || result.data?.length !== 1) {
+      button.disabled = false;
+      showToast("Reply could not be deleted.", "error");
+      return;
+    }
+
+    await loadForum();
+    state.expandedPosts.add(postId);
+    renderPosts();
+    showToast("Reply deleted.");
   }
 
   function updateActiveControls() {
@@ -638,6 +705,8 @@
       sharePost(postId);
     } else if (action === "delete-post") {
       deletePost(postId, target);
+    } else if (action === "delete-reply") {
+      deleteReply(replyId, postId, target);
     }
   });
   document.addEventListener("keydown", (event) => {
@@ -652,6 +721,13 @@
     client.auth.onAuthStateChange(async (_event, session) => {
       state.currentUser = session?.user || null;
       renderAuth();
+      const authorIds = [
+        ...new Set([
+          ...state.posts.map((post) => post.author_id),
+          ...state.replies.map((reply) => reply.author_id),
+        ]),
+      ];
+      await loadAdminState(authorIds);
       await loadVotes();
       renderPosts();
     });

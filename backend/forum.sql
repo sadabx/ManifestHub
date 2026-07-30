@@ -47,6 +47,12 @@ CREATE TABLE IF NOT EXISTS public.forum_reply_votes (
   PRIMARY KEY (reply_id, user_id)
 );
 
+ALTER TABLE public.forum_replies
+  DROP CONSTRAINT IF EXISTS forum_replies_parent_id_fkey;
+ALTER TABLE public.forum_replies
+  ADD CONSTRAINT forum_replies_parent_id_fkey
+  FOREIGN KEY (parent_id) REFERENCES public.forum_replies(id) ON DELETE SET NULL;
+
 CREATE INDEX IF NOT EXISTS idx_forum_posts_created_at
   ON public.forum_posts(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_forum_posts_category
@@ -55,6 +61,40 @@ CREATE INDEX IF NOT EXISTS idx_forum_replies_post
   ON public.forum_replies(post_id, created_at ASC);
 CREATE INDEX IF NOT EXISTS idx_forum_replies_parent
   ON public.forum_replies(parent_id);
+
+CREATE OR REPLACE FUNCTION public.is_forum_admin()
+RETURNS BOOLEAN
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM public.admins
+    WHERE lower(email) = lower(auth.jwt() ->> 'email')
+  );
+$$;
+
+CREATE OR REPLACE FUNCTION public.get_forum_admin_ids(candidate_ids UUID[])
+RETURNS TABLE(user_id UUID)
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+  SELECT DISTINCT users.id
+  FROM auth.users AS users
+  JOIN public.admins AS admins
+    ON lower(admins.email) = lower(users.email)
+  WHERE users.id = ANY(candidate_ids);
+$$;
+
+REVOKE ALL ON FUNCTION public.is_forum_admin() FROM PUBLIC;
+REVOKE ALL ON FUNCTION public.get_forum_admin_ids(UUID[]) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.is_forum_admin() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.get_forum_admin_ids(UUID[])
+  TO anon, authenticated;
 
 CREATE OR REPLACE FUNCTION public.sync_forum_profile()
 RETURNS TRIGGER
@@ -274,9 +314,10 @@ CREATE POLICY "Users create own forum posts"
   WITH CHECK (auth.uid() = author_id);
 
 DROP POLICY IF EXISTS "Users delete own forum posts" ON public.forum_posts;
-CREATE POLICY "Users delete own forum posts"
+DROP POLICY IF EXISTS "Owners and admins delete forum posts" ON public.forum_posts;
+CREATE POLICY "Owners and admins delete forum posts"
   ON public.forum_posts FOR DELETE
-  USING (auth.uid() = author_id);
+  USING (auth.uid() = author_id OR public.is_forum_admin());
 
 DROP POLICY IF EXISTS "Forum replies are public" ON public.forum_replies;
 CREATE POLICY "Forum replies are public"
@@ -295,9 +336,10 @@ CREATE POLICY "Users create own forum replies"
   );
 
 DROP POLICY IF EXISTS "Users delete own forum replies" ON public.forum_replies;
-CREATE POLICY "Users delete own forum replies"
+DROP POLICY IF EXISTS "Owners and admins delete forum replies" ON public.forum_replies;
+CREATE POLICY "Owners and admins delete forum replies"
   ON public.forum_replies FOR DELETE
-  USING (auth.uid() = author_id);
+  USING (auth.uid() = author_id OR public.is_forum_admin());
 
 DROP POLICY IF EXISTS "Users read own post votes" ON public.forum_post_votes;
 CREATE POLICY "Users read own post votes"
@@ -379,3 +421,5 @@ GRANT USAGE
   TO authenticated;
 
 COMMIT;
+
+NOTIFY pgrst, 'reload schema';

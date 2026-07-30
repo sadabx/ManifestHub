@@ -47,6 +47,8 @@ Frontend (static HTML/JS)
 - `public.forum_profiles` — public forum display names synced from Supabase Auth
 - `public.forum_posts` / `public.forum_replies` — forum discussions and replies
 - `public.forum_post_votes` / `public.forum_reply_votes` — authenticated user votes
+- `public.admins` — existing email-based admin list used for forum moderation
+- `public.is_forum_admin()` / `public.get_forum_admin_ids()` — secure forum admin checks
 - `public.get_popular_downloads()` — optional live RPC over temporary events
 
 **Auth:**
