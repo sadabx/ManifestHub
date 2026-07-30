@@ -41,20 +41,17 @@ window.MH_loadTrendingDownloads = async function () {
         name = window.MH.appNames[item.appId];
       }
 
-      if (name) {
-        name = window.escapeHtml(name);
-      } else {
-        name = "App ID " + item.appId;
-      }
+      if (!name) name = "App ID " + item.appId;
+      const safeName = window.escapeHtml(name);
 
       const formattedCount = parseInt(item.count).toLocaleString();
 
       const card = document.createElement("div");
       card.className = "trending-card";
       card.innerHTML = `
-        <img class="trending-card-img" src="https://cdn.akamai.steamstatic.com/steam/apps/${item.appId}/header.jpg" alt="${name}">
+        <img class="trending-card-img" src="https://cdn.akamai.steamstatic.com/steam/apps/${item.appId}/header.jpg" alt="${safeName}">
         <div class="trending-card-info">
-          <strong class="text-xs font-semibold text-fg truncate" title="${name}">${name}</strong>
+          <strong class="text-xs font-semibold text-fg truncate" title="${safeName}">${safeName}</strong>
           <span class="trending-card-meta">
             <i class="fas fa-download"></i> ${formattedCount}
           </span>
