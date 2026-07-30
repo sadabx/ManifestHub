@@ -1,451 +1,563 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManifestHub - Steam Manifest &amp; Lua Generator</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=1" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManifestHub - Steam Manifest &amp; Lua Generator</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png?v=1" />
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files for legacy archives and current databases."
+    />
+    <meta
+      name="keywords"
+      content="steam manifest, steam manifest download, steam depot keys, steam lua generator, manifest downloader, steam db, steam legacy archive, manifesthub"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://manifesthub.trionine.com/" />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files for legacy archives and current databases." />
-  <meta name="keywords"
-    content="steam manifest, steam manifest download, steam depot keys, steam lua generator, manifest downloader, steam db, steam legacy archive, manifesthub" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://manifesthub.trionine.com/" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://manifesthub.trionine.com/" />
+    <meta
+      property="og:title"
+      content="ManifestHub - Steam Manifest &amp; Lua Generator"
+    />
+    <meta
+      property="og:description"
+      content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files for legacy archives and current databases."
+    />
+    <meta
+      property="og:image"
+      content="https://manifesthub.trionine.com/assets/manifesthub.png"
+    />
+    <meta property="og:site_name" content="ManifestHub" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://manifesthub.trionine.com/" />
-  <meta property="og:title" content="ManifestHub - Steam Manifest &amp; Lua Generator" />
-  <meta property="og:description"
-    content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files for legacy archives and current databases." />
-  <meta property="og:image" content="https://manifesthub.trionine.com/assets/manifesthub.png" />
-  <meta property="og:site_name" content="ManifestHub" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://manifesthub.trionine.com/" />
+    <meta
+      property="twitter:title"
+      content="ManifestHub - Steam Manifest &amp; Lua Generator"
+    />
+    <meta
+      property="twitter:description"
+      content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files."
+    />
+    <meta
+      property="twitter:image"
+      content="https://manifesthub.trionine.com/assets/manifesthub.png"
+    />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://manifesthub.trionine.com/" />
-  <meta property="twitter:title" content="ManifestHub - Steam Manifest &amp; Lua Generator" />
-  <meta property="twitter:description"
-    content="Search, view, and download Steam manifests and Lua depot keys. Quick and easy access to game manifest files." />
-  <meta property="twitter:image" content="https://manifesthub.trionine.com/assets/manifesthub.png" />
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ManifestHub",
-      "url": "https://manifesthub.trionine.com/",
-      "description": "Search, view, and download Steam manifests and Lua depot keys.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://manifesthub.trionine.com/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ManifestHub",
+        "url": "https://manifesthub.trionine.com/",
+        "description": "Search, view, and download Steam manifests and Lua depot keys.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://manifesthub.trionine.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       }
-    }
     </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/base.css?v=1.0" />
-  <link rel="stylesheet" href="css/components.css?v=1.1" />
-  <link rel="stylesheet" href="css/layout.css?v=1.2" />
-  <!-- Supabase CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/base.css?v=1.0" />
+    <link rel="stylesheet" href="css/components.css?v=1.1" />
+    <link rel="stylesheet" href="css/layout.css?v=1.2" />
+    <!-- Supabase CDN -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.min.js"
+      integrity="sha384-fPWur1rx/DE6YtXP/x0MD6dd90RgnVsz5yX/DIg7CcVAnTBZsENWuIcpvVTM39ti"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body class="bg-github-canvas text-github-fg">
-  <nav class="site-nav" aria-label="ManifestHub navigation">
-    <a class="site-nav-brand" href="./" aria-label="ManifestHub home">
-      <img src="assets/mhub.png" alt="" />
-      <span>Manifest Hub</span>
-    </a>
+  <body class="bg-github-canvas text-github-fg">
+    <nav class="site-nav" aria-label="ManifestHub navigation">
+      <a class="site-nav-brand" href="./" aria-label="ManifestHub home">
+        <img src="assets/mhub.png" alt="" />
+        <span><span class="logo-tn">Manifest</span>Hub</span>
+      </a>
 
-    <div class="site-nav-right">
-      <div class="site-nav-links">
-        <a class="site-nav-action" href="/TOST/">
-          <i class="fa-solid fa-download" aria-hidden="true"></i>
-          <span>TOST</span>
-        </a>
-        <a class="site-nav-link" href="https://github.com/sadabx/ManifestHub" target="_blank"
-          rel="noopener noreferrer">
-          <i class="fa-brands fa-github" aria-hidden="true"></i>
-          <span>Source</span>
-        </a>
+      <div class="site-nav-right">
+        <div class="site-nav-links">
+          <a class="site-nav-action" href="/TOST/">
+            <i class="fa-solid fa-download" aria-hidden="true"></i>
+            <span>TOST</span>
+          </a>
+          <a class="site-nav-link" href="/forum/">
+            <i class="fa-regular fa-comments" aria-hidden="true"></i>
+            <span>Forum</span>
+          </a>
+          <a
+            class="site-nav-link"
+            href="https://github.com/sadabx/ManifestHub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+            <span>Source</span>
+          </a>
+        </div>
+
+        <div class="site-nav-account auth-bar">
+          <div id="viewerCount" class="viewer-count" aria-label="Live viewers">
+            <span class="viewer-dot" aria-hidden="true"></span>
+            <span id="viewerCountNum">-</span>
+            <i class="fa-solid fa-eye viewer-icon" aria-hidden="true"></i>
+          </div>
+          <div id="authSection">
+            <button id="loginBtn" class="btn-primary">Sign in</button>
+          </div>
+        </div>
       </div>
+    </nav>
 
-      <div class="site-nav-account auth-bar">
-        <div id="viewerCount" class="viewer-count" aria-label="Live viewers">
-          <span class="viewer-dot" aria-hidden="true"></span>
-          <span id="viewerCountNum">-</span>
-          <i class="fa-solid fa-eye viewer-icon" aria-hidden="true"></i>
-        </div>
-        <div id="authSection">
-          <button id="loginBtn" class="btn-primary">Sign in</button>
-        </div>
-      </div>
-    </div>
-  </nav>
+    <!-- ===== MODALS ===== -->
 
-  <!-- ===== MODALS ===== -->
-
-  <!-- Auth Modal -->
-  <div id="authModal" class="modal-overlay hidden">
-    <div class="auth-modal-wrapper">
-      <button id="closeAuthModal" class="auth-close-btn">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <div class="auth-header">
-        <img src="assets/mhub.png" alt="Logo" class="auth-logo" />
-        <h2 id="authTitle" class="auth-title">Sign In</h2>
-        <p class="auth-subtitle">Access your Manifest Hub account</p>
-      </div>
-
-      <form id="authForm">
-        <div class="auth-input-group hidden" id="displayNameGroup">
-          <i class="fas fa-user"></i>
-          <input type="text" id="authDisplayName" class="auth-input" placeholder="Display name" />
-        </div>
-        <div class="auth-input-group">
-          <i class="fas fa-envelope"></i>
-          <input type="email" id="authEmail" class="auth-input" placeholder="Email address" required />
-        </div>
-        <div class="auth-input-group">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="authPassword" class="auth-input" placeholder="Password" required />
-        </div>
-        <div id="forgotPasswordWrap" class="forgot-password-wrap">
-          <button type="button" id="forgotPasswordBtn" class="forgot-password-btn">
-            Forgot password?
-          </button>
-        </div>
-        <button type="submit" id="authSubmitBtn" class="auth-submit-btn">
-          Sign In
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal-overlay hidden">
+      <div class="auth-modal-wrapper">
+        <button id="closeAuthModal" class="auth-close-btn">
+          <i class="fas fa-times"></i>
         </button>
-        <div id="authError" class="hidden"></div>
 
-        <div class="auth-form-divider">
-          <span id="authSwitchText">Don't have an account?</span>
-          <button type="button" id="authSwitchBtn">Sign Up</button>
+        <div class="auth-header">
+          <img src="assets/mhub.png" alt="Logo" class="auth-logo" />
+          <h2 id="authTitle" class="auth-title">Sign In</h2>
+          <p class="auth-subtitle">Access your Manifest Hub account</p>
         </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- Disclaimer Modal -->
-  <div id="disclaimerModal" class="modal-overlay hidden">
-    <div class="modal-content modal-disclaimer">
-      <div class="modal-disclaimer-content">
-        <div class="modal-disclaimer-icon-wrapper">
-          <i class="fas fa-balance-scale modal-disclaimer-icon"></i>
-        </div>
-        <h2 class="modal-disclaimer-heading">
-          Disclaimer
-        </h2>
-      </div>
-      <div class="modal-disclaimer-body-wrapper">
-        <p class="modal-disclaimer-text">
-          This website is for informational purposes only. We are not
-          responsible for any consequences that may arise from using the
-          provided data.
-        </p>
-      </div>
-      <div class="modal-disclaimer-checkbox-wrapper">
-        <input type="checkbox" id="dontShowAgain" />
-        <label for="dontShowAgain">Don't show this again</label>
-      </div>
-      <button id="acceptDisclaimer" class="btn-primary">I Understand</button>
-    </div>
-  </div>
-
-
-  <!-- ===== PAGE LAYOUT: CENTERED ===== -->
-  <div class="page-wrapper">
-    <!-- ===== CENTER: Main Content ===== -->
-    <main>
-      <header class="header-center">
-        <div class="header-logo-wrapper">
-          <img src="assets/mhub.png" alt="Manifest Hub Logo" class="header-logo" />
-          <h1 class="header-title">Manifest<span>Hub</span></h1>
-        </div>
-        <p class="header-subtitle">
-          Find Steam manifests and Lua depot keys.
-        </p>
-      </header>
-
-      <!-- Main Layout Wrapper -->
-      <div class="main-layout-container">
-        <!-- Centered Main Content Area -->
-        <div class="main-content-column">
-          <!-- Status Box -->
-          <div id="infoBox">
-            <i class="fas fa-circle-notch fa-spin"></i>
-            <span id="statusText">Loading database...</span>
+        <form id="authForm">
+          <div class="auth-input-group hidden" id="displayNameGroup">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="authDisplayName"
+              class="auth-input"
+              placeholder="Display name"
+            />
           </div>
+          <div class="auth-input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="authEmail"
+              class="auth-input"
+              placeholder="Email address"
+              required
+            />
+          </div>
+          <div class="auth-input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="authPassword"
+              class="auth-input"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div id="forgotPasswordWrap" class="forgot-password-wrap">
+            <button
+              type="button"
+              id="forgotPasswordBtn"
+              class="forgot-password-btn"
+            >
+              Forgot password?
+            </button>
+          </div>
+          <button type="submit" id="authSubmitBtn" class="auth-submit-btn">
+            Sign In
+          </button>
+          <div id="authError" class="hidden"></div>
 
-          <!-- Combined Search Bar -->
-          <div class="search-container">
-            <div class="search-bar-wrapper">
-              <select id="searchEngineSelect" class="search-dropdown">
-                <option value="database">Main Database</option>
-                <option value="legacy">Legacy Archive</option>
-              </select>
-              <div class="search-input-wrapper">
-                <div class="search-icon-wrapper">
-                  <i class="fas fa-search" id="searchIcon"></i>
-                </div>
-                <input type="text" id="mainSearchInput" placeholder="Loading... Please wait." disabled
-                  class="input-github search-input-combo" />
-              </div>
-              <button id="legacyCheckBtn" class="btn-primary">Check</button>
+          <div class="auth-form-divider">
+            <span id="authSwitchText">Don't have an account?</span>
+            <button type="button" id="authSwitchBtn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" class="modal-overlay hidden">
+      <div class="modal-content modal-disclaimer">
+        <div class="modal-disclaimer-content">
+          <div class="modal-disclaimer-icon-wrapper">
+            <i class="fas fa-balance-scale modal-disclaimer-icon"></i>
+          </div>
+          <h2 class="modal-disclaimer-heading">Disclaimer</h2>
+        </div>
+        <div class="modal-disclaimer-body-wrapper">
+          <p class="modal-disclaimer-text">
+            This website is for informational purposes only. We are not
+            responsible for any consequences that may arise from using the
+            provided data.
+          </p>
+        </div>
+        <div class="modal-disclaimer-checkbox-wrapper">
+          <input type="checkbox" id="dontShowAgain" />
+          <label for="dontShowAgain">Don't show this again</label>
+        </div>
+        <button id="acceptDisclaimer" class="btn-primary">I Understand</button>
+      </div>
+    </div>
+
+    <!-- ===== PAGE LAYOUT: CENTERED ===== -->
+    <div class="page-wrapper">
+      <!-- ===== CENTER: Main Content ===== -->
+      <main>
+        <header class="header-center">
+          <div class="header-logo-wrapper">
+            <img
+              src="assets/mhub.png"
+              alt="Manifest Hub Logo"
+              class="header-logo"
+            />
+            <h1 class="header-title">Manifest<span>Hub</span></h1>
+          </div>
+          <p class="header-subtitle">
+            Find Steam manifests and Lua depot keys.
+          </p>
+        </header>
+
+        <!-- Main Layout Wrapper -->
+        <div class="main-layout-container">
+          <!-- Centered Main Content Area -->
+          <div class="main-content-column">
+            <!-- Status Box -->
+            <div id="infoBox">
+              <i class="fas fa-circle-notch fa-spin"></i>
+              <span id="statusText">Loading database...</span>
             </div>
 
-            <!-- Database Search Results -->
-            <div id="searchResults" class="search-results hidden"></div>
-
-            <!-- Legacy Terminal Output -->
-            <div id="legacyResultsSection" class="hidden">
-              <div class="terminal-text">
-                <pre id="legacyTerminalOutput"></pre>
-              </div>
-              <div id="legacyDownloadSection" class="hidden">
-                <a id="legacyDownloadLink" class="btn-primary" download>
-                  <i class="fas fa-download"></i>
-                  Download Manifest
-                </a>
-              </div>
-              <div id="legacyLuaSection" class="hidden">
-                <div class="lua-suggestion-box">
-                  <p class="lua-suggestion-text">
-                    Lua keys are available in our database for this app.
-                  </p>
-                  <button id="legacyGenerateLuaBtn" class="btn-secondary">
-                    Generate Lua Instead
-                  </button>
-                </div>
-              </div>
-              <div id="legacyNotFoundSection" class="hidden">
-                <p class="error-text">
-                  <i class="fas fa-exclamation-triangle"></i>Manifest not
-                  found.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Selected Game Panel -->
-          <div id="selectedGamePanel" class="hidden">
-            <div class="game-panel-header">
-              <div class="game-info-wrapper">
-                <img id="selectedGameIcon" src="" alt="" />
-                <div>
-                  <div class="game-info-title-wrap">
-                    <h2 id="selectedGameName" class="game-info-name"></h2>
-                    <span id="denuvoBadge" class="badge badge-denuvo hidden">Denuvo</span>
+            <!-- Combined Search Bar -->
+            <div class="search-container">
+              <div class="search-bar-wrapper">
+                <select id="searchEngineSelect" class="search-dropdown">
+                  <option value="database">Main Database</option>
+                  <option value="legacy">Legacy Archive</option>
+                </select>
+                <div class="search-input-wrapper">
+                  <div class="search-icon-wrapper">
+                    <i class="fas fa-search" id="searchIcon"></i>
                   </div>
-                  <p id="selectedGameId" class="game-info-id"></p>
+                  <input
+                    type="text"
+                    id="mainSearchInput"
+                    placeholder="Loading... Please wait."
+                    disabled
+                    class="input-github search-input-combo"
+                  />
+                </div>
+                <button id="legacyCheckBtn" class="btn-primary">Check</button>
+              </div>
+
+              <!-- Database Search Results -->
+              <div id="searchResults" class="search-results hidden"></div>
+
+              <!-- Legacy Terminal Output -->
+              <div id="legacyResultsSection" class="hidden">
+                <div class="terminal-text">
+                  <pre id="legacyTerminalOutput"></pre>
+                </div>
+                <div id="legacyDownloadSection" class="hidden">
+                  <a id="legacyDownloadLink" class="btn-primary" download>
+                    <i class="fas fa-download"></i>
+                    Download Manifest
+                  </a>
+                </div>
+                <div id="legacyLuaSection" class="hidden">
+                  <div class="lua-suggestion-box">
+                    <p class="lua-suggestion-text">
+                      Lua keys are available in our database for this app.
+                    </p>
+                    <button id="legacyGenerateLuaBtn" class="btn-secondary">
+                      Generate Lua Instead
+                    </button>
+                  </div>
+                </div>
+                <div id="legacyNotFoundSection" class="hidden">
+                  <p class="error-text">
+                    <i class="fas fa-exclamation-triangle"></i>Manifest not
+                    found.
+                  </p>
                 </div>
               </div>
-              <button id="downloadAllZipBtn" class="btn-primary">
-                <i class="fas fa-file-archive"></i> Download All
-              </button>
             </div>
 
-            <!-- Denuvo Alert Banner -->
-            <div id="denuvoWarning" class="hidden denuvo-warning-wrap">
-              <div class="warning-box warning-box-no-margin">
-                <div class="warning-title warning-title-margin">
+            <!-- Selected Game Panel -->
+            <div id="selectedGamePanel" class="hidden">
+              <div class="game-panel-header">
+                <div class="game-info-wrapper">
+                  <img id="selectedGameIcon" src="" alt="" />
+                  <div>
+                    <div class="game-info-title-wrap">
+                      <h2 id="selectedGameName" class="game-info-name"></h2>
+                      <span id="denuvoBadge" class="badge badge-denuvo hidden"
+                        >Denuvo</span
+                      >
+                    </div>
+                    <p id="selectedGameId" class="game-info-id"></p>
+                  </div>
+                </div>
+                <button id="downloadAllZipBtn" class="btn-primary">
+                  <i class="fas fa-file-archive"></i> Download All
+                </button>
+              </div>
+
+              <!-- Denuvo Alert Banner -->
+              <div id="denuvoWarning" class="hidden denuvo-warning-wrap">
+                <div class="warning-box warning-box-no-margin">
+                  <div class="warning-title warning-title-margin">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Denuvo DRM Detected</span>
+                  </div>
+                  <p class="warning-text">
+                    This game incorporates
+                    <strong>Denuvo Anti-Tamper</strong> DRM. Downloading Steam
+                    manifests alone will NOT allow you to play this game offline
+                    or bypass ownership checks.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h3 class="files-section-header">Files</h3>
+                <div id="availableFilesList"></div>
+              </div>
+            </div>
+
+            <!-- Poll Section -->
+            <div id="pollCard" class="hidden poll-card">
+              <div class="poll-header">
+                <h2 class="poll-title">
+                  <i
+                    class="fa-solid fa-square-poll-horizontal"
+                    style="color: #58a6ff"
+                  ></i>
+                  Community Poll
+                </h2>
+                <button
+                  id="pollMinimizeBtn"
+                  class="poll-minimize-btn"
+                  title="Minimize Poll"
+                >
+                  <i class="fas fa-chevron-up"></i>
+                </button>
+              </div>
+
+              <div id="pollBody" class="poll-body">
+                <p id="pollQuestionText" class="poll-question"></p>
+
+                <!-- Voting interface -->
+                <div id="pollVoteInterface" class="hidden poll-vote-interface">
+                  <div id="pollOptionsContainer" class="poll-options-container">
+                    <!-- Dynamically generated option buttons -->
+                  </div>
+                  <p id="pollAuthWarning" class="hidden poll-auth-warning">
+                    <i class="fas fa-info-circle"></i> Please
+                    <button id="pollLoginBtn" class="text-link">sign in</button>
+                    to cast your vote.
+                  </p>
+                </div>
+
+                <!-- Results interface -->
+                <div
+                  id="pollResultsInterface"
+                  class="hidden poll-results-interface"
+                >
+                  <div id="pollResultsContainer" class="poll-results-container">
+                    <!-- Dynamically generated result progress bars -->
+                  </div>
+                  <div class="poll-results-footer">
+                    <span id="pollTotalVotes">0 votes</span>
+                    <span id="pollVoteReceipt" class="poll-vote-receipt"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-wrapper">
+              <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+              <!-- Games that won't work notice -->
+              <div class="warning-box">
+                <div class="warning-title">
                   <i class="fas fa-exclamation-triangle"></i>
-                  <span>Denuvo DRM Detected</span>
+                  <span>Games that won't work</span>
                 </div>
-                <p class="warning-text">
-                  This game incorporates <strong>Denuvo Anti-Tamper</strong> DRM. Downloading Steam manifests alone will
-                  NOT allow you to play this game offline or bypass ownership checks.
-                </p>
+                <ul class="warning-list">
+                  <li>
+                    <i class="fas fa-globe"></i>
+                    <span>Online co-op / always-online</span>
+                  </li>
+                  <li>
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Denuvo or advanced DRM</span>
+                  </li>
+                  <li>
+                    <i class="fas fa-window-restore"></i>
+                    <span>3rd party launchers (EA App, Ubisoft, Rockstar)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div id="faqContainer">
+                <!-- FAQ Items injected by JS -->
               </div>
             </div>
 
-            <div>
-              <h3 class="files-section-header">Files</h3>
-              <div id="availableFilesList"></div>
-            </div>
-          </div>
-
-          <!-- Poll Section -->
-          <div id="pollCard" class="hidden poll-card">
-            <div class="poll-header">
-              <h2 class="poll-title">
-                <i class="fa-solid fa-square-poll-horizontal" style="color: #58a6ff;"></i>
-                Community Poll
+            <!-- Left Column: Popular Downloads (Sidebar) -->
+            <aside id="trendingPanel" class="trending-sidebar-panel">
+              <h2 class="trending-title">
+                <i class="fas fa-fire trending-fire-icon"></i> Popular Downloads
               </h2>
-              <button id="pollMinimizeBtn" class="poll-minimize-btn" title="Minimize Poll">
-                <i class="fas fa-chevron-up"></i>
-              </button>
-            </div>
-
-            <div id="pollBody" class="poll-body">
-              <p id="pollQuestionText" class="poll-question"></p>
-
-              <!-- Voting interface -->
-              <div id="pollVoteInterface" class="hidden poll-vote-interface">
-                <div id="pollOptionsContainer" class="poll-options-container">
-                  <!-- Dynamically generated option buttons -->
-                </div>
-                <p id="pollAuthWarning" class="hidden poll-auth-warning">
-                  <i class="fas fa-info-circle"></i> Please <button id="pollLoginBtn" class="text-link">sign in</button>
-                  to cast your vote.
-                </p>
-              </div>
-
-              <!-- Results interface -->
-              <div id="pollResultsInterface" class="hidden poll-results-interface">
-                <div id="pollResultsContainer" class="poll-results-container">
-                  <!-- Dynamically generated result progress bars -->
-                </div>
-                <div class="poll-results-footer">
-                  <span id="pollTotalVotes">0 votes</span>
-                  <span id="pollVoteReceipt" class="poll-vote-receipt"></span>
+              <div id="trendingGrid" class="trending-grid">
+                <div class="trending-loading">
+                  <i class="fas fa-spinner fa-spin"></i> Loading...
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
-
-          <!-- FAQ Section -->
-          <div class="faq-wrapper">
-            <h2 class="faq-heading">Frequently Asked Questions</h2>
-
-            <!-- Games that won't work notice -->
-            <div class="warning-box">
-              <div class="warning-title">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>Games that won't work</span>
-              </div>
-              <ul class="warning-list">
-                <li>
-                  <i class="fas fa-globe"></i>
-                  <span>Online co-op / always-online</span>
-                </li>
-                <li>
-                  <i class="fas fa-shield-alt"></i>
-                  <span>Denuvo or advanced DRM</span>
-                </li>
-                <li>
-                  <i class="fas fa-window-restore"></i>
-                  <span>3rd party launchers (EA App, Ubisoft, Rockstar)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div id="faqContainer">
-              <!-- FAQ Items injected by JS -->
-            </div>
-          </div>
-
-          <!-- Left Column: Popular Downloads (Sidebar) -->
-          <aside id="trendingPanel" class="trending-sidebar-panel">
-            <h2 class="trending-title">
-              <i class="fas fa-fire trending-fire-icon"></i> Popular Downloads
-            </h2>
-            <div id="trendingGrid" class="trending-grid">
-              <div class="trending-loading">
-                <i class="fas fa-spinner fa-spin"></i> Loading...
-              </div>
-            </div>
-          </aside>
+          <!-- End of Centered Main Content Area -->
         </div>
-        <!-- End of Centered Main Content Area -->
-      </div>
-      <!-- End of Main Layout Wrapper -->
-    </main>
-  </div>
-
-  <!-- ===== FLOATING SIDEBAR LINKS ===== -->
-  <div class="floating-sidebar">
-    <a href="https://steamdb.info/" target="_blank" rel="noopener noreferrer" class="floating-btn" title="SteamDB">
-      <i class="fas fa-database"></i>
-      <span class="btn-label">SteamDB</span>
-    </a>
-    <a href="https://discord.com/invite/x6AjUMngpF" target="_blank" rel="noopener noreferrer"
-      class="floating-btn" title="Discord">
-      <i class="fab fa-discord"></i>
-      <span class="btn-label">Discord</span>
-    </a>
-    <a href="https://github.com/sadabx/ManifestHub/discussions" target="_blank" rel="noopener noreferrer"
-      class="floating-btn" title="Discussions">
-      <i class="fas fa-comments"></i>
-      <span class="btn-label">Discussions</span>
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-tn">Manifest</span><span class="logo-tv">Hub</span>
-        </div>
-        <p class="footer-tagline">
-          Search, view, and download Steam manifests and Lua depot keys.
-        </p>
-        <div class="footer-dev">
-          Developed by
-          <a href="https://trionine.com" target="_blank" rel="noopener noreferrer">trionine</a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col-label">Quick Links</div>
-        <a href="profile.html">Profile</a>
-        <!-- <a href="#faq">FAQ</a> -->
-        <a href="https://discord.com/invite/x6AjUMngpF" target="_blank" rel="noopener noreferrer">Discord ↗</a>
-        <a href="https://github.com/sadabx/ManifestHub" target="_blank" rel="noopener noreferrer">Contribute on GitHub
-          ↗</a>
-      </div>
-      <div class="footer-donate">
-        <div class="footer-col-label">Support Us</div>
-        <div class="donate-flex-container">
-          <div class="donate-text-side">
-            <p class="footer-tagline donate-tagline">
-              If ManifestHub helped, consider supporting.
-            </p>
-            <div class="donate-address">
-              <span class="donate-network">USDT · TRC20</span>
-              <div class="donate-row">
-                <code class="donate-code">TFErny...6B</code>
-                <button id="donateCopyBtn" class="donate-copy">Copy</button>
-              </div>
-            </div>
-          </div>
-          <div class="donate-qr">
-            <!-- SVG QR CODE -->
-            <img src="assets/donate-qr.svg" alt="Donate QR Code" width="80" height="80" />
-          </div>
-        </div>
-      </div>
-      <div class="footer-meta">
-        <div class="footer-col-label">Disclaimer</div>
-        <p class="footer-note">
-          Not affiliated with Valve, Steam or any other Valve products. Steam
-          and the Steam logo are trademarks of Valve Corporation.
-        </p>
-        <div class="footer-copy">© 2026 TRIONINE</div>
-      </div>
+        <!-- End of Main Layout Wrapper -->
+      </main>
     </div>
-  </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/utils.js?v=1.3"></script>
-  <script src="js/presence.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/database.js"></script>
-  <script src="js/search.js?v=1.1"></script>
-  <script src="js/trending.js"></script>
-  <script src="js/poll.js"></script>
-  <script src="data/faq.js"></script>
-  <script src="js/faq.js"></script>
-  <script src="js/main.js"></script>
-</body>
+    <!-- ===== FLOATING SIDEBAR LINKS ===== -->
+    <div class="floating-sidebar">
+      <a
+        href="https://steamdb.info/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="floating-btn"
+        title="SteamDB"
+      >
+        <i class="fas fa-database"></i>
+        <span class="btn-label">SteamDB</span>
+      </a>
+      <a
+        href="https://discord.com/invite/x6AjUMngpF"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="floating-btn"
+        title="Discord"
+      >
+        <i class="fab fa-discord"></i>
+        <span class="btn-label">Discord</span>
+      </a>
+      <a href="/forum/" class="floating-btn" title="Forum">
+        <i class="fas fa-comments"></i>
+        <span class="btn-label">Forum</span>
+      </a>
+    </div>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-tn">Manifest</span
+            ><span class="logo-tv">Hub</span>
+          </div>
+          <p class="footer-tagline">
+            Search, view, and download Steam manifests and Lua depot keys.
+          </p>
+          <div class="footer-dev">
+            Developed by
+            <a
+              href="https://trionine.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >trionine</a
+            >
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col-label">Quick Links</div>
+          <a href="profile.html">Profile</a>
+          <a href="/forum/">Forum</a>
+          <!-- <a href="#faq">FAQ</a> -->
+          <a
+            href="https://discord.com/invite/x6AjUMngpF"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Discord ↗</a
+          >
+          <a
+            href="https://github.com/sadabx/ManifestHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Contribute on GitHub ↗</a
+          >
+        </div>
+        <div class="footer-donate">
+          <div class="footer-col-label">Support Us</div>
+          <div class="donate-flex-container">
+            <div class="donate-text-side">
+              <p class="footer-tagline donate-tagline">
+                If ManifestHub helped, consider supporting.
+              </p>
+              <div class="donate-address">
+                <span class="donate-network">USDT · TRC20</span>
+                <div class="donate-row">
+                  <code class="donate-code">TFErny...6B</code>
+                  <button id="donateCopyBtn" class="donate-copy">Copy</button>
+                </div>
+              </div>
+            </div>
+            <div class="donate-qr">
+              <!-- SVG QR CODE -->
+              <img
+                src="assets/donate-qr.svg"
+                alt="Donate QR Code"
+                width="80"
+                height="80"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <div class="footer-col-label">Disclaimer</div>
+          <p class="footer-note">
+            Not affiliated with Valve, Steam or any other Valve products. Steam
+            and the Steam logo are trademarks of Valve Corporation.
+          </p>
+          <div class="footer-copy">© 2026 TRIONINE</div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+      integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js?v=1.3"></script>
+    <script src="js/presence.js"></script>
+    <script src="js/auth.js?v=1.1"></script>
+    <script src="js/database.js"></script>
+    <script src="js/search.js?v=1.1"></script>
+    <script src="js/trending.js"></script>
+    <script src="js/poll.js"></script>
+    <script src="data/faq.js"></script>
+    <script src="js/faq.js"></script>
+    <script src="js/main.js?v=1.2"></script>
+  </body>
 </html>

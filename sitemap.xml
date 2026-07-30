@@ -20,15 +20,13 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Forum (gitignored — uncomment when published) -->
-  <!--
+  <!-- Forum -->
   <url>
     <loc>https://manifesthub.trionine.com/forum/</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-  -->
 
   <!-- Extras: Main Database (gitignored — uncomment when published) -->
   <!--

@@ -206,12 +206,13 @@ window.MH_initAuth = function (supabase) {
         currentUser.email?.split("@")[0] ||
         "User";
       const initials = displayName[0].toUpperCase();
+      const safeInitials = window.escapeHtml(initials);
       const safeDisplayName = window.escapeHtml(displayName);
       const safeEmail = window.escapeHtml(currentUser.email || "");
       authSection.innerHTML = `
         <div class="user-menu-wrap">
           <button id="userMenuBtn" class="user-menu-btn">
-            <div class="user-menu-avatar">${initials}</div>
+            <div class="user-menu-avatar">${safeInitials}</div>
             <span>${safeDisplayName}</span>
             <i class="fas fa-chevron-down user-menu-chevron"></i>
           </button>
@@ -261,5 +262,21 @@ window.MH_initAuth = function (supabase) {
     window.MH.currentUser = session?.user || null;
     updateAuthUI();
     window.MH_initPollWidget(supabase);
+
+    if (event === "SIGNED_IN") {
+      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      if (returnTo) {
+        try {
+          const destination = new URL(returnTo, window.location.origin);
+          if (destination.origin === window.location.origin) {
+            window.location.assign(
+              destination.pathname + destination.search + destination.hash,
+            );
+          }
+        } catch (error) {
+          console.warn("Ignored invalid return path.", error);
+        }
+      }
+    }
   });
 };

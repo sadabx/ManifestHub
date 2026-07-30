@@ -44,6 +44,9 @@ Frontend (static HTML/JS)
 **Tables / Functions:**
 - `public.download_history` — latest 50 downloads per logged-in user
 - `public.download_events` — temporary global raw download events for daily rollups
+- `public.forum_profiles` — public forum display names synced from Supabase Auth
+- `public.forum_posts` / `public.forum_replies` — forum discussions and replies
+- `public.forum_post_votes` / `public.forum_reply_votes` — authenticated user votes
 - `public.get_popular_downloads()` — optional live RPC over temporary events
 
 **Auth:**
@@ -58,9 +61,11 @@ Frontend (static HTML/JS)
    to add the temporary rollup table without dropping user history
 3. Run `backend/download-history-compact.sql` to make profile history upserts compact
 4. For a brand-new project, `backend/download-history.sql` can build the full schema
-5. Enable **Email** provider in Auth settings
-6. Note the **Project URL** and **anon/public** key (used in frontend)
-7. Note the **Service Role** key (used in Cloudflare Worker and GitHub Actions)
+5. Run `backend/forum.sql` to enable the forum. This migration is non-destructive
+   and can be run again safely when policies or functions change
+6. Enable **Email** provider in Auth settings
+7. Note the **Project URL** and **anon/public** key (used in frontend)
+8. Note the **Service Role** key (used in Cloudflare Worker and GitHub Actions)
 
 ---
 
@@ -238,6 +243,7 @@ ManifestHub/
 ├── backend/
 │   ├── cloudflare-worker.js      # Cloudflare Worker entry point
 │   ├── download-events-rollup.sql # Non-destructive event rollup migration
+│   ├── forum.sql                   # Forum tables, vote triggers, and RLS
 │   ├── download-history-compact.sql # Non-destructive compact profile history migration
 │   ├── manifesthub-record.gs     # Legacy Google Apps Script logger/API
 │   ├── download-history.sql       # Supabase schema + RLS + event rollup table

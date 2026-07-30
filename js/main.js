@@ -38,9 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // Auth modal, form, dropdown, state listener
   window.MH_initAuth(supabase);
 
+  const authParams = new URLSearchParams(window.location.search);
+  if (authParams.get("auth") === "login") {
+    window.MH_openAuthModal("login");
+  }
+
   // Disclaimer modal — show on first visit
   const disclaimerModal = document.getElementById("disclaimerModal");
-  if (!window.safeStorage.getItem("disclaimerAccepted")) {
+  if (
+    authParams.get("auth") !== "login" &&
+    !window.safeStorage.getItem("disclaimerAccepted")
+  ) {
     disclaimerModal.classList.remove("hidden");
   }
   document

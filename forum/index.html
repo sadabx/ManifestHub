@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManifestHub Community Forum</title>
+    <meta
+      name="description"
+      content="Ask questions, report bugs, request features, and share Steam manifest workflows with the ManifestHub community."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://manifesthub.trionine.com/forum/" />
+    <link rel="icon" type="image/png" href="../assets/favicon.png?v=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/base.css?v=1.0" />
+    <link rel="stylesheet" href="../css/components.css?v=1.1" />
+    <link rel="stylesheet" href="style.css?v=1.1" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.min.js"
+      integrity="sha384-fPWur1rx/DE6YtXP/x0MD6dd90RgnVsz5yX/DIg7CcVAnTBZsENWuIcpvVTM39ti"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <nav class="site-nav" aria-label="Forum navigation">
+      <a class="site-nav-brand" href="../" aria-label="ManifestHub home">
+        <img src="../assets/mhub.png" alt="" />
+        <span><span class="logo-tn">Manifest</span>Hub</span>
+      </a>
+
+      <div class="site-nav-right">
+        <div class="site-nav-links">
+          <a class="site-nav-link" href="../">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            <span>Database</span>
+          </a>
+          <a class="site-nav-link" href="./" aria-current="page">
+            <i class="fa-regular fa-comments" aria-hidden="true"></i>
+            <span>Forum</span>
+          </a>
+          <a class="site-nav-link" href="../TOST/">
+            <i class="fa-solid fa-download" aria-hidden="true"></i>
+            <span>TOST</span>
+          </a>
+        </div>
+        <div class="site-nav-account forum-auth" id="forumAuth">
+          <a class="forum-sign-in" href="../?auth=login&amp;returnTo=/forum/"
+            >Sign in</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="forum-shell">
+      <header class="forum-heading">
+        <div>
+          <p class="forum-eyebrow">ManifestHub Community</p>
+          <h1>Forum</h1>
+          <p>Ask questions, report issues, and share practical workflows.</p>
+        </div>
+        <button
+          class="forum-button forum-button-primary"
+          id="newPostButton"
+          type="button"
+        >
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          New post
+        </button>
+      </header>
+
+      <div class="forum-toolbar">
+        <label class="forum-search" for="forumSearch">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            id="forumSearch"
+            type="search"
+            placeholder="Search discussions"
+            autocomplete="off"
+          />
+        </label>
+        <div class="forum-sort" role="group" aria-label="Sort discussions">
+          <button class="is-active" type="button" data-sort="hot">Hot</button>
+          <button type="button" data-sort="new">New</button>
+          <button type="button" data-sort="top">Top</button>
+          <button type="button" data-sort="discussed">Discussed</button>
+        </div>
+      </div>
+
+      <div class="forum-layout">
+        <aside class="forum-sidebar" aria-label="Forum categories">
+          <h2>Categories</h2>
+          <nav id="categoryList">
+            <button class="is-active" type="button" data-category="all">
+              <span
+                ><i class="fa-solid fa-layer-group" aria-hidden="true"></i> All
+                posts</span
+              >
+              <strong data-category-count="all">0</strong>
+            </button>
+            <button type="button" data-category="general">
+              <span
+                ><i class="fa-regular fa-comments" aria-hidden="true"></i>
+                General</span
+              >
+              <strong data-category-count="general">0</strong>
+            </button>
+            <button type="button" data-category="features">
+              <span
+                ><i class="fa-regular fa-lightbulb" aria-hidden="true"></i>
+                Feature requests</span
+              >
+              <strong data-category-count="features">0</strong>
+            </button>
+            <button type="button" data-category="bugs">
+              <span
+                ><i class="fa-solid fa-bug" aria-hidden="true"></i> Bug
+                reports</span
+              >
+              <strong data-category-count="bugs">0</strong>
+            </button>
+            <button type="button" data-category="qa">
+              <span
+                ><i
+                  class="fa-regular fa-circle-question"
+                  aria-hidden="true"
+                ></i>
+                Q &amp; A</span
+              >
+              <strong data-category-count="qa">0</strong>
+            </button>
+            <button type="button" data-category="tips">
+              <span
+                ><i
+                  class="fa-solid fa-wand-magic-sparkles"
+                  aria-hidden="true"
+                ></i>
+                Tips &amp; tricks</span
+              >
+              <strong data-category-count="tips">0</strong>
+            </button>
+          </nav>
+          <p class="forum-sidebar-note">
+            Public discussions are readable by everyone. Sign in to post, reply,
+            or vote.
+          </p>
+        </aside>
+
+        <main class="forum-feed" aria-live="polite">
+          <div class="forum-status" id="forumStatus">
+            <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i>
+            Loading discussions...
+          </div>
+          <div id="postsContainer"></div>
+          <div class="forum-empty" id="emptyState" hidden>
+            <i class="fa-regular fa-comments" aria-hidden="true"></i>
+            <h2>No discussions found</h2>
+            <p>Try another category or start a new conversation.</p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="forum-modal-backdrop" id="postModal" hidden>
+      <section
+        class="forum-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="postModalTitle"
+      >
+        <div class="forum-modal-header">
+          <div>
+            <p class="forum-eyebrow">New discussion</p>
+            <h2 id="postModalTitle">Create a post</h2>
+          </div>
+          <button
+            class="forum-icon-button"
+            id="closePostModal"
+            type="button"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <form id="postForm">
+          <label>
+            Category
+            <select id="postCategory" required>
+              <option value="general">General</option>
+              <option value="features">Feature requests</option>
+              <option value="bugs">Bug reports</option>
+              <option value="qa">Q &amp; A</option>
+              <option value="tips">Tips &amp; tricks</option>
+            </select>
+          </label>
+          <label>
+            Title
+            <input
+              id="postTitle"
+              type="text"
+              minlength="5"
+              maxlength="140"
+              required
+              placeholder="What would you like to discuss?"
+            />
+          </label>
+          <label>
+            Details
+            <textarea
+              id="postContent"
+              minlength="1"
+              maxlength="10000"
+              required
+              placeholder="Add enough context for others to help."
+            ></textarea>
+          </label>
+          <p
+            class="forum-form-error"
+            id="postFormError"
+            role="alert"
+            hidden
+          ></p>
+          <div class="forum-modal-actions">
+            <button class="forum-button" id="cancelPostModal" type="button">
+              Cancel
+            </button>
+            <button
+              class="forum-button forum-button-primary"
+              id="submitPostButton"
+              type="submit"
+            >
+              Publish post
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div
+      class="forum-toast"
+      id="forumToast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <footer class="forum-footer">
+      <span>&copy; 2026 TRIONINE</span>
+      <a
+        href="https://github.com/sadabx/ManifestHub"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Source</a
+      >
+      <a
+        href="https://discord.com/invite/x6AjUMngpF"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Discord</a
+      >
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js?v=1.3"></script>
+    <script src="script.js?v=1.1"></script>
+  </body>
+</html>

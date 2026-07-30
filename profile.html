@@ -11,7 +11,8 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://manifesthub.trionine.com/profile.html" />
   <link rel="icon" type="image/png" href="assets/mhub.png?v=2" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/base.css?v=1.0" />
   <link rel="stylesheet" href="css/components.css?v=1.1" />
   <link rel="stylesheet" href="css/layout.css?v=1.2" />
@@ -34,6 +35,10 @@
         <a class="site-nav-action" href="TOST/">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           <span>TOST</span>
+        </a>
+        <a class="site-nav-link" href="forum/">
+          <i class="fa-regular fa-comments" aria-hidden="true"></i>
+          <span>Forum</span>
         </a>
         <a class="site-nav-link" href="https://github.com/sadabx/ManifestHub" target="_blank"
           rel="noopener noreferrer">
@@ -390,7 +395,9 @@
     <span id="profileToastMsg"></span>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.min.js"
+    integrity="sha384-fPWur1rx/DE6YtXP/x0MD6dd90RgnVsz5yX/DIg7CcVAnTBZsENWuIcpvVTM39ti"
+    crossorigin="anonymous"></script>
   <script src="js/config.js" defer></script>
   <script src="js/utils.js" defer></script>
   <script src="js/profile.js" defer></script>

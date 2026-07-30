@@ -5,5 +5,4 @@ node_modules/
 .vscode/
 graphify-out/
 backend/manifesthub-record.gs/
-forum/
 .agents/
