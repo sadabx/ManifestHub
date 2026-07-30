@@ -4,5 +4,4 @@ node_modules/
 .env
 .vscode/
 graphify-out/
-backend/manifesthub-record.gs/
 .agents/
