@@ -138,7 +138,7 @@
             Signed in as<br>
             <strong class="user-dropdown-email">${escape(state.currentUser.email || "")}</strong>
           </div>
-          <a href="../profile" class="user-dropdown-link">
+          <a href="/profile/" class="user-dropdown-link">
             <i class="fas fa-user user-dropdown-icon" aria-hidden="true"></i>
             Your Profile
           </a>

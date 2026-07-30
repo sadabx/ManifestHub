@@ -160,7 +160,7 @@ window.MH_initAuth = function (supabase) {
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(
           email,
           {
-            redirectTo: window.location.origin + "/profile",
+            redirectTo: window.location.origin + "/profile/",
           },
         );
         error = resetError;
@@ -218,7 +218,7 @@ window.MH_initAuth = function (supabase) {
           </button>
           <div id="userDropdown" class="user-dropdown hidden">
             <div class="user-dropdown-header">Signed in as<br><strong class="user-dropdown-email">${safeEmail}</strong></div>
-            <a href="profile" class="user-dropdown-link"><i class="fas fa-user user-dropdown-icon"></i> Your Profile</a>
+            <a href="/profile/" class="user-dropdown-link"><i class="fas fa-user user-dropdown-icon"></i> Your Profile</a>
             <div class="user-dropdown-divider">
               <button id="logoutBtn" class="user-dropdown-btn"><i class="fas fa-sign-out-alt user-dropdown-icon"></i> Sign out</button>
             </div>

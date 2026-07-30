@@ -6,7 +6,8 @@ http://manifestluahub.netlify.app/* https://manifesthub.trionine.com/:splat  301
 /data/download-rollup-state.json /404.html      404
 
 # Clean URLs
-/profile    /profile.html    200
-/forum     /forum/          301!
+/profile.html /profile/ 301!
+/profile      /profile/ 301!
+/forum        /forum/   301!
 
 /TOST /TOST/ 301!

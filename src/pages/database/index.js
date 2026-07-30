@@ -5,8 +5,10 @@
 // namespace, and wires up all feature modules.
 //
 // Load order (in index.html):
-//   config.js → utils.js → presence.js → auth.js → database.js
-//   → search.js → trending.js → poll.js → faq.js → main.js
+//   core/config.js -> core/utils.js -> components/presence.js
+//   -> components/auth.js -> pages/database/database.js
+//   -> pages/database/search.js -> pages/database/trending.js
+//   -> components/poll.js -> components/faq.js -> pages/database/index.js
 // =============================================================
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -9,34 +9,34 @@
   <meta name="keywords"
     content="steam manifest, steam manifest download, steam depot keys, steam lua generator, manifest downloader, steam db, steam legacy archive, manifesthub" />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="canonical" href="https://manifesthub.trionine.com/profile.html" />
-  <link rel="icon" type="image/png" href="assets/mhub.png?v=2" />
+  <link rel="canonical" href="https://manifesthub.trionine.com/profile/" />
+  <link rel="icon" type="image/png" href="/assets/mhub.png?v=2" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/base.css?v=1.0" />
-  <link rel="stylesheet" href="css/components.css?v=1.1" />
-  <link rel="stylesheet" href="css/layout.css?v=1.2" />
-  <link rel="stylesheet" href="css/profile-styles.css?v=1.0" />
+  <link rel="stylesheet" href="/src/styles/core/base.css?v=1.0" />
+  <link rel="stylesheet" href="/src/styles/shared/components.css?v=1.1" />
+  <link rel="stylesheet" href="/src/styles/shared/layout.css?v=1.2" />
+  <link rel="stylesheet" href="/src/styles/pages/profile.css?v=1.0" />
 </head>
 
 <body>
   <nav class="site-nav" aria-label="ManifestHub navigation">
-    <a class="site-nav-brand" href="index.html" aria-label="ManifestHub home">
-      <img src="assets/mhub.png" alt="" />
+    <a class="site-nav-brand" href="/" aria-label="ManifestHub home">
+      <img src="/assets/mhub.png" alt="" />
       <span>Manifest Hub</span>
     </a>
 
     <div class="site-nav-right">
       <div class="site-nav-links">
-        <a class="site-nav-link" href="index.html">
+        <a class="site-nav-link" href="/">
           <i class="fa-solid fa-house" aria-hidden="true"></i>
           <span>Home</span>
         </a>
-        <a class="site-nav-action" href="TOST/">
+        <a class="site-nav-action" href="/TOST/">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           <span>TOST</span>
         </a>
-        <a class="site-nav-link" href="forum/">
+        <a class="site-nav-link" href="/forum/">
           <i class="fa-regular fa-comments" aria-hidden="true"></i>
           <span>Forum</span>
         </a>
@@ -51,7 +51,7 @@
 
   <!-- Auth Gate (shown when not logged in) -->
   <div id="authGate" class="page-wrap profile-gate-wrap" style="display: block;">
-    <img src="assets/manifesthub.png" alt="ManifestHub Logo" class="profile-gate-logo" />
+    <img src="/assets/manifesthub.png" alt="ManifestHub Logo" class="profile-gate-logo" />
     <h2 class="profile-gate-title">
       Sign in to your account
     </h2>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="profile-gate-back">
-      <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+      <a href="/"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
   </div>
 
@@ -81,7 +81,7 @@
       </button>
 
       <div class="auth-header">
-        <img src="assets/mhub.png" alt="Logo" class="auth-logo" />
+        <img src="/assets/mhub.png" alt="Logo" class="auth-logo" />
         <h2 id="authTitle" class="auth-title">Sign In</h2>
         <p class="auth-subtitle">Access your Manifest Hub account</p>
       </div>
@@ -120,7 +120,7 @@
   <!-- Main Profile (hidden until auth confirmed) -->
   <main id="profileContent" class="page-wrap" style="display: none">
     <div class="settings-back-wrap">
-      <a href="index.html" class="settings-back-link"><i
+      <a href="/" class="settings-back-link"><i
           class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
 
@@ -398,9 +398,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.min.js"
     integrity="sha384-fPWur1rx/DE6YtXP/x0MD6dd90RgnVsz5yX/DIg7CcVAnTBZsENWuIcpvVTM39ti"
     crossorigin="anonymous"></script>
-  <script src="js/config.js" defer></script>
-  <script src="js/utils.js" defer></script>
-  <script src="js/profile.js" defer></script>
+  <script src="/src/core/config.js" defer></script>
+  <script src="/src/core/utils.js" defer></script>
+  <script src="/src/pages/profile/index.js" defer></script>
 </body>
 
 </html>

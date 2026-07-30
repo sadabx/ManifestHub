@@ -12,14 +12,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Profile Page -->
-  <url>
-    <loc>https://manifesthub.trionine.com/profile.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <!-- Forum -->
   <url>
     <loc>https://manifesthub.trionine.com/forum/</loc>

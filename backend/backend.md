@@ -6,7 +6,7 @@ This document describes the backend architecture, data flow, and setup requireme
 
 ## 1. Overview
 
-The frontend is a static site (`index.html` + `profile.html`). All "backend" work happens through third-party services:
+The frontend is a static site (`index.html` + `profile/index.html`). All "backend" work happens through third-party services:
 
 - **Supabase** — primary database, authentication, and realtime presence
 - **Cloudflare Worker** — download bridge, deduplication, Discord alerts, and Supabase event logging
@@ -186,7 +186,7 @@ The browser must not fetch `data/download-counts.json`; that file is only used b
 ### 4.3 User Download History Flow
 
 ```text
-Frontend (profile.html)
+Frontend (`profile/index.html`)
   └─ Supabase client query:
       SELECT * FROM download_history
       WHERE user_id = auth.uid()
@@ -212,7 +212,7 @@ Frontend (profile.html)
 
 ## 6. Secrets & Configuration Reference
 
-### Frontend (`index.html`, `profile.html`)
+### Frontend (`index.html`, `profile/index.html`)
 - Supabase **anon/public** key — safe to expose in client-side code
 - Supabase **Project URL** — safe to expose
 
@@ -250,9 +250,11 @@ ManifestHub/
 │   ├── manifesthub-record.gs     # Legacy Google Apps Script logger/API
 │   ├── download-history.sql       # Supabase schema + RLS + event rollup table
 │   └── backend.md                 # This file
-├── js/
-│   ├── script.js                  # Frontend core (calls Worker + Supabase)
-│   └── profile.js                 # Frontend profile (download history UI)
+├── src/
+│   ├── components/                # Shared frontend behavior
+│   └── pages/
+│       ├── database/              # Main database page controllers
+│       └── profile/index.js       # Profile page controller
 ├── index.html                     # Main page
-└── profile.html                   # Profile page
+└── profile/index.html             # Profile page
 ```

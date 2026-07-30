@@ -49,12 +49,6 @@ ManifestHub/
 │   ├── download-history.sql    # Full Supabase schema for fresh projects
 │   ├── manifesthub-record.gs  # Legacy Google Apps Script logger
 │   └── backend.md             # Backend architecture documentation
-├── css/
-│   ├── base.css               # Global reset, typography, colors, buttons & inputs
-│   ├── components.css         # Modals, search results, file items, FAQ, auth modal, sidebar
-│   ├── error.css              # Custom styling for the 404 page
-│   ├── layout.css             # Layout utilities, footer, media queries, profile/auth forms
-│   └── profile-styles.css     # User profile page specific styling
 ├── data/
 │   ├── faq.js                 # Frequently Asked Questions native JS data array
 │   ├── download-counts.json   # Action-only permanent download counters
@@ -64,26 +58,31 @@ ManifestHub/
 │   ├── maindatabase.html      # Legacy database search view
 │   ├── oglegacy.html          # Original legacy app design fallback
 │   └── split_bloated_data.py  # Python utility for splitting large databases
-├── js/
-│   ├── config.js              # Supabase API credentials configuration
-│   ├── utils.js               # Shared helper functions (e.g. resending confirmation mail)
-│   ├── presence.js            # Realtime online presence tracking
-│   ├── auth.js                # Authentication UI, forms, and session listeners
-│   ├── database.js            # Depot keys/App lists fetching and mapping builder
-│   ├── search.js              # Search indexing, download handlers, ZIP generator
-│   ├── trending.js            # Popular files rendering and announcements carousel
-│   ├── poll.js                # Active community voting poll widget
-│   ├── faq.js                 # FAQ interactive accordion rendering
-│   ├── profile.js             # Profile history dashboard, settings, and cache management
-│   └── main.js                # Shared namespace initializer & orchestrator
 ├── scripts/
 │   └── update-trending.js     # Rolls Supabase download events into JSON counters
+├── src/
+│   ├── core/                  # Configuration and framework-independent helpers
+│   ├── components/            # Shared auth, presence, poll, and FAQ behavior
+│   ├── pages/
+│   │   ├── database/          # Main database page controller and features
+│   │   ├── forum/             # Forum page controller
+│   │   └── profile/           # Profile page controller
+│   └── styles/
+│       ├── core/              # Reset, typography, colors, and base controls
+│       ├── shared/            # Shared navigation, modals, and UI components
+│       └── pages/             # Database, forum, profile, TOST, and error styles
 ├── _headers                   # Netlify custom HTTP headers (Cache-Control)
 ├── _redirects                 # Netlify clean URLs redirect mapping
-├── 404.html                   # 404 error page (Lost Like Zoro)
-├── index.html                 # Main Search Engine & FAQ UI
-└── profile.html               # User Profile & Download History UI
+├── 404.html                   # 404 error page
+├── forum/index.html           # Community forum
+├── index.html                 # Main search and FAQ page
+├── profile/index.html         # User profile and download history
+└── TOST/index.html            # TOST download page
 ```
+
+See [`src/README.md`](src/README.md) for source ownership and script load
+order. The current build remains framework-free and deploys directly as static
+files.
 
 ## Download Analytics
 

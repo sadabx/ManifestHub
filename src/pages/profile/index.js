@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } else if (authMode === "forgot") {
       const result = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + "/profile",
+        redirectTo: window.location.origin + "/profile/",
       });
       error = result.error;
       if (!error) {
