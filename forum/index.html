@@ -49,10 +49,17 @@
             <span>TOST</span>
           </a>
         </div>
-        <div class="site-nav-account forum-auth" id="forumAuth">
-          <a class="forum-sign-in" href="../?auth=login&amp;returnTo=/forum/"
-            >Sign in</a
-          >
+        <div class="site-nav-account auth-bar">
+          <div id="viewerCount" class="viewer-count" aria-label="Live viewers">
+            <span class="viewer-dot" aria-hidden="true"></span>
+            <span id="viewerCountNum">-</span>
+            <i class="fa-solid fa-eye viewer-icon" aria-hidden="true"></i>
+          </div>
+          <div class="forum-auth" id="forumAuth">
+            <a class="forum-sign-in" href="../?auth=login&amp;returnTo=/forum/"
+              >Sign in</a
+            >
+          </div>
         </div>
       </div>
     </nav>
@@ -267,6 +274,7 @@
 
     <script src="../js/config.js"></script>
     <script src="../js/utils.js?v=1.3"></script>
-    <script src="script.js?v=1.2"></script>
+    <script src="../js/presence.js?v=1.1"></script>
+    <script src="script.js?v=1.3"></script>
   </body>
 </html>

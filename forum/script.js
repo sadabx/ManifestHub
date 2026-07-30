@@ -714,6 +714,8 @@
   });
 
   async function init() {
+    window.MH_initPresence(client);
+
     const sessionResult = await client.auth.getSession();
     state.currentUser = sessionResult.data.session?.user || null;
     renderAuth();
