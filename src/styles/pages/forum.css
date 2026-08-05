@@ -464,6 +464,17 @@ textarea {
   white-space: pre-wrap;
 }
 
+.forum-content-link {
+  color: var(--forum-blue);
+  text-decoration: underline;
+  text-decoration-color: rgba(88, 166, 255, 0.45);
+  text-underline-offset: 0.15em;
+}
+
+.forum-content-link:hover {
+  text-decoration-color: currentColor;
+}
+
 .post-preview {
   display: -webkit-box;
   overflow: hidden;

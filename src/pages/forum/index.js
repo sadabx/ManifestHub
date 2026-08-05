@@ -58,6 +58,35 @@
     return window.escapeHtml(value == null ? "" : String(value));
   }
 
+  function linkify(value) {
+    const text = value == null ? "" : String(value);
+    const urlPattern = /\b(?:https?:\/\/|www\.)[^\s<>"']+/gi;
+    let result = "";
+    let lastIndex = 0;
+
+    for (const match of text.matchAll(urlPattern)) {
+      let label = match[0];
+      let trailing = "";
+
+      while (/[.,!?;:\)\]\}]$/.test(label)) {
+        trailing = label.slice(-1) + trailing;
+        label = label.slice(0, -1);
+      }
+
+      result += escape(text.slice(lastIndex, match.index));
+      if (label) {
+        const href = label.toLowerCase().startsWith("www.")
+          ? `https://${label}`
+          : label;
+        result += `<a class="forum-content-link" href="${escape(href)}" target="_blank" rel="noopener noreferrer ugc">${escape(label)}</a>`;
+      }
+      result += escape(trailing);
+      lastIndex = match.index + match[0].length;
+    }
+
+    return result + escape(text.slice(lastIndex));
+  }
+
   function displayName(user) {
     return (
       user?.user_metadata?.display_name ||
@@ -243,7 +272,7 @@
           <span class="reply-author${isAdminAuthor ? " is-admin" : ""}">${escape(name)}${isAdminAuthor ? ' <i class="fa-solid fa-shield-halved admin-mark" title="Administrator" aria-label="Administrator"></i>' : ""}</span>
           <time datetime="${escape(reply.created_at)}">${escape(relativeTime(reply.created_at))}</time>
         </div>
-        <p class="reply-content">${escape(reply.content)}</p>
+        <p class="reply-content">${linkify(reply.content)}</p>
         <div class="reply-actions">
           <button class="reply-action${vote === 1 ? " is-up" : ""}" type="button"
             data-action="vote-reply" data-reply-id="${reply.id}" data-value="1" aria-label="Upvote reply">
@@ -315,8 +344,8 @@
           <button class="post-title-button" type="button" data-action="toggle-post" data-post-id="${post.id}">
             ${escape(post.title)}
           </button>
-          <p class="post-preview">${escape(post.content)}</p>
-          <p class="post-content">${escape(post.content)}</p>
+          <p class="post-preview">${linkify(post.content)}</p>
+          <p class="post-content">${linkify(post.content)}</p>
           <div class="post-actions">
             <button class="post-action" type="button" data-action="toggle-post" data-post-id="${post.id}">
               <i class="fa-regular fa-comment" aria-hidden="true"></i>
