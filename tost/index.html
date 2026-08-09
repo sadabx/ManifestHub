@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TOST - Open-source OpenSteamTool installer</title>
+    <title>TOST - Steam integration manager for Windows and Linux</title>
     <link rel="icon" type="image/png" href="../assets/TOST/tost-logo.png" />
     <meta
       name="description"
-      content="Download TOST, an open-source floating installer for supported OpenSteamTool packages on Windows."
+      content="Download TOST, an open-source Steam integration manager for Windows and Linux."
     />
     <meta
       name="keywords"
-      content="TOST download, OpenSteamTool, floating installer, Steam tools, Windows installer, portable download"
+      content="TOST download, OpenSteamTool, SLSsteam, Steam tools, Windows installer, Linux AppImage, portable download"
     />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://manifesthub.trionine.com/tost/" />
@@ -19,11 +19,11 @@
     <meta property="og:url" content="https://manifesthub.trionine.com/tost/" />
     <meta
       property="og:title"
-      content="TOST - Open-source OpenSteamTool installer"
+      content="TOST - Steam integration manager for Windows and Linux"
     />
     <meta
       property="og:description"
-      content="A compact floating installer that routes supported OpenSteamTool files to the correct Steam folders."
+      content="A compact Steam integration manager for OpenSteamTool on Windows and SLSsteam on Linux."
     />
     <meta
       property="og:image"
@@ -33,11 +33,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="TOST - Open-source OpenSteamTool installer"
+      content="TOST - Steam integration manager for Windows and Linux"
     />
     <meta
       name="twitter:description"
-      content="A compact floating installer that routes supported OpenSteamTool files to the correct Steam folders."
+      content="A compact Steam integration manager for OpenSteamTool on Windows and SLSsteam on Linux."
     />
     <meta
       name="twitter:image"
@@ -49,24 +49,24 @@
         "@type": "SoftwareApplication",
         "name": "TOST",
         "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Windows 10, Windows 11",
+        "operatingSystem": "Windows 10, Windows 11, Linux",
         "url": "https://manifesthub.trionine.com/tost/",
         "downloadUrl": "https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe",
         "image": "https://manifesthub.trionine.com/assets/TOST/TOST.png",
-        "description": "TOST is an open-source floating installer for supported OpenSteamTool packages."
+        "description": "TOST is an open-source Steam integration manager for OpenSteamTool on Windows and SLSsteam on Linux."
       }
     </script>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      integrity="sha384-sTlsophtwz/I4myskS3OIJf5VvEojkXKZyBTWZm0YD/K1pN7C5wpBPLyrsbr1SU2"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../src/styles/core/base.css?v=1.0" />
     <link rel="stylesheet" href="../src/styles/shared/components.css?v=1.1" />
     <link rel="stylesheet" href="../src/styles/shared/layout.css?v=1.2" />
-    <link rel="stylesheet" href="../src/styles/pages/tost.css?v=1.1" />
+    <link rel="stylesheet" href="../src/styles/pages/tost.css?v=1.2" />
   </head>
 
   <body class="tost-page">
@@ -108,10 +108,10 @@
             <img src="../assets/TOST/tost-logo.png" alt="TOST logo" />
             <h1 id="tost-title">TO<span>ST</span></h1>
           </div>
-          <p class="tost-kicker">Open-source installer for OpenSteamTool</p>
+          <p class="tost-kicker">Open-source Steam integration manager</p>
           <p class="tost-intro">
-            A compact, floating installer designed to route supported
-            OpenSteamTool files to the appropriate Steam directories.
+            The same compact interface on both platforms: OpenSteamTool on
+            Windows and SLSsteam on Linux.
           </p>
           <p class="tost-source-note">
             <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -120,6 +120,7 @@
           </p>
           <div class="tost-meta" aria-label="Platform details">
             <span><i class="fa-brands fa-windows"></i> Windows 10+</span>
+            <span><i class="fa-brands fa-linux"></i> Linux x64</span>
             <span><i class="fa-solid fa-code-branch"></i> Open source</span>
             <span><i class="fa-solid fa-box-open"></i> Setup and portable</span>
           </div>
@@ -164,76 +165,115 @@
           id="downloads"
           aria-labelledby="downloads-title"
         >
-          <div class="tost-section-heading">
-            <span class="tost-eyebrow">Latest release</span>
-            <h2 id="downloads-title">Choose your build</h2>
-            <p>
-              Setup is recommended for automatic updates. Portable keeps the
-              application and its data together in one folder.
-            </p>
-          </div>
-          <div
-            class="tost-download-table"
-            role="table"
-            aria-label="TOST downloads"
-          >
-            <div class="tost-download-header" role="row">
-              <span role="columnheader">Build</span>
-              <span role="columnheader">Best for</span>
-              <span role="columnheader">Download</span>
+          <div class="tost-download-panel">
+            <div class="tost-download-title-row">
+              <h2 id="downloads-title">Download</h2>
+              <img src="../assets/TOST/tost-logo.png" alt="" />
             </div>
-            <div class="tost-download-row" role="row">
-              <div class="tost-build-name" role="cell">
-                <span class="tost-build-icon"
-                  ><i class="fa-solid fa-display"></i
-                ></span>
-                <span>
-                  <strong>Windows Setup</strong>
-                  <span class="tost-recommended">Recommended</span>
-                </span>
-              </div>
-              <p class="tost-build-detail" role="cell">
-                Normal installation with shortcuts and in-place update support.
+
+            <div class="tost-recommended-download">
+              <p data-recommendation-copy>
+                Detecting the best release for your operating system&hellip;
               </p>
-              <div class="tost-download-actions" role="cell">
-                <a
-                  class="tost-button btn-primary"
-                  href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe"
-                >
-                  <i class="fa-solid fa-download"></i>
-                  Setup EXE
-                </a>
-                <a
-                  class="tost-button btn-secondary"
-                  href="https://github.com/sadabx/TOST/releases/latest"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="View release notes"
-                  aria-label="View release notes"
-                >
-                  <i class="fa-solid fa-file-lines"></i>
-                </a>
-              </div>
+              <a
+                class="tost-recommended-button"
+                data-recommended-download
+                href="https://github.com/sadabx/TOST/releases/latest"
+              >
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                <strong data-recommended-label>View available downloads</strong>
+              </a>
             </div>
-            <div class="tost-download-row" role="row">
-              <div class="tost-build-name" role="cell">
-                <span class="tost-build-icon"
-                  ><i class="fa-solid fa-box-archive"></i
-                ></span>
-                <span><strong>Windows Portable</strong></span>
-              </div>
-              <p class="tost-build-detail" role="cell">
-                A movable folder-based build with no installation required.
-              </p>
-              <div class="tost-download-actions" role="cell">
-                <a
-                  class="tost-button btn-secondary"
-                  href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip"
-                >
-                  <i class="fa-solid fa-download"></i>
-                  Portable ZIP
-                </a>
-              </div>
+
+            <p class="tost-other-downloads">All x64 builds</p>
+            <div class="tost-platform-grid">
+              <article class="tost-platform-card" data-platform-card="windows">
+                <div class="tost-platform-heading">
+                  <i class="fa-brands fa-windows" aria-hidden="true"></i>
+                  <div>
+                    <h3>Windows</h3>
+                    <span>x64</span>
+                  </div>
+                  <span
+                    class="tost-detected-platform"
+                    data-platform-badge
+                    hidden
+                    >Detected</span
+                  >
+                </div>
+                <p>
+                  Use Setup for shortcuts and automatic application updates.
+                </p>
+                <div class="tost-platform-downloads">
+                  <a
+                    href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe"
+                  >
+                    <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    Setup EXE
+                  </a>
+                  <a
+                    href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip"
+                  >
+                    <i class="fa-solid fa-file-zipper" aria-hidden="true"></i>
+                    Portable ZIP
+                  </a>
+                </div>
+              </article>
+
+              <article class="tost-platform-card" data-platform-card="linux">
+                <div class="tost-platform-heading">
+                  <i class="fa-brands fa-linux" aria-hidden="true"></i>
+                  <div>
+                    <h3>Linux</h3>
+                    <span>x64</span>
+                  </div>
+                  <span
+                    class="tost-detected-platform"
+                    data-platform-badge
+                    hidden
+                    >Detected</span
+                  >
+                </div>
+                <p>
+                  Use AppImage on most distributions, or choose a portable or
+                  Arch package.
+                </p>
+                <div class="tost-platform-downloads">
+                  <a
+                    data-release-asset="appimage"
+                    href="https://github.com/sadabx/TOST/releases/latest"
+                  >
+                    <i
+                      class="fa-solid fa-file-arrow-down"
+                      aria-hidden="true"
+                    ></i>
+                    AppImage
+                  </a>
+                  <a
+                    data-release-asset="linux-portable"
+                    href="https://github.com/sadabx/TOST/releases/latest"
+                  >
+                    <i class="fa-solid fa-file-zipper" aria-hidden="true"></i>
+                    Portable tar.gz
+                  </a>
+                  <a
+                    data-release-asset="arch"
+                    href="https://github.com/sadabx/TOST/releases/latest"
+                  >
+                    <i class="fa-brands fa-arch-linux" aria-hidden="true"></i>
+                    Arch package
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <div class="tost-release-meta" aria-live="polite">
+              <a
+                data-release-link
+                href="https://github.com/sadabx/TOST/releases/latest"
+                >Latest release</a
+              >
+              <span data-release-status>Fetching from GitHub API</span>
             </div>
           </div>
         </section>
@@ -264,7 +304,9 @@
                 <tr>
                   <th scope="row">What it is</th>
                   <td>Better alternative of SteamTools</td>
-                  <td>Open-source, community-driven steamtool backbone project</td>
+                  <td>
+                    Open-source community-driven steamtool backbone project
+                  </td>
                   <td>All-in-one og SteamTools</td>
                 </tr>
                 <!-- <tr>
@@ -274,6 +316,12 @@
                   <td>No</td>
                 </tr> -->
                 <tr>
+                  <th scope="row">Platform support</th>
+                  <td class="positive">Windows 10+ and Linux x64</td>
+                  <td>Windows</td>
+                  <td>Windows</td>
+                </tr>
+                <tr>
                   <th scope="row">Transparency</th>
                   <td class="positive">Fully open-source</td>
                   <td class="positive">Fully open-source</td>
@@ -282,11 +330,12 @@
                 <tr>
                   <th scope="row">How to install</th>
                   <td>
-                    One-click setup, or portable — grabs the latest version for
-                    you
+                    Download and install it like any regular software, then
+                    simply left-click the icon and install OpenSteamTool, and
+                    you’re all done.
                   </td>
                   <td class="negative">Manual, copy files yourself</td>
-                  <td>Own setup only</td>
+                  <td>standard setup only no portable</td>
                 </tr>
                 <tr>
                   <th scope="row">Standout feature</th>
@@ -359,5 +408,6 @@
         </div>
       </div>
     </footer>
+    <script src="../src/pages/tost/downloads.js?v=1.0" defer></script>
   </body>
 </html>
