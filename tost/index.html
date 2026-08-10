@@ -168,12 +168,12 @@
           <div class="tost-download-panel">
             <div class="tost-download-title-row">
               <h2 id="downloads-title">Download</h2>
-              <img src="../assets/TOST/tost-logo.png" alt="" />
+              <img src="../assets/TOST/tost-logo.png" alt="TOST Logo" />
             </div>
 
             <div class="tost-recommended-download">
               <p data-recommendation-copy>
-                Detecting the best release for your operating system&hellip;
+                Detecting the best release for your device&hellip;
               </p>
               <a
                 class="tost-recommended-button"
@@ -185,8 +185,9 @@
               </a>
             </div>
 
-            <p class="tost-other-downloads">All x64 builds</p>
+            <p class="tost-other-downloads">All x64 Builds</p>
             <div class="tost-platform-grid">
+              <!-- Windows Card -->
               <article class="tost-platform-card" data-platform-card="windows">
                 <div class="tost-platform-heading">
                   <i class="fa-brands fa-windows" aria-hidden="true"></i>
@@ -202,17 +203,20 @@
                   >
                 </div>
                 <p>
-                  Use Setup for shortcuts and automatic application updates.
+                  Use Setup for shortcuts and automatic updates, or run Portable
+                  instantly.
                 </p>
                 <div class="tost-platform-downloads">
                   <a
-                    href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Setup.exe"
+                    data-release-asset="win-setup"
+                    href="https://github.com/sadabx/TOST/releases/latest"
                   >
                     <i class="fa-solid fa-download" aria-hidden="true"></i>
                     Setup EXE
                   </a>
                   <a
-                    href="https://github.com/sadabx/TOST/releases/latest/download/TOST-win-Portable.zip"
+                    data-release-asset="win-portable"
+                    href="https://github.com/sadabx/TOST/releases/latest"
                   >
                     <i class="fa-solid fa-file-zipper" aria-hidden="true"></i>
                     Portable ZIP
@@ -220,6 +224,7 @@
                 </div>
               </article>
 
+              <!-- Linux Card -->
               <article class="tost-platform-card" data-platform-card="linux">
                 <div class="tost-platform-heading">
                   <i class="fa-brands fa-linux" aria-hidden="true"></i>
@@ -235,8 +240,8 @@
                   >
                 </div>
                 <p>
-                  Use AppImage on most distributions, or choose a portable or
-                  Arch package.
+                  Use AppImage for general Linux compatibility, or select a
+                  native package.
                 </p>
                 <div class="tost-platform-downloads">
                   <a
@@ -261,7 +266,14 @@
                     href="https://github.com/sadabx/TOST/releases/latest"
                   >
                     <i class="fa-brands fa-arch-linux" aria-hidden="true"></i>
-                    Arch package
+                    Arch Package
+                  </a>
+                  <a
+                    data-release-asset="deb"
+                    href="https://github.com/sadabx/TOST/releases/latest"
+                  >
+                    <i class="fa-brands fa-debian" aria-hidden="true"></i>
+                    Debian Package
                   </a>
                 </div>
               </article>
@@ -273,7 +285,7 @@
                 href="https://github.com/sadabx/TOST/releases/latest"
                 >Latest release</a
               >
-              <span data-release-status>Fetching from GitHub API</span>
+              <span data-release-status>Fetching from GitHub API&hellip;</span>
             </div>
           </div>
         </section>
