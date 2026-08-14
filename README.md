@@ -48,7 +48,7 @@ ManifestHub/
 │   ├── download-history-compact.sql # Safe migration to compact profile history
 │   ├── download-history.sql    # Full Supabase schema for fresh projects
 │   ├── manifesthub-record.gs  # Legacy Google Apps Script logger
-│   └── backend.md             # Backend architecture documentation
+│   └── README.md              # Unified backend architecture & setup documentation
 ├── data/
 │   ├── faq.js                 # Frequently Asked Questions native JS data array
 │   ├── download-counts.json   # Action-only permanent download counters
@@ -144,7 +144,7 @@ The platform aggregates data from multiple external sources to serve files dynam
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [GPL-3.0 License](LICENSE).
 
 ---
 
