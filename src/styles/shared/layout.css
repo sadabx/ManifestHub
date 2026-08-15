@@ -204,6 +204,38 @@
   gap: 0.5rem;
 }
 
+.files-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.files-header-wrapper .files-section-header {
+  margin-bottom: 0;
+}
+
+.btn-toggle-older {
+  background-color: #21262d;
+  color: #8b949e;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-toggle-older:hover {
+  color: #c9d1d9;
+  border-color: rgba(240, 246, 252, 0.2);
+  background-color: #30363d;
+}
+
 .files-section-header {
   font-size: 0.875rem;
   font-weight: 600;

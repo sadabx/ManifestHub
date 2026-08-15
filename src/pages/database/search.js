@@ -54,7 +54,7 @@ function generateLuaContent(appId, depots) {
   return { content: lua.join("\n"), count: validCount };
 }
 
-// ---- Live & Archived Manifest Fetching ----
+// ---- Live & Branch Manifest Fetching ----
 
 async function fetchLiveManifests(appId) {
   try {
@@ -80,12 +80,12 @@ async function fetchLiveManifests(appId) {
               manifestId,
               depotName,
               isLatest: true,
-              versionBadge: "Latest",
+              branchName: null,
               downloadUrl: `https://raw.githubusercontent.com/qwe213312/k25FCdfEOoEJ42S6/main/${depotId}_${manifestId}.manifest`,
             });
           }
 
-          // 2. Additional branch / archived manifests
+          // 2. Additional branch manifests
           for (const branchKey in manifestsObj) {
             if (branchKey === "public") continue;
             const branchEntry = manifestsObj[branchKey];
@@ -98,7 +98,7 @@ async function fetchLiveManifests(appId) {
                 manifestId: branchGid,
                 depotName,
                 isLatest: false,
-                versionBadge: `Archived (${branchKey})`,
+                branchName: branchKey,
                 downloadUrl: `https://raw.githubusercontent.com/qwe213312/k25FCdfEOoEJ42S6/main/${depotId}_${branchGid}.manifest`,
               });
             }
@@ -141,6 +141,22 @@ function checkDenuvoStatus(appId) {
 
 let currentSelectedGame = null;
 let currentFiles = [];
+let showOlderManifests = false;
+
+function updateOlderManifestsToggleState(olderCount) {
+  const toggleBtn = document.getElementById("toggleOlderManifestsBtn");
+  if (!toggleBtn) return;
+  if (olderCount > 0) {
+    toggleBtn.classList.remove("hidden");
+    if (showOlderManifests) {
+      toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> <span>Hide Older Manifests</span>';
+    } else {
+      toggleBtn.innerHTML = `<i class="fas fa-eye"></i> <span>Show Older Manifests (${olderCount})</span>`;
+    }
+  } else {
+    toggleBtn.classList.add("hidden");
+  }
+}
 
 /**
  * Displays the file panel for a selected game (lua, manifests, legacy zip).
@@ -150,6 +166,9 @@ let currentFiles = [];
  */
 window.MH_displayGameFiles = async function (appId, gameName) {
   currentSelectedGame = { appId, gameName };
+
+  // Reset toggle state for new game selection
+  showOlderManifests = false;
 
   // Reset Denuvo warning and badge
   const denuvoBadge = document.getElementById("denuvoBadge");
@@ -193,6 +212,7 @@ window.MH_displayGameFiles = async function (appId, gameName) {
         size: `${luaResult.content.length} bytes`,
         icon: "fas fa-file-code",
         iconColor: "text-green-400",
+        textColorStyle: "color: #4ade80;",
         url: luaUrl,
         blob: luaBlob,
       });
@@ -204,13 +224,17 @@ window.MH_displayGameFiles = async function (appId, gameName) {
   for (const manifest of liveManifests) {
     files.push({
       name: `${manifest.depotId}_${manifest.manifestId}.manifest`,
+      displayName: manifest.branchName
+        ? `${manifest.depotId}_${manifest.manifestId}.manifest (${manifest.branchName})`
+        : `${manifest.depotId}_${manifest.manifestId}.manifest`,
       type: "Manifest file",
       icon: "fas fa-file-invoice",
-      iconColor: manifest.isLatest ? "text-blue-400" : "text-purple-400",
+      iconColor: manifest.isLatest ? "text-blue-400" : "text-amber-400",
+      textColorStyle: manifest.isLatest ? "color: #58a6ff;" : "color: #fbbf24;",
       url: manifest.downloadUrl,
       isExternal: true,
       isLatest: manifest.isLatest,
-      versionBadge: manifest.versionBadge,
+      isOlder: !manifest.isLatest,
     });
   }
 
@@ -223,15 +247,15 @@ window.MH_displayGameFiles = async function (appId, gameName) {
     if (githubCheck.status === 200) {
       files.push({
         name: `${appId}.zip`,
-        type: "Legacy Zip Archive",
+        type: "Legacy Zip",
         icon: "fas fa-file-zipper",
         iconColor: "text-purple-400",
+        textColorStyle: "color: #c084fc;",
         // Source: SSMGAlt/ManifestHub2 (Legacy Archive)
         // Purpose: Direct URL to download the branch as a ZIP file.
         url: `https://codeload.github.com/${REPO_OWNER}/ManifestHub2/zip/refs/heads/${appId}`,
         isExternal: true,
         includeInBundle: false,
-        versionBadge: "Legacy Package",
       });
     }
   } catch (e) { }
@@ -241,26 +265,54 @@ window.MH_displayGameFiles = async function (appId, gameName) {
       ? '<div class="text-center py-4 text-github-muted"><strong>No verified downloads are available on ManifestHub for this game yet.</strong><br>The current Steam manifest is known, but our sources do not have the matching manifest file and depot key needed to create a working package. Please check again after the database updates.</div>'
       : '<div class="text-center py-4 text-github-muted">No files available for this game yet.</div>';
     document.getElementById("downloadAllZipBtn").classList.add("hidden");
+    document.getElementById("toggleOlderManifestsBtn")?.classList.add("hidden");
     currentFiles = [];
     return;
+  }
+
+  const olderFilesCount = files.filter((f) => f.isOlder).length;
+  const hasLivePublic = files.some((f) => f.isLatest);
+  if (!hasLivePublic && olderFilesCount > 0) {
+    showOlderManifests = true;
+  }
+
+  updateOlderManifestsToggleState(olderFilesCount);
+
+  // Replace the toggle button to clear any stale listeners from previous game selections
+  const oldToggleBtn = document.getElementById("toggleOlderManifestsBtn");
+  if (oldToggleBtn && olderFilesCount > 0) {
+    const newToggleBtn = oldToggleBtn.cloneNode(true);
+    oldToggleBtn.replaceWith(newToggleBtn);
+    newToggleBtn.addEventListener("click", () => {
+      showOlderManifests = !showOlderManifests;
+      const olderItems = document.querySelectorAll(".older-manifest-item");
+      olderItems.forEach((item) =>
+        item.classList.toggle("hidden", !showOlderManifests),
+      );
+      updateOlderManifestsToggleState(olderItems.length);
+      // Update the bundle to include/exclude older manifests
+      currentFiles = files.filter(
+        (file) => file.includeInBundle !== false && (!file.isOlder || showOlderManifests),
+      );
+    });
   }
 
   filesList.innerHTML = "";
   files.forEach((file) => {
     const fileDiv = document.createElement("div");
-    fileDiv.className = "file-item";
-    const badgeHtml = file.versionBadge
-      ? ` <span class="text-xs px-2 py-0.5 rounded font-mono ml-1.5 ${
-          file.isLatest
-            ? "bg-green-900/60 text-green-300 border border-green-700/50"
-            : "bg-purple-900/60 text-purple-300 border border-purple-700/50"
-        }">${file.versionBadge}</span>`
-      : "";
+    const isOlderItem = Boolean(file.isOlder);
+    fileDiv.className = isOlderItem
+      ? showOlderManifests
+        ? "file-item older-manifest-item"
+        : "file-item older-manifest-item hidden"
+      : "file-item";
+    const nameToShow = file.displayName || file.name;
+    const styleAttr = file.textColorStyle ? ` style="${file.textColorStyle}"` : "";
     fileDiv.innerHTML = `
       <div class="file-info">
         <i class="${file.icon} ${file.iconColor} file-icon"></i>
         <div class="file-details">
-          <span class="file-name">${window.escapeHtml(file.name)}${badgeHtml}</span>
+          <span class="file-name"${styleAttr}>${window.escapeHtml(nameToShow)}</span>
           <span class="file-meta">${file.type}${file.size ? ` · ${file.size}` : ""}</span>
         </div>
       </div>
@@ -281,15 +333,16 @@ window.MH_displayGameFiles = async function (appId, gameName) {
 
   if (unavailableCount) {
     const notice = document.createElement("div");
-    notice.className =
-      "text-center py-2.5 text-xs text-yellow-300/90 bg-yellow-900/20 border border-yellow-700/30 rounded mt-3 px-3";
-    notice.innerHTML = `<i class="fas fa-info-circle mr-1"></i> <strong>Note:</strong> ${unavailableCount} latest manifest file${
-      unavailableCount === 1 ? " is" : "s are"
-    } pending update on our servers. Working archived manifest versions or legacy ZIP packages are shown above.`;
+    notice.className = "text-center py-4 text-github-muted";
+    notice.textContent = `${unavailableCount} current manifest file${unavailableCount === 1 ? " is" : "s are"
+      } not yet available on ManifestHub. Only the verified files shown above will be downloaded.`;
     filesList.appendChild(notice);
   }
 
-  currentFiles = files.filter((file) => file.includeInBundle !== false);
+  // Exclude older hidden manifests and legacy zip from the Download All bundle
+  currentFiles = files.filter(
+    (file) => file.includeInBundle !== false && (!file.isOlder || showOlderManifests),
+  );
   document
     .getElementById("downloadAllZipBtn")
     .classList.toggle("hidden", currentFiles.length === 0);
