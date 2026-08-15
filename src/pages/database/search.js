@@ -54,33 +54,55 @@ function generateLuaContent(appId, depots) {
   return { content: lua.join("\n"), count: validCount };
 }
 
-// ---- Live Manifest Fetching ----
+// ---- Live & Archived Manifest Fetching ----
 
 async function fetchLiveManifests(appId) {
   try {
     // Source: api.steamcmd.net
-    // Purpose: Queries dynamically to find the latest live manifestId for the game's depots.
+    // Purpose: Queries dynamically to find live & branch manifestIds for the game's depots.
     const response = await fetch(`https://api.steamcmd.net/v1/info/${appId}`);
     const data = await response.json();
     if (data.status === "success" && data.data[appId]) {
       const depots = data.data[appId].depots;
       const candidates = [];
       for (const depotId in depots) {
-        if (
-          !isNaN(depotId) &&
-          depots[depotId].manifests &&
-          depots[depotId].manifests.public
-        ) {
-          const manifestId = depots[depotId].manifests.public.gid;
+        if (!isNaN(depotId) && depots[depotId].manifests) {
+          const manifestsObj = depots[depotId].manifests;
           const depotName = depots[depotId].name || `Depot ${depotId}`;
-          candidates.push({
-            depotId,
-            manifestId,
-            depotName,
-            // Source: qwe213312/k25FCdfEOoEJ42S6
-            // Purpose: Direct download URL for the actual live .manifest file.
-            downloadUrl: `https://raw.githubusercontent.com/qwe213312/k25FCdfEOoEJ42S6/main/${depotId}_${manifestId}.manifest`,
-          });
+          const gidsSeen = new Set();
+
+          // 1. Primary public (latest live) manifest
+          if (manifestsObj.public && manifestsObj.public.gid) {
+            const manifestId = manifestsObj.public.gid;
+            gidsSeen.add(manifestId);
+            candidates.push({
+              depotId,
+              manifestId,
+              depotName,
+              isLatest: true,
+              versionBadge: "Latest",
+              downloadUrl: `https://raw.githubusercontent.com/qwe213312/k25FCdfEOoEJ42S6/main/${depotId}_${manifestId}.manifest`,
+            });
+          }
+
+          // 2. Additional branch / archived manifests
+          for (const branchKey in manifestsObj) {
+            if (branchKey === "public") continue;
+            const branchEntry = manifestsObj[branchKey];
+            const branchGid =
+              typeof branchEntry === "object" ? branchEntry.gid : branchEntry;
+            if (branchGid && typeof branchGid === "string" && !gidsSeen.has(branchGid)) {
+              gidsSeen.add(branchGid);
+              candidates.push({
+                depotId,
+                manifestId: branchGid,
+                depotName,
+                isLatest: false,
+                versionBadge: `Archived (${branchKey})`,
+                downloadUrl: `https://raw.githubusercontent.com/qwe213312/k25FCdfEOoEJ42S6/main/${depotId}_${branchGid}.manifest`,
+              });
+            }
+          }
         }
       }
 
@@ -97,9 +119,12 @@ async function fetchLiveManifests(appId) {
         }),
       );
       const manifests = availability.filter(Boolean);
+      const latestCandidatesCount = candidates.filter((c) => c.isLatest).length;
+      const availableLatestCount = manifests.filter((m) => m.isLatest).length;
+
       return {
         manifests,
-        unavailableCount: candidates.length - manifests.length,
+        unavailableCount: Math.max(0, latestCandidatesCount - availableLatestCount),
       };
     }
   } catch (e) { }
@@ -181,9 +206,11 @@ window.MH_displayGameFiles = async function (appId, gameName) {
       name: `${manifest.depotId}_${manifest.manifestId}.manifest`,
       type: "Manifest file",
       icon: "fas fa-file-invoice",
-      iconColor: "text-blue-400",
+      iconColor: manifest.isLatest ? "text-blue-400" : "text-purple-400",
       url: manifest.downloadUrl,
       isExternal: true,
+      isLatest: manifest.isLatest,
+      versionBadge: manifest.versionBadge,
     });
   }
 
@@ -196,7 +223,7 @@ window.MH_displayGameFiles = async function (appId, gameName) {
     if (githubCheck.status === 200) {
       files.push({
         name: `${appId}.zip`,
-        type: "Legacy Zip",
+        type: "Legacy Zip Archive",
         icon: "fas fa-file-zipper",
         iconColor: "text-purple-400",
         // Source: SSMGAlt/ManifestHub2 (Legacy Archive)
@@ -204,6 +231,7 @@ window.MH_displayGameFiles = async function (appId, gameName) {
         url: `https://codeload.github.com/${REPO_OWNER}/ManifestHub2/zip/refs/heads/${appId}`,
         isExternal: true,
         includeInBundle: false,
+        versionBadge: "Legacy Package",
       });
     }
   } catch (e) { }
@@ -221,11 +249,18 @@ window.MH_displayGameFiles = async function (appId, gameName) {
   files.forEach((file) => {
     const fileDiv = document.createElement("div");
     fileDiv.className = "file-item";
+    const badgeHtml = file.versionBadge
+      ? ` <span class="text-xs px-2 py-0.5 rounded font-mono ml-1.5 ${
+          file.isLatest
+            ? "bg-green-900/60 text-green-300 border border-green-700/50"
+            : "bg-purple-900/60 text-purple-300 border border-purple-700/50"
+        }">${file.versionBadge}</span>`
+      : "";
     fileDiv.innerHTML = `
       <div class="file-info">
         <i class="${file.icon} ${file.iconColor} file-icon"></i>
         <div class="file-details">
-          <span class="file-name">${window.escapeHtml(file.name)}</span>
+          <span class="file-name">${window.escapeHtml(file.name)}${badgeHtml}</span>
           <span class="file-meta">${file.type}${file.size ? ` · ${file.size}` : ""}</span>
         </div>
       </div>
@@ -246,8 +281,11 @@ window.MH_displayGameFiles = async function (appId, gameName) {
 
   if (unavailableCount) {
     const notice = document.createElement("div");
-    notice.className = "text-center py-4 text-github-muted";
-    notice.textContent = `${unavailableCount} current manifest file${unavailableCount === 1 ? " is" : "s are"} not yet available on ManifestHub. Only the verified files shown above will be downloaded.`;
+    notice.className =
+      "text-center py-2.5 text-xs text-yellow-300/90 bg-yellow-900/20 border border-yellow-700/30 rounded mt-3 px-3";
+    notice.innerHTML = `<i class="fas fa-info-circle mr-1"></i> <strong>Note:</strong> ${unavailableCount} latest manifest file${
+      unavailableCount === 1 ? " is" : "s are"
+    } pending update on our servers. Working archived manifest versions or legacy ZIP packages are shown above.`;
     filesList.appendChild(notice);
   }
 
