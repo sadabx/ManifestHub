@@ -10,7 +10,7 @@
   "10": {
     "mainAppId": "10",
     "gameName": "Counter-Strike",
-    "count": 623,
+    "count": 624,
     "includedAppIds": [
       "10",
       "80",
@@ -188,7 +188,7 @@
   "550": {
     "mainAppId": "550",
     "gameName": "Left 4 Dead 2",
-    "count": 703,
+    "count": 705,
     "includedAppIds": [
       "550",
       "322070"
@@ -483,7 +483,7 @@
   "2620": {
     "mainAppId": "2620",
     "gameName": "Call of Duty® (2003)",
-    "count": 140,
+    "count": 142,
     "includedAppIds": [
       "2620"
     ]
@@ -491,7 +491,7 @@
   "2630": {
     "mainAppId": "2630",
     "gameName": "Call of Duty® 2",
-    "count": 139,
+    "count": 141,
     "includedAppIds": [
       "2630"
     ]
@@ -499,7 +499,7 @@
   "2640": {
     "mainAppId": "2640",
     "gameName": "Call of Duty: United Offensive",
-    "count": 40,
+    "count": 41,
     "includedAppIds": [
       "2640"
     ]
@@ -879,7 +879,7 @@
   "4000": {
     "mainAppId": "4000",
     "gameName": "Garry's Mod",
-    "count": 1722,
+    "count": 1726,
     "includedAppIds": [
       "4000"
     ]
@@ -1407,7 +1407,7 @@
   "8190": {
     "mainAppId": "8190",
     "gameName": "Just Cause 2",
-    "count": 86,
+    "count": 88,
     "includedAppIds": [
       "8190",
       "35080",
@@ -1669,7 +1669,7 @@
   "10180": {
     "mainAppId": "10180",
     "gameName": "Call of Duty®: Modern Warfare® 2 (2009)",
-    "count": 699,
+    "count": 700,
     "includedAppIds": [
       "10180",
       "10195",
@@ -1967,7 +1967,7 @@
   "12210": {
     "mainAppId": "12210",
     "gameName": "Grand Theft Auto IV: The Complete Edition",
-    "count": 1244,
+    "count": 1247,
     "includedAppIds": [
       "12210"
     ]
@@ -2143,7 +2143,7 @@
   "13520": {
     "mainAppId": "13520",
     "gameName": "Far Cry®",
-    "count": 117,
+    "count": 118,
     "includedAppIds": [
       "13520"
     ]
@@ -2231,7 +2231,7 @@
   "15100": {
     "mainAppId": "15100",
     "gameName": "Assassin's Creed™: Director's Cut Edition",
-    "count": 201,
+    "count": 202,
     "includedAppIds": [
       "15100"
     ]
@@ -2610,7 +2610,7 @@
   "19900": {
     "mainAppId": "19900",
     "gameName": "Far Cry® 2",
-    "count": 149,
+    "count": 150,
     "includedAppIds": [
       "19900"
     ]
@@ -2755,7 +2755,7 @@
   "21690": {
     "mainAppId": "21690",
     "gameName": "Resident Evil 5",
-    "count": 845,
+    "count": 846,
     "includedAppIds": [
       "21690",
       "352000"
@@ -2891,7 +2891,7 @@
   "22330": {
     "mainAppId": "22330",
     "gameName": "The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)",
-    "count": 37,
+    "count": 39,
     "includedAppIds": [
       "22330"
     ]
@@ -3722,7 +3722,7 @@
   "33230": {
     "mainAppId": "33230",
     "gameName": "Assassin's Creed 2",
-    "count": 379,
+    "count": 380,
     "includedAppIds": [
       "33230"
     ]
@@ -4480,7 +4480,7 @@
   "42700": {
     "mainAppId": "42700",
     "gameName": "Call of Duty®: Black Ops",
-    "count": 659,
+    "count": 661,
     "includedAppIds": [
       "42700",
       "42719"
@@ -4979,7 +4979,7 @@
   "48700": {
     "mainAppId": "48700",
     "gameName": "Mount & Blade: Warband",
-    "count": 87,
+    "count": 88,
     "includedAppIds": [
       "48700",
       "48705",
@@ -5005,7 +5005,7 @@
   "49520": {
     "mainAppId": "49520",
     "gameName": "Borderlands 2",
-    "count": 194,
+    "count": 195,
     "includedAppIds": [
       "49520",
       "224180",
@@ -5559,7 +5559,7 @@
   "70300": {
     "mainAppId": "70300",
     "gameName": "VVVVVV",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "70300"
     ]
@@ -5980,7 +5980,7 @@
   "105600": {
     "mainAppId": "105600",
     "gameName": "Terraria",
-    "count": 880,
+    "count": 881,
     "includedAppIds": [
       "105600"
     ]
@@ -5996,7 +5996,7 @@
   "107410": {
     "mainAppId": "107410",
     "gameName": "Arma 3",
-    "count": 226,
+    "count": 227,
     "includedAppIds": [
       "107410",
       "1021790"
@@ -6134,7 +6134,7 @@
   "115320": {
     "mainAppId": "115320",
     "gameName": "Prototype 2",
-    "count": 141,
+    "count": 142,
     "includedAppIds": [
       "115320"
     ]
@@ -6268,7 +6268,7 @@
   "200900": {
     "mainAppId": "200900",
     "gameName": "Cave Story+",
-    "count": 5,
+    "count": 6,
     "includedAppIds": [
       "200900"
     ]
@@ -6492,7 +6492,7 @@
   "202970": {
     "mainAppId": "202970",
     "gameName": "Call of Duty®: Black Ops II",
-    "count": 1193,
+    "count": 1194,
     "includedAppIds": [
       "202970",
       "219092",
@@ -6518,7 +6518,7 @@
   "203140": {
     "mainAppId": "203140",
     "gameName": "Hitman: Absolution™",
-    "count": 369,
+    "count": 370,
     "includedAppIds": [
       "203140"
     ]
@@ -6526,7 +6526,7 @@
   "203160": {
     "mainAppId": "203160",
     "gameName": "Tomb Raider Game of the Year",
-    "count": 386,
+    "count": 387,
     "includedAppIds": [
       "203160"
     ]
@@ -7084,7 +7084,7 @@
   "208650": {
     "mainAppId": "208650",
     "gameName": "Batman™: Arkham Knight",
-    "count": 805,
+    "count": 806,
     "includedAppIds": [
       "208650",
       "313100",
@@ -7146,7 +7146,7 @@
   "209000": {
     "mainAppId": "209000",
     "gameName": "Batman™: Arkham Origins",
-    "count": 275,
+    "count": 276,
     "includedAppIds": [
       "209000",
       "257070",
@@ -7444,7 +7444,7 @@
   "213330": {
     "mainAppId": "213330",
     "gameName": "LEGO® Batman™ 2: DC Super Heroes",
-    "count": 137,
+    "count": 138,
     "includedAppIds": [
       "213330"
     ]
@@ -7460,7 +7460,7 @@
   "213670": {
     "mainAppId": "213670",
     "gameName": "South Park™: The Stick of Truth™",
-    "count": 68,
+    "count": 69,
     "includedAppIds": [
       "213670",
       "257370",
@@ -7959,7 +7959,7 @@
   "220240": {
     "mainAppId": "220240",
     "gameName": "Far Cry 3",
-    "count": 647,
+    "count": 648,
     "includedAppIds": [
       "220240",
       "233270"
@@ -8120,7 +8120,7 @@
   "221040": {
     "mainAppId": "221040",
     "gameName": "Resident Evil 6",
-    "count": 857,
+    "count": 858,
     "includedAppIds": [
       "221040",
       "232530",
@@ -8918,6 +8918,14 @@
       "227180"
     ]
   },
+  "227200": {
+    "mainAppId": "227200",
+    "gameName": "Waking Mars",
+    "count": 1,
+    "includedAppIds": [
+      "227200"
+    ]
+  },
   "227260": {
     "mainAppId": "227260",
     "gameName": "DisplayFusion",
@@ -8929,7 +8937,7 @@
   "227300": {
     "mainAppId": "227300",
     "gameName": "Euro Truck Simulator 2",
-    "count": 5967,
+    "count": 5976,
     "includedAppIds": [
       "227300",
       "227310",
@@ -9176,6 +9184,14 @@
       "229950"
     ]
   },
+  "230050": {
+    "mainAppId": "230050",
+    "gameName": "DLC Quest",
+    "count": 1,
+    "includedAppIds": [
+      "230050"
+    ]
+  },
   "230070": {
     "mainAppId": "230070",
     "gameName": "The Age of Decadence",
@@ -9219,7 +9235,7 @@
   "230290": {
     "mainAppId": "230290",
     "gameName": "Universe Sandbox",
-    "count": 257,
+    "count": 261,
     "includedAppIds": [
       "230290"
     ]
@@ -9659,7 +9675,7 @@
   "236430": {
     "mainAppId": "236430",
     "gameName": "DARK SOULS™ II",
-    "count": 433,
+    "count": 436,
     "includedAppIds": [
       "236430",
       "284450",
@@ -9884,7 +9900,7 @@
   "239140": {
     "mainAppId": "239140",
     "gameName": "Dying Light",
-    "count": 716,
+    "count": 723,
     "includedAppIds": [
       "239140",
       "302101",
@@ -10024,7 +10040,7 @@
   "240720": {
     "mainAppId": "240720",
     "gameName": "Getting Over It with Bennett Foddy",
-    "count": 213,
+    "count": 214,
     "includedAppIds": [
       "240720"
     ]
@@ -10073,6 +10089,14 @@
       "241560"
     ]
   },
+  "241600": {
+    "mainAppId": "241600",
+    "gameName": "Rogue Legacy",
+    "count": 1,
+    "includedAppIds": [
+      "241600"
+    ]
+  },
   "241620": {
     "mainAppId": "241620",
     "gameName": "Inquisitor",
@@ -10100,7 +10124,7 @@
   "242050": {
     "mainAppId": "242050",
     "gameName": "Assassin’s Creed® IV Black Flag™",
-    "count": 475,
+    "count": 476,
     "includedAppIds": [
       "242050"
     ]
@@ -10277,7 +10301,7 @@
   "244210": {
     "mainAppId": "244210",
     "gameName": "Assetto Corsa",
-    "count": 3272,
+    "count": 3273,
     "includedAppIds": [
       "244210",
       "347990",
@@ -10331,7 +10355,7 @@
   "244850": {
     "mainAppId": "244850",
     "gameName": "Space Engineers",
-    "count": 26,
+    "count": 28,
     "includedAppIds": [
       "244850",
       "573160",
@@ -10636,7 +10660,7 @@
   "249130": {
     "mainAppId": "249130",
     "gameName": "LEGO® Marvel™ Super Heroes",
-    "count": 290,
+    "count": 291,
     "includedAppIds": [
       "249130"
     ]
@@ -10788,7 +10812,7 @@
   "250900": {
     "mainAppId": "250900",
     "gameName": "The Binding of Isaac: Rebirth",
-    "count": 398,
+    "count": 399,
     "includedAppIds": [
       "250900"
     ]
@@ -10847,7 +10871,7 @@
   "251290": {
     "mainAppId": "251290",
     "gameName": "The Legend of Heroes: Trails in the Sky SC",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "251290"
     ]
@@ -11800,7 +11824,7 @@
   "263980": {
     "mainAppId": "263980",
     "gameName": "Out There Somewhere",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "263980"
     ]
@@ -11873,7 +11897,7 @@
   "265550": {
     "mainAppId": "265550",
     "gameName": "Dead Rising 3 Apocalypse Edition",
-    "count": 28,
+    "count": 29,
     "includedAppIds": [
       "265550"
     ]
@@ -12120,7 +12144,7 @@
   "268910": {
     "mainAppId": "268910",
     "gameName": "Cuphead",
-    "count": 1213,
+    "count": 1215,
     "includedAppIds": [
       "268910",
       "1117850"
@@ -12962,7 +12986,7 @@
   "282050": {
     "mainAppId": "282050",
     "gameName": "MX vs. ATV Supercross Encore",
-    "count": 23,
+    "count": 24,
     "includedAppIds": [
       "282050",
       "420890",
@@ -13131,7 +13155,7 @@
   "284160": {
     "mainAppId": "284160",
     "gameName": "BeamNG.drive",
-    "count": 4090,
+    "count": 4094,
     "includedAppIds": [
       "284160"
     ]
@@ -13230,7 +13254,7 @@
   "285900": {
     "mainAppId": "285900",
     "gameName": "Gang Beasts",
-    "count": 543,
+    "count": 544,
     "includedAppIds": [
       "285900"
     ]
@@ -13337,7 +13361,7 @@
   "287290": {
     "mainAppId": "287290",
     "gameName": "Resident Evil Revelations 2",
-    "count": 178,
+    "count": 179,
     "includedAppIds": [
       "287290"
     ]
@@ -13625,7 +13649,7 @@
   "292030": {
     "mainAppId": "292030",
     "gameName": "The Witcher 3: Wild Hunt",
-    "count": 1538,
+    "count": 1539,
     "includedAppIds": [
       "292030",
       "355880",
@@ -14782,7 +14806,7 @@
   "311210": {
     "mainAppId": "311210",
     "gameName": "Call of Duty®: Black Ops III",
-    "count": 2214,
+    "count": 2215,
     "includedAppIds": [
       "311210",
       "366843",
@@ -15589,7 +15613,7 @@
   "319510": {
     "mainAppId": "319510",
     "gameName": "Five Nights at Freddy's",
-    "count": 1187,
+    "count": 1191,
     "includedAppIds": [
       "319510",
       "506610",
@@ -15974,7 +15998,7 @@
   "322170": {
     "mainAppId": "322170",
     "gameName": "Geometry Dash",
-    "count": 3533,
+    "count": 3542,
     "includedAppIds": [
       "322170"
     ]
@@ -15998,7 +16022,7 @@
   "322330": {
     "mainAppId": "322330",
     "gameName": "Don't Starve Together",
-    "count": 132,
+    "count": 133,
     "includedAppIds": [
       "322330",
       "798740",
@@ -16820,7 +16844,7 @@
   "332800": {
     "mainAppId": "332800",
     "gameName": "Five Nights at Freddy's 2",
-    "count": 338,
+    "count": 339,
     "includedAppIds": [
       "332800"
     ]
@@ -16987,7 +17011,7 @@
   "336290": {
     "mainAppId": "336290",
     "gameName": "Alien Isolation: Trauma",
-    "count": 11,
+    "count": 13,
     "includedAppIds": [
       "336290"
     ]
@@ -17585,7 +17609,7 @@
   "346110": {
     "mainAppId": "346110",
     "gameName": "ARK: Survival Evolved",
-    "count": 664,
+    "count": 666,
     "includedAppIds": [
       "346110"
     ]
@@ -18566,7 +18590,7 @@
   "360430": {
     "mainAppId": "360430",
     "gameName": "Mafia III: Definitive Edition",
-    "count": 279,
+    "count": 280,
     "includedAppIds": [
       "360430"
     ]
@@ -19125,7 +19149,7 @@
   "367520": {
     "mainAppId": "367520",
     "gameName": "Hollow Knight",
-    "count": 2095,
+    "count": 2100,
     "includedAppIds": [
       "367520",
       "1030300"
@@ -19255,6 +19279,14 @@
       "368500",
       "407474",
       "452960"
+    ]
+  },
+  "368620": {
+    "mainAppId": "368620",
+    "gameName": "Timespinner",
+    "count": 1,
+    "includedAppIds": [
+      "368620"
     ]
   },
   "368860": {
@@ -19488,7 +19520,7 @@
   "374320": {
     "mainAppId": "374320",
     "gameName": "DARK SOULS™ III",
-    "count": 862,
+    "count": 864,
     "includedAppIds": [
       "374320",
       "442010",
@@ -19569,7 +19601,7 @@
   "376210": {
     "mainAppId": "376210",
     "gameName": "The Isle",
-    "count": 241,
+    "count": 242,
     "includedAppIds": [
       "376210"
     ]
@@ -20033,7 +20065,7 @@
   "381210": {
     "mainAppId": "381210",
     "gameName": "Dead by Daylight",
-    "count": 625,
+    "count": 626,
     "includedAppIds": [
       "381210",
       "509060",
@@ -20182,7 +20214,7 @@
   "382560": {
     "mainAppId": "382560",
     "gameName": "Hot Lava",
-    "count": 7,
+    "count": 8,
     "includedAppIds": [
       "382560"
     ]
@@ -20458,7 +20490,7 @@
   "387290": {
     "mainAppId": "387290",
     "gameName": "Ori and the Blind Forest: Definitive Edition",
-    "count": 36,
+    "count": 37,
     "includedAppIds": [
       "387290"
     ]
@@ -20689,7 +20721,7 @@
   "391220": {
     "mainAppId": "391220",
     "gameName": "Rise of the Tomb Raider™",
-    "count": 688,
+    "count": 689,
     "includedAppIds": [
       "391220"
     ]
@@ -20811,7 +20843,7 @@
   "393380": {
     "mainAppId": "393380",
     "gameName": "Squad",
-    "count": 163,
+    "count": 165,
     "includedAppIds": [
       "393380"
     ]
@@ -20883,7 +20915,7 @@
   "394360": {
     "mainAppId": "394360",
     "gameName": "Hearts of Iron IV",
-    "count": 697,
+    "count": 699,
     "includedAppIds": [
       "394360",
       "1877010",
@@ -21795,7 +21827,7 @@
   "409710": {
     "mainAppId": "409710",
     "gameName": "BioShock™ Remastered",
-    "count": 46,
+    "count": 47,
     "includedAppIds": [
       "409710"
     ]
@@ -22668,7 +22700,7 @@
   "427100": {
     "mainAppId": "427100",
     "gameName": "Fernbus Simulator",
-    "count": 412,
+    "count": 413,
     "includedAppIds": [
       "427100",
       "569700",
@@ -22725,7 +22757,7 @@
   "427520": {
     "mainAppId": "427520",
     "gameName": "Factorio",
-    "count": 199,
+    "count": 200,
     "includedAppIds": [
       "427520",
       "645390"
@@ -22838,7 +22870,7 @@
   "429050": {
     "mainAppId": "429050",
     "gameName": "Feed and Grow: Fish",
-    "count": 134,
+    "count": 135,
     "includedAppIds": [
       "429050"
     ]
@@ -22987,7 +23019,7 @@
   "431960": {
     "mainAppId": "431960",
     "gameName": "Wallpaper Engine",
-    "count": 5226,
+    "count": 5234,
     "includedAppIds": [
       "431960",
       "1790230"
@@ -24644,6 +24676,14 @@
       "464850"
     ]
   },
+  "464880": {
+    "mainAppId": "464880",
+    "gameName": "Stars in Shadow",
+    "count": 2,
+    "includedAppIds": [
+      "464880"
+    ]
+  },
   "464920": {
     "mainAppId": "464920",
     "gameName": "Unknown Game",
@@ -25040,7 +25080,7 @@
   "475550": {
     "mainAppId": "475550",
     "gameName": "Beholder",
-    "count": 12,
+    "count": 13,
     "includedAppIds": [
       "475550",
       "2825530"
@@ -25502,7 +25542,7 @@
   "489830": {
     "mainAppId": "489830",
     "gameName": "The Elder Scrolls V: Skyrim Special Edition",
-    "count": 471,
+    "count": 473,
     "includedAppIds": [
       "489830"
     ]
@@ -25510,7 +25550,7 @@
   "490110": {
     "mainAppId": "490110",
     "gameName": "The Precinct",
-    "count": 45,
+    "count": 46,
     "includedAppIds": [
       "490110"
     ]
@@ -25643,7 +25683,7 @@
   "493490": {
     "mainAppId": "493490",
     "gameName": "City Car Driving",
-    "count": 252,
+    "count": 253,
     "includedAppIds": [
       "493490",
       "967230"
@@ -26342,7 +26382,7 @@
   "507010": {
     "mainAppId": "507010",
     "gameName": "Mr.President!",
-    "count": 53,
+    "count": 54,
     "includedAppIds": [
       "507010"
     ]
@@ -26447,7 +26487,7 @@
   "509980": {
     "mainAppId": "509980",
     "gameName": "BIGFOOT",
-    "count": 62,
+    "count": 63,
     "includedAppIds": [
       "509980"
     ]
@@ -26755,7 +26795,7 @@
   "516750": {
     "mainAppId": "516750",
     "gameName": "My Summer Car",
-    "count": 464,
+    "count": 465,
     "includedAppIds": [
       "516750"
     ]
@@ -26820,7 +26860,7 @@
   "518790": {
     "mainAppId": "518790",
     "gameName": "theHunter: Call of the Wild™",
-    "count": 405,
+    "count": 406,
     "includedAppIds": [
       "518790",
       "602310",
@@ -27032,7 +27072,7 @@
   "521890": {
     "mainAppId": "521890",
     "gameName": "Hello Neighbor",
-    "count": 943,
+    "count": 945,
     "includedAppIds": [
       "521890",
       "960420"
@@ -27210,7 +27250,7 @@
   "526870": {
     "mainAppId": "526870",
     "gameName": "Satisfactory",
-    "count": 383,
+    "count": 384,
     "includedAppIds": [
       "526870"
     ]
@@ -28095,7 +28135,7 @@
   "541570": {
     "mainAppId": "541570",
     "gameName": "Sally Face - Episode One",
-    "count": 24,
+    "count": 26,
     "includedAppIds": [
       "541570"
     ]
@@ -28402,7 +28442,7 @@
   "550320": {
     "mainAppId": "550320",
     "gameName": "art of rally",
-    "count": 24,
+    "count": 25,
     "includedAppIds": [
       "550320",
       "2250420"
@@ -28452,7 +28492,7 @@
   "552100": {
     "mainAppId": "552100",
     "gameName": "Brick Rigs",
-    "count": 195,
+    "count": 196,
     "includedAppIds": [
       "552100"
     ]
@@ -28501,7 +28541,7 @@
   "552520": {
     "mainAppId": "552520",
     "gameName": "Far Cry® 5",
-    "count": 469,
+    "count": 472,
     "includedAppIds": [
       "552520",
       "761820",
@@ -29244,7 +29284,7 @@
   "567990": {
     "mainAppId": "567990",
     "gameName": "Sally Face - Season Pass",
-    "count": 16,
+    "count": 17,
     "includedAppIds": [
       "567990"
     ]
@@ -30282,7 +30322,7 @@
   "588650": {
     "mainAppId": "588650",
     "gameName": "Dead Cells",
-    "count": 272,
+    "count": 273,
     "includedAppIds": [
       "588650",
       "1204130",
@@ -31094,7 +31134,7 @@
   "605740": {
     "mainAppId": "605740",
     "gameName": "Flashing Lights - Police, Firefighting, Emergency Services (EMS) Simulator",
-    "count": 39,
+    "count": 40,
     "includedAppIds": [
       "605740"
     ]
@@ -31393,7 +31433,7 @@
   "611790": {
     "mainAppId": "611790",
     "gameName": "House Party",
-    "count": 387,
+    "count": 389,
     "includedAppIds": [
       "611790",
       "944540",
@@ -31474,7 +31514,7 @@
   "613100": {
     "mainAppId": "613100",
     "gameName": "House Flipper",
-    "count": 394,
+    "count": 395,
     "includedAppIds": [
       "613100",
       "825570",
@@ -32441,7 +32481,7 @@
   "636480": {
     "mainAppId": "636480",
     "gameName": "Ravenfield",
-    "count": 161,
+    "count": 162,
     "includedAppIds": [
       "636480"
     ]
@@ -35827,7 +35867,7 @@
   "729040": {
     "mainAppId": "729040",
     "gameName": "Borderlands Game of the Year Enhanced",
-    "count": 29,
+    "count": 30,
     "includedAppIds": [
       "729040"
     ]
@@ -35965,7 +36005,7 @@
   "732690": {
     "mainAppId": "732690",
     "gameName": "FIVE NIGHTS AT FREDDY'S: HELP WANTED",
-    "count": 174,
+    "count": 175,
     "includedAppIds": [
       "732690"
     ]
@@ -36144,7 +36184,7 @@
   "739630": {
     "mainAppId": "739630",
     "gameName": "Phasmophobia",
-    "count": 1281,
+    "count": 1282,
     "includedAppIds": [
       "739630"
     ]
@@ -36301,7 +36341,7 @@
   "744190": {
     "mainAppId": "744190",
     "gameName": "Rusty Lake Paradise",
-    "count": 4,
+    "count": 5,
     "includedAppIds": [
       "744190"
     ]
@@ -36562,7 +36602,7 @@
   "750920": {
     "mainAppId": "750920",
     "gameName": "Shadow of the Tomb Raider: Definitive Edition",
-    "count": 461,
+    "count": 462,
     "includedAppIds": [
       "750920"
     ]
@@ -36804,7 +36844,7 @@
   "756800": {
     "mainAppId": "756800",
     "gameName": "Contraband Police",
-    "count": 291,
+    "count": 292,
     "includedAppIds": [
       "756800",
       "3439880"
@@ -37103,7 +37143,7 @@
   "764790": {
     "mainAppId": "764790",
     "gameName": "The Messenger",
-    "count": 4,
+    "count": 5,
     "includedAppIds": [
       "764790"
     ]
@@ -37425,7 +37465,7 @@
   "774361": {
     "mainAppId": "774361",
     "gameName": "Blasphemous",
-    "count": 86,
+    "count": 87,
     "includedAppIds": [
       "774361",
       "1143850",
@@ -38700,7 +38740,7 @@
   "814380": {
     "mainAppId": "814380",
     "gameName": "Sekiro™: Shadows Die Twice - GOTY Edition",
-    "count": 1374,
+    "count": 1379,
     "includedAppIds": [
       "814380"
     ]
@@ -39030,7 +39070,7 @@
   "823500": {
     "mainAppId": "823500",
     "gameName": "BONEWORKS",
-    "count": 99,
+    "count": 100,
     "includedAppIds": [
       "823500"
     ]
@@ -39955,7 +39995,7 @@
   "850190": {
     "mainAppId": "850190",
     "gameName": "Goat Simulator 3",
-    "count": 213,
+    "count": 214,
     "includedAppIds": [
       "850190",
       "2809180",
@@ -39997,7 +40037,7 @@
   "851850": {
     "mainAppId": "851850",
     "gameName": "DRAGON BALL Z: KAKAROT",
-    "count": 677,
+    "count": 678,
     "includedAppIds": [
       "851850",
       "1144582",
@@ -40129,7 +40169,7 @@
   "855740": {
     "mainAppId": "855740",
     "gameName": "Bum Simulator",
-    "count": 26,
+    "count": 27,
     "includedAppIds": [
       "855740"
     ]
@@ -40266,7 +40306,7 @@
   "860510": {
     "mainAppId": "860510",
     "gameName": "Little Nightmares II",
-    "count": 247,
+    "count": 248,
     "includedAppIds": [
       "860510"
     ]
@@ -41059,7 +41099,7 @@
   "878750": {
     "mainAppId": "878750",
     "gameName": "Hentai Girl",
-    "count": 22,
+    "count": 23,
     "includedAppIds": [
       "878750"
     ]
@@ -41270,7 +41310,7 @@
   "883710": {
     "mainAppId": "883710",
     "gameName": "Resident Evil 2",
-    "count": 2680,
+    "count": 2681,
     "includedAppIds": [
       "883710",
       "920560",
@@ -41653,7 +41693,7 @@
   "895870": {
     "mainAppId": "895870",
     "gameName": "Project Wingman",
-    "count": 18,
+    "count": 19,
     "includedAppIds": [
       "895870",
       "2536180"
@@ -42170,7 +42210,7 @@
   "911400": {
     "mainAppId": "911400",
     "gameName": "Assassin's Creed® III Remastered",
-    "count": 107,
+    "count": 108,
     "includedAppIds": [
       "911400"
     ]
@@ -42387,7 +42427,7 @@
   "916730": {
     "mainAppId": "916730",
     "gameName": "Gato Roboto",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "916730"
     ]
@@ -43599,7 +43639,7 @@
   "945360": {
     "mainAppId": "945360",
     "gameName": "Among Us",
-    "count": 1684,
+    "count": 1685,
     "includedAppIds": [
       "945360"
     ]
@@ -44140,7 +44180,7 @@
   "960090": {
     "mainAppId": "960090",
     "gameName": "Bloons TD 6",
-    "count": 232,
+    "count": 233,
     "includedAppIds": [
       "960090"
     ]
@@ -44242,7 +44282,7 @@
   "962400": {
     "mainAppId": "962400",
     "gameName": "Granny",
-    "count": 759,
+    "count": 763,
     "includedAppIds": [
       "962400",
       "1205040",
@@ -44461,7 +44501,7 @@
   "967050": {
     "mainAppId": "967050",
     "gameName": "Pacify",
-    "count": 193,
+    "count": 196,
     "includedAppIds": [
       "967050"
     ]
@@ -44573,7 +44613,7 @@
   "970570": {
     "mainAppId": "970570",
     "gameName": "CHAOS;CHILD",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "970570"
     ]
@@ -44709,7 +44749,7 @@
   "973810": {
     "mainAppId": "973810",
     "gameName": "Journey To The Savage Planet",
-    "count": 11,
+    "count": 12,
     "includedAppIds": [
       "973810"
     ]
@@ -44757,7 +44797,7 @@
   "976310": {
     "mainAppId": "976310",
     "gameName": "Mortal Kombat11",
-    "count": 515,
+    "count": 516,
     "includedAppIds": [
       "976310"
     ]
@@ -45083,7 +45123,7 @@
   "985890": {
     "mainAppId": "985890",
     "gameName": "Streets of Rage 4",
-    "count": 10,
+    "count": 11,
     "includedAppIds": [
       "985890"
     ]
@@ -45303,7 +45343,7 @@
   "993090": {
     "mainAppId": "993090",
     "gameName": "Lossless Scaling",
-    "count": 973,
+    "count": 977,
     "includedAppIds": [
       "993090"
     ]
@@ -46247,7 +46287,7 @@
   "1020790": {
     "mainAppId": "1020790",
     "gameName": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
-    "count": 313,
+    "count": 314,
     "includedAppIds": [
       "1020790"
     ]
@@ -46602,7 +46642,7 @@
   "1032700": {
     "mainAppId": "1032700",
     "gameName": "Bus Driving Sim 22",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1032700"
     ]
@@ -46713,6 +46753,22 @@
       "1034860"
     ]
   },
+  "1034900": {
+    "mainAppId": "1034900",
+    "gameName": "Blaster Master Zero",
+    "count": 1,
+    "includedAppIds": [
+      "1034900"
+    ]
+  },
+  "1034910": {
+    "mainAppId": "1034910",
+    "gameName": "Blaster Master Zero 2",
+    "count": 1,
+    "includedAppIds": [
+      "1034910"
+    ]
+  },
   "1034940": {
     "mainAppId": "1034940",
     "gameName": "Higurashi When They Cry Hou - Ch.7 Minagoroshi",
@@ -46796,7 +46852,7 @@
   "1037020": {
     "mainAppId": "1037020",
     "gameName": "ScourgeBringer",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "1037020"
     ]
@@ -47131,7 +47187,7 @@
   "1046820": {
     "mainAppId": "1046820",
     "gameName": "I'm on Observation Duty",
-    "count": 5,
+    "count": 6,
     "includedAppIds": [
       "1046820"
     ]
@@ -48015,7 +48071,7 @@
   "1066780": {
     "mainAppId": "1066780",
     "gameName": "Transport Fever 2",
-    "count": 50,
+    "count": 51,
     "includedAppIds": [
       "1066780",
       "2195610",
@@ -48623,7 +48679,7 @@
   "1086940": {
     "mainAppId": "1086940",
     "gameName": "Baldur's Gate 3",
-    "count": 443,
+    "count": 444,
     "includedAppIds": [
       "1086940",
       "2378500"
@@ -49065,7 +49121,7 @@
   "1091500": {
     "mainAppId": "1091500",
     "gameName": "Cyberpunk 2077",
-    "count": 7276,
+    "count": 7279,
     "includedAppIds": [
       "1091500",
       "2138330"
@@ -49285,6 +49341,14 @@
     "count": 1,
     "includedAppIds": [
       "1095260"
+    ]
+  },
+  "1096180": {
+    "mainAppId": "1096180",
+    "gameName": "Ato",
+    "count": 1,
+    "includedAppIds": [
+      "1096180"
     ]
   },
   "1096410": {
@@ -50251,7 +50315,7 @@
   "1114150": {
     "mainAppId": "1114150",
     "gameName": "CarX Street",
-    "count": 398,
+    "count": 399,
     "includedAppIds": [
       "1114150",
       "3028020",
@@ -50456,7 +50520,7 @@
   "1118200": {
     "mainAppId": "1118200",
     "gameName": "People Playground",
-    "count": 675,
+    "count": 676,
     "includedAppIds": [
       "1118200"
     ]
@@ -51046,7 +51110,7 @@
   "1133870": {
     "mainAppId": "1133870",
     "gameName": "Space Engineers 2",
-    "count": 34,
+    "count": 35,
     "includedAppIds": [
       "1133870"
     ]
@@ -51541,7 +51605,7 @@
   "1144200": {
     "mainAppId": "1144200",
     "gameName": "Ready or Not",
-    "count": 1503,
+    "count": 1507,
     "includedAppIds": [
       "1144200"
     ]
@@ -51637,7 +51701,7 @@
   "1145960": {
     "mainAppId": "1145960",
     "gameName": "The White Door",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1145960"
     ]
@@ -51833,7 +51897,7 @@
   "1149620": {
     "mainAppId": "1149620",
     "gameName": "Gas Station Simulator",
-    "count": 229,
+    "count": 231,
     "includedAppIds": [
       "1149620",
       "1528080",
@@ -51960,7 +52024,7 @@
   "1151640": {
     "mainAppId": "1151640",
     "gameName": "Horizon Zero Dawn™ Complete Edition",
-    "count": 311,
+    "count": 312,
     "includedAppIds": [
       "1151640"
     ]
@@ -52648,7 +52712,7 @@
   "1167910": {
     "mainAppId": "1167910",
     "gameName": "Space Engineers",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1167910"
     ]
@@ -53003,7 +53067,7 @@
   "1174180": {
     "mainAppId": "1174180",
     "gameName": "Red Dead Redemption 2",
-    "count": 4737,
+    "count": 4742,
     "includedAppIds": [
       "1174180"
     ]
@@ -53091,7 +53155,7 @@
   "1176470": {
     "mainAppId": "1176470",
     "gameName": "Terra Invicta",
-    "count": 3,
+    "count": 6,
     "includedAppIds": [
       "1176470"
     ]
@@ -53639,7 +53703,7 @@
   "1190000": {
     "mainAppId": "1190000",
     "gameName": "Car Mechanic Simulator 2021",
-    "count": 1044,
+    "count": 1045,
     "includedAppIds": [
       "1190000",
       "1685720",
@@ -54264,7 +54328,7 @@
   "1202900": {
     "mainAppId": "1202900",
     "gameName": "Assemble with Care",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "1202900"
     ]
@@ -54458,7 +54522,7 @@
   "1205970": {
     "mainAppId": "1205970",
     "gameName": "MX vs ATV Legends",
-    "count": 228,
+    "count": 229,
     "includedAppIds": [
       "1205970",
       "1979093",
@@ -54497,7 +54561,7 @@
   "1206560": {
     "mainAppId": "1206560",
     "gameName": "WorldBox - God Simulator",
-    "count": 519,
+    "count": 522,
     "includedAppIds": [
       "1206560"
     ]
@@ -54704,7 +54768,7 @@
   "1211020": {
     "mainAppId": "1211020",
     "gameName": "Wobbly Life",
-    "count": 162,
+    "count": 163,
     "includedAppIds": [
       "1211020"
     ]
@@ -54747,6 +54811,14 @@
     "count": 2,
     "includedAppIds": [
       "1211479"
+    ]
+  },
+  "1211600": {
+    "mainAppId": "1211600",
+    "gameName": "ZED ZONE",
+    "count": 1,
+    "includedAppIds": [
+      "1211600"
     ]
   },
   "1211630": {
@@ -54856,7 +54928,7 @@
   "1214650": {
     "mainAppId": "1214650",
     "gameName": "SOUTH PARK: SNOW DAY!",
-    "count": 16,
+    "count": 17,
     "includedAppIds": [
       "1214650"
     ]
@@ -55139,7 +55211,7 @@
   "1222140": {
     "mainAppId": "1222140",
     "gameName": "Detroit: Become Human",
-    "count": 909,
+    "count": 911,
     "includedAppIds": [
       "1222140"
     ]
@@ -55163,7 +55235,7 @@
   "1222670": {
     "mainAppId": "1222670",
     "gameName": "The Sims™ 4",
-    "count": 139,
+    "count": 140,
     "includedAppIds": [
       "1222670"
     ]
@@ -55187,7 +55259,7 @@
   "1222700": {
     "mainAppId": "1222700",
     "gameName": "A Way Out",
-    "count": 462,
+    "count": 464,
     "includedAppIds": [
       "1222700"
     ]
@@ -56531,7 +56603,7 @@
   "1241550": {
     "mainAppId": "1241550",
     "gameName": "Space Engineers",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "1241550"
     ]
@@ -56628,7 +56700,7 @@
   "1244460": {
     "mainAppId": "1244460",
     "gameName": "Jurassic World Evolution 2",
-    "count": 212,
+    "count": 213,
     "includedAppIds": [
       "1244460",
       "1336321",
@@ -56708,7 +56780,7 @@
   "1245620": {
     "mainAppId": "1245620",
     "gameName": "ELDEN RING",
-    "count": 4285,
+    "count": 4293,
     "includedAppIds": [
       "1245620"
     ]
@@ -57011,7 +57083,7 @@
   "1253920": {
     "mainAppId": "1253920",
     "gameName": "Rogue Legacy 2",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "1253920"
     ]
@@ -57187,7 +57259,7 @@
   "1259420": {
     "mainAppId": "1259420",
     "gameName": "Days Gone",
-    "count": 610,
+    "count": 612,
     "includedAppIds": [
       "1259420"
     ]
@@ -57319,7 +57391,7 @@
   "1262040": {
     "mainAppId": "1262040",
     "gameName": "Super Mombo Quest",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "1262040"
     ]
@@ -57359,7 +57431,7 @@
   "1262560": {
     "mainAppId": "1262560",
     "gameName": "Need for Speed™ Most Wanted",
-    "count": 391,
+    "count": 392,
     "includedAppIds": [
       "1262560"
     ]
@@ -59085,7 +59157,7 @@
   "1295920": {
     "mainAppId": "1295920",
     "gameName": "The Mortuary Assistant",
-    "count": 67,
+    "count": 68,
     "includedAppIds": [
       "1295920"
     ]
@@ -59528,7 +59600,7 @@
   "1307680": {
     "mainAppId": "1307680",
     "gameName": "Space Engineers",
-    "count": 4,
+    "count": 5,
     "includedAppIds": [
       "1307680"
     ]
@@ -60349,7 +60421,7 @@
   "1330660": {
     "mainAppId": "1330660",
     "gameName": "Train Life: A Railway Simulator",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1330660"
     ]
@@ -60381,7 +60453,7 @@
   "1331550": {
     "mainAppId": "1331550",
     "gameName": "Big Ambitions",
-    "count": 118,
+    "count": 119,
     "includedAppIds": [
       "1331550"
     ]
@@ -61761,6 +61833,14 @@
       "1366950"
     ]
   },
+  "1366960": {
+    "mainAppId": "1366960",
+    "gameName": "Kotoba no Puzzle: Mojipittan Encore",
+    "count": 1,
+    "includedAppIds": [
+      "1366960"
+    ]
+  },
   "1367090": {
     "mainAppId": "1367090",
     "gameName": "I'm Oh, So Busy...: A Week with Yoshimi",
@@ -61840,6 +61920,14 @@
     "count": 1,
     "includedAppIds": [
       "1368360"
+    ]
+  },
+  "1368410": {
+    "mainAppId": "1368410",
+    "gameName": "PSYCRON",
+    "count": 1,
+    "includedAppIds": [
+      "1368410"
     ]
   },
   "1368570": {
@@ -62183,7 +62271,7 @@
   "1374610": {
     "mainAppId": "1374610",
     "gameName": "Space Engineers",
-    "count": 2,
+    "count": 4,
     "includedAppIds": [
       "1374610"
     ]
@@ -63297,6 +63385,14 @@
     "count": 14,
     "includedAppIds": [
       "1411910"
+    ]
+  },
+  "1412170": {
+    "mainAppId": "1412170",
+    "gameName": "Janosik",
+    "count": 1,
+    "includedAppIds": [
+      "1412170"
     ]
   },
   "1412310": {
@@ -65224,7 +65320,7 @@
   "1462810": {
     "mainAppId": "1462810",
     "gameName": "WRC 10 FIA World Rally Championship",
-    "count": 46,
+    "count": 48,
     "includedAppIds": [
       "1462810"
     ]
@@ -65417,7 +65513,7 @@
   "1468720": {
     "mainAppId": "1468720",
     "gameName": "Ultimate Epic Battle Simulator 2",
-    "count": 80,
+    "count": 82,
     "includedAppIds": [
       "1468720"
     ]
@@ -65643,7 +65739,7 @@
   "1475830": {
     "mainAppId": "1475830",
     "gameName": "Space Engineers",
-    "count": 3,
+    "count": 5,
     "includedAppIds": [
       "1475830"
     ]
@@ -65755,7 +65851,7 @@
   "1478500": {
     "mainAppId": "1478500",
     "gameName": "Big Walk",
-    "count": 14,
+    "count": 15,
     "includedAppIds": [
       "1478500"
     ]
@@ -66830,7 +66926,7 @@
   "1511630": {
     "mainAppId": "1511630",
     "gameName": "TrackDayR",
-    "count": 471,
+    "count": 472,
     "includedAppIds": [
       "1511630"
     ]
@@ -67110,7 +67206,7 @@
   "1520370": {
     "mainAppId": "1520370",
     "gameName": "Mon Bazou",
-    "count": 162,
+    "count": 164,
     "includedAppIds": [
       "1520370"
     ]
@@ -67658,6 +67754,14 @@
       "1539140"
     ]
   },
+  "1539620": {
+    "mainAppId": "1539620",
+    "gameName": "MONARK",
+    "count": 1,
+    "includedAppIds": [
+      "1539620"
+    ]
+  },
   "1539650": {
     "mainAppId": "1539650",
     "gameName": "Weird Simulator",
@@ -67904,7 +68008,7 @@
   "1547000": {
     "mainAppId": "1547000",
     "gameName": "Grand Theft Auto: San Andreas – The Definitive Edition",
-    "count": 885,
+    "count": 886,
     "includedAppIds": [
       "1547000"
     ]
@@ -68030,6 +68134,14 @@
       "1549690"
     ]
   },
+  "1549750": {
+    "mainAppId": "1549750",
+    "gameName": "Vomitoreum",
+    "count": 1,
+    "includedAppIds": [
+      "1549750"
+    ]
+  },
   "1549850": {
     "mainAppId": "1549850",
     "gameName": "Virtual Hunter",
@@ -68132,7 +68244,7 @@
   "1551360": {
     "mainAppId": "1551360",
     "gameName": "Forza Horizon 5",
-    "count": 6870,
+    "count": 6874,
     "includedAppIds": [
       "1551360",
       "1613280"
@@ -68350,7 +68462,7 @@
   "1556790": {
     "mainAppId": "1556790",
     "gameName": "Isonzo",
-    "count": 16,
+    "count": 17,
     "includedAppIds": [
       "1556790",
       "1815510",
@@ -68636,7 +68748,7 @@
   "1563180": {
     "mainAppId": "1563180",
     "gameName": "Internet Cafe Simulator 2",
-    "count": 184,
+    "count": 185,
     "includedAppIds": [
       "1563180"
     ]
@@ -68855,7 +68967,7 @@
   "1569580": {
     "mainAppId": "1569580",
     "gameName": "Blue Prince",
-    "count": 31,
+    "count": 32,
     "includedAppIds": [
       "1569580"
     ]
@@ -69184,7 +69296,7 @@
   "1577120": {
     "mainAppId": "1577120",
     "gameName": "The Quarry",
-    "count": 113,
+    "count": 114,
     "includedAppIds": [
       "1577120",
       "1891950"
@@ -69631,6 +69743,14 @@
       "1588090"
     ]
   },
+  "1588380": {
+    "mainAppId": "1588380",
+    "gameName": "Blaster Master Zero 3",
+    "count": 1,
+    "includedAppIds": [
+      "1588380"
+    ]
+  },
   "1588550": {
     "mainAppId": "1588550",
     "gameName": "Cairn",
@@ -69643,7 +69763,7 @@
   "1588870": {
     "mainAppId": "1588870",
     "gameName": "iBLiS",
-    "count": 75,
+    "count": 76,
     "includedAppIds": [
       "1588870"
     ]
@@ -69803,7 +69923,7 @@
   "1592280": {
     "mainAppId": "1592280",
     "gameName": "Selaco",
-    "count": 4,
+    "count": 5,
     "includedAppIds": [
       "1592280"
     ]
@@ -69907,7 +70027,7 @@
   "1593500": {
     "mainAppId": "1593500",
     "gameName": "God of War",
-    "count": 2559,
+    "count": 2562,
     "includedAppIds": [
       "1593500"
     ]
@@ -69947,7 +70067,7 @@
   "1594320": {
     "mainAppId": "1594320",
     "gameName": "Captain of Industry",
-    "count": 47,
+    "count": 48,
     "includedAppIds": [
       "1594320",
       "2004740"
@@ -70109,7 +70229,7 @@
   "1599660": {
     "mainAppId": "1599660",
     "gameName": "Sackboy™: A Big Adventure",
-    "count": 81,
+    "count": 82,
     "includedAppIds": [
       "1599660",
       "2232410"
@@ -71123,7 +71243,7 @@
   "1623730": {
     "mainAppId": "1623730",
     "gameName": "Palworld",
-    "count": 921,
+    "count": 922,
     "includedAppIds": [
       "1623730"
     ]
@@ -71463,7 +71583,7 @@
   "1634860": {
     "mainAppId": "1634860",
     "gameName": "Minishoot' Adventures",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1634860"
     ]
@@ -71498,6 +71618,14 @@
     "count": 8,
     "includedAppIds": [
       "1635600"
+    ]
+  },
+  "1635960": {
+    "mainAppId": "1635960",
+    "gameName": "Football Manager 2022 In-game Editor",
+    "count": 1,
+    "includedAppIds": [
+      "1635960"
     ]
   },
   "1635970": {
@@ -71684,6 +71812,14 @@
     "count": 2,
     "includedAppIds": [
       "1640350"
+    ]
+  },
+  "1640400": {
+    "mainAppId": "1640400",
+    "gameName": "Janosik 2",
+    "count": 1,
+    "includedAppIds": [
+      "1640400"
     ]
   },
   "1640630": {
@@ -72071,7 +72207,7 @@
   "1650010": {
     "mainAppId": "1650010",
     "gameName": "RIDE 5",
-    "count": 200,
+    "count": 204,
     "includedAppIds": [
       "1650010",
       "2315150",
@@ -72368,7 +72504,7 @@
   "1659040": {
     "mainAppId": "1659040",
     "gameName": "HITMAN World of Assassination",
-    "count": 1511,
+    "count": 1512,
     "includedAppIds": [
       "1659040"
     ]
@@ -72400,7 +72536,7 @@
   "1659420": {
     "mainAppId": "1659420",
     "gameName": "UNCHARTED™: Legacy of Thieves Collection",
-    "count": 1292,
+    "count": 1293,
     "includedAppIds": [
       "1659420"
     ]
@@ -72475,6 +72611,14 @@
     "count": 1,
     "includedAppIds": [
       "1661180"
+    ]
+  },
+  "1662010": {
+    "mainAppId": "1662010",
+    "gameName": "Project Absentia",
+    "count": 2,
+    "includedAppIds": [
+      "1662010"
     ]
   },
   "1662210": {
@@ -72608,7 +72752,7 @@
   "1668510": {
     "mainAppId": "1668510",
     "gameName": "The Legend of Heroes: Trails from Zero",
-    "count": 5,
+    "count": 6,
     "includedAppIds": [
       "1668510"
     ]
@@ -72616,7 +72760,7 @@
   "1668520": {
     "mainAppId": "1668520",
     "gameName": "The Legend of Heroes: Trails to Azure",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1668520"
     ]
@@ -72705,7 +72849,7 @@
   "1669420": {
     "mainAppId": "1669420",
     "gameName": "Islets",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1669420"
     ]
@@ -72774,7 +72918,7 @@
   "1671210": {
     "mainAppId": "1671210",
     "gameName": "DELTARUNE",
-    "count": 585,
+    "count": 588,
     "includedAppIds": [
       "1671210"
     ]
@@ -72870,7 +73014,7 @@
   "1672970": {
     "mainAppId": "1672970",
     "gameName": "Minecraft Dungeons",
-    "count": 428,
+    "count": 429,
     "includedAppIds": [
       "1672970",
       "1776550"
@@ -72968,7 +73112,7 @@
   "1676100": {
     "mainAppId": "1676100",
     "gameName": "Space Engineers",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1676100"
     ]
@@ -73354,7 +73498,7 @@
   "1686940": {
     "mainAppId": "1686940",
     "gameName": "Bopl Battle",
-    "count": 35,
+    "count": 36,
     "includedAppIds": [
       "1686940"
     ]
@@ -73618,6 +73762,14 @@
       "1693250"
     ]
   },
+  "1693280": {
+    "mainAppId": "1693280",
+    "gameName": "Supplice",
+    "count": 1,
+    "includedAppIds": [
+      "1693280"
+    ]
+  },
   "1693770": {
     "mainAppId": "1693770",
     "gameName": "Port Aphelion",
@@ -73751,7 +73903,7 @@
   "1696770": {
     "mainAppId": "1696770",
     "gameName": "The Mermaid Mask",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "1696770"
     ]
@@ -74102,7 +74254,7 @@
   "1707550": {
     "mainAppId": "1707550",
     "gameName": "Granny 3",
-    "count": 134,
+    "count": 135,
     "includedAppIds": [
       "1707550"
     ]
@@ -74458,7 +74610,7 @@
   "1716740": {
     "mainAppId": "1716740",
     "gameName": "Starfield",
-    "count": 241,
+    "count": 242,
     "includedAppIds": [
       "1716740",
       "2721670",
@@ -74608,7 +74760,7 @@
   "1721470": {
     "mainAppId": "1721470",
     "gameName": "Poppy Playtime",
-    "count": 491,
+    "count": 492,
     "includedAppIds": [
       "1721470"
     ]
@@ -75422,7 +75574,7 @@
   "1746860": {
     "mainAppId": "1746860",
     "gameName": "The Elder Scrolls V: Skyrim Anniversary Upgrade",
-    "count": 86,
+    "count": 87,
     "includedAppIds": [
       "1746860"
     ]
@@ -76459,7 +76611,7 @@
   "1783760": {
     "mainAppId": "1783760",
     "gameName": "Space Engineers",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1783760"
     ]
@@ -76659,7 +76811,7 @@
   "1790600": {
     "mainAppId": "1790600",
     "gameName": "DRAGON BALL: Sparking! ZERO",
-    "count": 737,
+    "count": 738,
     "includedAppIds": [
       "1790600",
       "3456600",
@@ -77394,7 +77546,7 @@
   "1809540": {
     "mainAppId": "1809540",
     "gameName": "Nine Sols",
-    "count": 101,
+    "count": 102,
     "includedAppIds": [
       "1809540"
     ]
@@ -77741,7 +77893,7 @@
   "1817070": {
     "mainAppId": "1817070",
     "gameName": "Marvel’s Spider-Man Remastered",
-    "count": 2508,
+    "count": 2517,
     "includedAppIds": [
       "1817070"
     ]
@@ -77749,7 +77901,7 @@
   "1817190": {
     "mainAppId": "1817190",
     "gameName": "Marvel’s Spider-Man: Miles Morales",
-    "count": 1608,
+    "count": 1621,
     "includedAppIds": [
       "1817190"
     ]
@@ -79319,7 +79471,7 @@
   "1861610": {
     "mainAppId": "1861610",
     "gameName": "Endorphin Vice",
-    "count": 238,
+    "count": 239,
     "includedAppIds": [
       "1861610"
     ]
@@ -79505,7 +79657,7 @@
   "1868140": {
     "mainAppId": "1868140",
     "gameName": "DAVE THE DIVER",
-    "count": 266,
+    "count": 267,
     "includedAppIds": [
       "1868140",
       "2677020",
@@ -79816,7 +79968,7 @@
   "1877020": {
     "mainAppId": "1877020",
     "gameName": "Jujutsu Kaisen Cursed Clash",
-    "count": 147,
+    "count": 148,
     "includedAppIds": [
       "1877020",
       "2441230"
@@ -79956,6 +80108,14 @@
     "count": 11,
     "includedAppIds": [
       "1881420"
+    ]
+  },
+  "1881700": {
+    "mainAppId": "1881700",
+    "gameName": "Undawn",
+    "count": 1,
+    "includedAppIds": [
+      "1881700"
     ]
   },
   "1882540": {
@@ -80186,7 +80346,7 @@
   "1888160": {
     "mainAppId": "1888160",
     "gameName": "ARMORED CORE™ VI FIRES OF RUBICON™",
-    "count": 28,
+    "count": 29,
     "includedAppIds": [
       "1888160"
     ]
@@ -80202,7 +80362,7 @@
   "1888930": {
     "mainAppId": "1888930",
     "gameName": "The Last of Us™ Part I",
-    "count": 2793,
+    "count": 2794,
     "includedAppIds": [
       "1888930",
       "2254450"
@@ -80300,7 +80460,7 @@
   "1892030": {
     "mainAppId": "1892030",
     "gameName": "Dummynation",
-    "count": 38,
+    "count": 39,
     "includedAppIds": [
       "1892030"
     ]
@@ -80351,6 +80511,14 @@
     "count": 2,
     "includedAppIds": [
       "1894430"
+    ]
+  },
+  "1894770": {
+    "mainAppId": "1894770",
+    "gameName": "Bloody Forest",
+    "count": 1,
+    "includedAppIds": [
+      "1894770"
     ]
   },
   "1894880": {
@@ -80516,7 +80684,7 @@
   "1898500": {
     "mainAppId": "1898500",
     "gameName": "Worldless",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "1898500"
     ]
@@ -80662,6 +80830,14 @@
     "count": 3,
     "includedAppIds": [
       "1903560"
+    ]
+  },
+  "1903600": {
+    "mainAppId": "1903600",
+    "gameName": "Zombie VS Police",
+    "count": 1,
+    "includedAppIds": [
+      "1903600"
     ]
   },
   "1903620": {
@@ -81767,7 +81943,7 @@
   "1931730": {
     "mainAppId": "1931730",
     "gameName": "Fort Solis",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "1931730"
     ]
@@ -82231,7 +82407,7 @@
   "1941540": {
     "mainAppId": "1941540",
     "gameName": "Mafia: The Old Country",
-    "count": 448,
+    "count": 449,
     "includedAppIds": [
       "1941540"
     ]
@@ -82305,7 +82481,7 @@
   "1943950": {
     "mainAppId": "1943950",
     "gameName": "Escape the Backrooms",
-    "count": 1410,
+    "count": 1411,
     "includedAppIds": [
       "1943950"
     ]
@@ -84609,7 +84785,7 @@
   "2014910": {
     "mainAppId": "2014910",
     "gameName": "Mom got stuck in the washing machine",
-    "count": 15,
+    "count": 16,
     "includedAppIds": [
       "2014910"
     ]
@@ -84818,7 +84994,7 @@
   "2020860": {
     "mainAppId": "2020860",
     "gameName": "Rush Rally 3",
-    "count": 12,
+    "count": 13,
     "includedAppIds": [
       "2020860"
     ]
@@ -84946,7 +85122,7 @@
   "2027030": {
     "mainAppId": "2027030",
     "gameName": "Power Drill Massacre",
-    "count": 1,
+    "count": 3,
     "includedAppIds": [
       "2027030"
     ]
@@ -84962,7 +85138,7 @@
   "2027860": {
     "mainAppId": "2027860",
     "gameName": "Search 4 Bigfoot",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "2027860"
     ]
@@ -84986,7 +85162,7 @@
   "2050650": {
     "mainAppId": "2050650",
     "gameName": "Resident Evil 4",
-    "count": 5207,
+    "count": 5215,
     "includedAppIds": [
       "2050650",
       "2109300",
@@ -85857,7 +86033,7 @@
   "2075070": {
     "mainAppId": "2075070",
     "gameName": "KinitoPET",
-    "count": 104,
+    "count": 105,
     "includedAppIds": [
       "2075070"
     ]
@@ -86197,6 +86373,14 @@
     "count": 1,
     "includedAppIds": [
       "2085660"
+    ]
+  },
+  "2085800": {
+    "mainAppId": "2085800",
+    "gameName": "Kalinur",
+    "count": 1,
+    "includedAppIds": [
+      "2085800"
     ]
   },
   "2086050": {
@@ -86949,6 +87133,14 @@
       "2104050"
     ]
   },
+  "2104460": {
+    "mainAppId": "2104460",
+    "gameName": "Mala Petaka",
+    "count": 1,
+    "includedAppIds": [
+      "2104460"
+    ]
+  },
   "2104570": {
     "mainAppId": "2104570",
     "gameName": "Stunning Policewoman",
@@ -87274,7 +87466,7 @@
   "2110820": {
     "mainAppId": "2110820",
     "gameName": "Granny Remake",
-    "count": 128,
+    "count": 129,
     "includedAppIds": [
       "2110820"
     ]
@@ -87876,7 +88068,7 @@
   "2129530": {
     "mainAppId": "2129530",
     "gameName": "REANIMAL",
-    "count": 308,
+    "count": 309,
     "includedAppIds": [
       "2129530"
     ]
@@ -88155,7 +88347,7 @@
   "2138710": {
     "mainAppId": "2138710",
     "gameName": "Sifu",
-    "count": 228,
+    "count": 229,
     "includedAppIds": [
       "2138710"
     ]
@@ -88163,7 +88355,7 @@
   "2138720": {
     "mainAppId": "2138720",
     "gameName": "REMATCH",
-    "count": 353,
+    "count": 354,
     "includedAppIds": [
       "2138720",
       "3743390"
@@ -89240,6 +89432,14 @@
       "2172910"
     ]
   },
+  "2173460": {
+    "mainAppId": "2173460",
+    "gameName": "Echoes of the Living",
+    "count": 1,
+    "includedAppIds": [
+      "2173460"
+    ]
+  },
   "2173800": {
     "mainAppId": "2173800",
     "gameName": "Projekt: Passion - Season 1",
@@ -89674,7 +89874,7 @@
   "2183900": {
     "mainAppId": "2183900",
     "gameName": "Warhammer 40,000: Space Marine 2",
-    "count": 196,
+    "count": 197,
     "includedAppIds": [
       "2183900",
       "2486150",
@@ -91021,7 +91221,7 @@
   "2215430": {
     "mainAppId": "2215430",
     "gameName": "Ghost of Tsushima DIRECTOR'S CUT",
-    "count": 2283,
+    "count": 2287,
     "includedAppIds": [
       "2215430"
     ]
@@ -92036,6 +92236,14 @@
       "2242760"
     ]
   },
+  "2243250": {
+    "mainAppId": "2243250",
+    "gameName": "Moonlight Pulse",
+    "count": 1,
+    "includedAppIds": [
+      "2243250"
+    ]
+  },
   "2243630": {
     "mainAppId": "2243630",
     "gameName": "Good Pizza, Great Pizza - Rudolph Set - Winter 2019 Shop (Red)",
@@ -92265,7 +92473,7 @@
   "2248760": {
     "mainAppId": "2248760",
     "gameName": "Car For Sale Simulator 2023",
-    "count": 525,
+    "count": 528,
     "includedAppIds": [
       "2248760",
       "2679810"
@@ -94132,7 +94340,7 @@
   "2300320": {
     "mainAppId": "2300320",
     "gameName": "Farming Simulator 25",
-    "count": 1318,
+    "count": 1319,
     "includedAppIds": [
       "2300320",
       "2981090",
@@ -94702,7 +94910,7 @@
   "2322010": {
     "mainAppId": "2322010",
     "gameName": "God of War Ragnarök",
-    "count": 2457,
+    "count": 2462,
     "includedAppIds": [
       "2322010",
       "2974330",
@@ -94806,6 +95014,14 @@
       "3810940"
     ]
   },
+  "2324610": {
+    "mainAppId": "2324610",
+    "gameName": "Xanthiom Zero",
+    "count": 1,
+    "includedAppIds": [
+      "2324610"
+    ]
+  },
   "2324650": {
     "mainAppId": "2324650",
     "gameName": "The Murder of Sonic the Hedgehog",
@@ -94889,7 +95105,7 @@
   "2327720": {
     "mainAppId": "2327720",
     "gameName": "City Car Driving 2.0",
-    "count": 353,
+    "count": 354,
     "includedAppIds": [
       "2327720"
     ]
@@ -95377,7 +95593,7 @@
   "2344520": {
     "mainAppId": "2344520",
     "gameName": "Diablo® IV",
-    "count": 182,
+    "count": 183,
     "includedAppIds": [
       "2344520",
       "3043530"
@@ -95445,6 +95661,14 @@
     "count": 1,
     "includedAppIds": [
       "2347290"
+    ]
+  },
+  "2347390": {
+    "mainAppId": "2347390",
+    "gameName": "MeowGun: Hell Denizen",
+    "count": 1,
+    "includedAppIds": [
+      "2347390"
     ]
   },
   "2347740": {
@@ -95900,7 +96124,7 @@
   "2358720": {
     "mainAppId": "2358720",
     "gameName": "Black Myth: Wukong",
-    "count": 3268,
+    "count": 3273,
     "includedAppIds": [
       "2358720"
     ]
@@ -96457,6 +96681,14 @@
     "count": 2,
     "includedAppIds": [
       "2377110"
+    ]
+  },
+  "2377120": {
+    "mainAppId": "2377120",
+    "gameName": "Elena's Journal: To Atlantis",
+    "count": 1,
+    "includedAppIds": [
+      "2377120"
     ]
   },
   "2377240": {
@@ -97297,7 +97529,7 @@
   "2399830": {
     "mainAppId": "2399830",
     "gameName": "ARK: Survival Ascended",
-    "count": 551,
+    "count": 552,
     "includedAppIds": [
       "2399830"
     ]
@@ -98041,7 +98273,7 @@
   "2420110": {
     "mainAppId": "2420110",
     "gameName": "Horizon Forbidden West™ Complete Edition",
-    "count": 380,
+    "count": 382,
     "includedAppIds": [
       "2420110"
     ]
@@ -98883,7 +99115,7 @@
   "2438110": {
     "mainAppId": "2438110",
     "gameName": "Emergency Room Simulator",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "2438110"
     ]
@@ -100194,6 +100426,14 @@
       "2477010"
     ]
   },
+  "2477090": {
+    "mainAppId": "2477090",
+    "gameName": "Mosa Lina",
+    "count": 1,
+    "includedAppIds": [
+      "2477090"
+    ]
+  },
   "2477270": {
     "mainAppId": "2477270",
     "gameName": "Lust's Cupid",
@@ -100433,7 +100673,7 @@
   "2483190": {
     "mainAppId": "2483190",
     "gameName": "Forza Horizon 6",
-    "count": 9941,
+    "count": 9952,
     "includedAppIds": [
       "2483190"
     ]
@@ -100736,7 +100976,7 @@
   "2490990": {
     "mainAppId": "2490990",
     "gameName": "Visions of Mana",
-    "count": 9,
+    "count": 10,
     "includedAppIds": [
       "2490990"
     ]
@@ -101186,7 +101426,7 @@
   "2504720": {
     "mainAppId": "2504720",
     "gameName": "Space Engineers",
-    "count": 2,
+    "count": 3,
     "includedAppIds": [
       "2504720"
     ]
@@ -102280,7 +102520,7 @@
   "2537590": {
     "mainAppId": "2537590",
     "gameName": "Microsoft Flight Simulator 2024",
-    "count": 876,
+    "count": 877,
     "includedAppIds": [
       "2537590",
       "3341960"
@@ -102401,7 +102641,7 @@
   "2542020": {
     "mainAppId": "2542020",
     "gameName": "Duskfade",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "2542020"
     ]
@@ -102409,7 +102649,7 @@
   "2542120": {
     "mainAppId": "2542120",
     "gameName": "NINJA GAIDEN: Ragebound",
-    "count": 18,
+    "count": 19,
     "includedAppIds": [
       "2542120"
     ]
@@ -102544,6 +102784,14 @@
     "count": 1,
     "includedAppIds": [
       "2545360"
+    ]
+  },
+  "2545430": {
+    "mainAppId": "2545430",
+    "gameName": "Fort Solis",
+    "count": 1,
+    "includedAppIds": [
+      "2545430"
     ]
   },
   "2545710": {
@@ -102782,7 +103030,7 @@
   "2553870": {
     "mainAppId": "2553870",
     "gameName": "The Genesis Order",
-    "count": 82,
+    "count": 84,
     "includedAppIds": [
       "2553870"
     ]
@@ -102926,7 +103174,7 @@
   "2561580": {
     "mainAppId": "2561580",
     "gameName": "Horizon Zero Dawn™ Remastered",
-    "count": 139,
+    "count": 141,
     "includedAppIds": [
       "2561580"
     ]
@@ -103118,7 +103366,7 @@
   "2567870": {
     "mainAppId": "2567870",
     "gameName": "Chained Together",
-    "count": 450,
+    "count": 451,
     "includedAppIds": [
       "2567870"
     ]
@@ -105546,7 +105794,7 @@
   "2651280": {
     "mainAppId": "2651280",
     "gameName": "Marvel's Spider-Man 2",
-    "count": 4401,
+    "count": 4435,
     "includedAppIds": [
       "2651280",
       "3172660"
@@ -105908,7 +106156,7 @@
   "2660460": {
     "mainAppId": "2660460",
     "gameName": "Aviassembly",
-    "count": 62,
+    "count": 63,
     "includedAppIds": [
       "2660460"
     ]
@@ -106754,6 +107002,14 @@
       "2685040"
     ]
   },
+  "2685090": {
+    "mainAppId": "2685090",
+    "gameName": "Ufouria: The Saga 2",
+    "count": 1,
+    "includedAppIds": [
+      "2685090"
+    ]
+  },
   "2685140": {
     "mainAppId": "2685140",
     "gameName": "Apocalypse Party&20 Minutes Till Dawn Free Thanking DLC",
@@ -106895,7 +107151,7 @@
   "2689120": {
     "mainAppId": "2689120",
     "gameName": "Gladio Mori",
-    "count": 26,
+    "count": 27,
     "includedAppIds": [
       "2689120"
     ]
@@ -108032,7 +108288,7 @@
   "2721890": {
     "mainAppId": "2721890",
     "gameName": "Öoo",
-    "count": 3,
+    "count": 4,
     "includedAppIds": [
       "2721890"
     ]
@@ -110246,7 +110502,7 @@
   "2796180": {
     "mainAppId": "2796180",
     "gameName": "SILENT BREATH",
-    "count": 48,
+    "count": 50,
     "includedAppIds": [
       "2796180"
     ]
@@ -110549,7 +110805,7 @@
   "2807960": {
     "mainAppId": "2807960",
     "gameName": "Battlefield™ 6",
-    "count": 619,
+    "count": 620,
     "includedAppIds": [
       "2807960",
       "3574360"
@@ -112355,7 +112611,7 @@
   "2873660": {
     "mainAppId": "2873660",
     "gameName": "Global Rescue",
-    "count": 93,
+    "count": 94,
     "includedAppIds": [
       "2873660"
     ]
@@ -113140,6 +113396,14 @@
       "2905650"
     ]
   },
+  "2906170": {
+    "mainAppId": "2906170",
+    "gameName": "Fetish Club",
+    "count": 1,
+    "includedAppIds": [
+      "2906170"
+    ]
+  },
   "2906370": {
     "mainAppId": "2906370",
     "gameName": "Bright Lord",
@@ -113199,7 +113463,7 @@
   "2909400": {
     "mainAppId": "2909400",
     "gameName": "FINAL FANTASY VII REBIRTH",
-    "count": 177,
+    "count": 178,
     "includedAppIds": [
       "2909400"
     ]
@@ -113337,7 +113601,7 @@
   "2914120": {
     "mainAppId": "2914120",
     "gameName": "Space Engineers",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "2914120"
     ]
@@ -114265,7 +114529,7 @@
   "2947440": {
     "mainAppId": "2947440",
     "gameName": "SILENT HILL f",
-    "count": 469,
+    "count": 470,
     "includedAppIds": [
       "2947440",
       "3516200"
@@ -118333,6 +118597,14 @@
       "3099690"
     ]
   },
+  "3099000": {
+    "mainAppId": "3099000",
+    "gameName": "Guns of Fury",
+    "count": 1,
+    "includedAppIds": [
+      "3099000"
+    ]
+  },
   "3099020": {
     "mainAppId": "3099020",
     "gameName": "Unknown Game",
@@ -119993,6 +120265,14 @@
       "3159380"
     ]
   },
+  "3160390": {
+    "mainAppId": "3160390",
+    "gameName": "Fort Solis",
+    "count": 1,
+    "includedAppIds": [
+      "3160390"
+    ]
+  },
   "3160500": {
     "mainAppId": "3160500",
     "gameName": "Kingdom of Cards",
@@ -120060,7 +120340,7 @@
   "3164500": {
     "mainAppId": "3164500",
     "gameName": "Schedule I",
-    "count": 2840,
+    "count": 2841,
     "includedAppIds": [
       "3164500"
     ]
@@ -120873,7 +121153,7 @@
   "3191050": {
     "mainAppId": "3191050",
     "gameName": "BRAZILIAN DRUG DEALER 3: I OPENED A PORTAL TO HELL IN THE FAVELA TRYING TO REVIVE MIT AIA I NEED TO CLOSE IT",
-    "count": 1,
+    "count": 2,
     "includedAppIds": [
       "3191050"
     ]
@@ -122289,7 +122569,7 @@
   "3240220": {
     "mainAppId": "3240220",
     "gameName": "Grand Theft Auto V Enhanced",
-    "count": 5995,
+    "count": 5998,
     "includedAppIds": [
       "3240220"
     ]
@@ -125044,7 +125324,7 @@
   "3359730": {
     "mainAppId": "3359730",
     "gameName": "Desktop Mate 初音ミク DLC",
-    "count": 37,
+    "count": 38,
     "includedAppIds": [
       "3359730"
     ]
@@ -128004,7 +128284,7 @@
   "3469230": {
     "mainAppId": "3469230",
     "gameName": "Baki Hanma: Blood Arena",
-    "count": 6,
+    "count": 7,
     "includedAppIds": [
       "3469230"
     ]
@@ -129006,7 +129286,7 @@
   "3516180": {
     "mainAppId": "3516180",
     "gameName": "Don't FOOL ME, Beauties!",
-    "count": 5,
+    "count": 6,
     "includedAppIds": [
       "3516180"
     ]
@@ -129158,7 +129438,7 @@
   "3527290": {
     "mainAppId": "3527290",
     "gameName": "PEAK",
-    "count": 743,
+    "count": 744,
     "includedAppIds": [
       "3527290"
     ]
@@ -129614,7 +129894,7 @@
   "3551340": {
     "mainAppId": "3551340",
     "gameName": "Football Manager 26",
-    "count": 427,
+    "count": 429,
     "includedAppIds": [
       "3551340"
     ]
@@ -130885,7 +131165,7 @@
   "3595270": {
     "mainAppId": "3595270",
     "gameName": "Call of Duty®: Modern Warfare® III",
-    "count": 434,
+    "count": 435,
     "includedAppIds": [
       "2731850",
       "2783770",
@@ -131861,7 +132141,7 @@
   "3636770": {
     "mainAppId": "3636770",
     "gameName": "Servant of the Lake",
-    "count": 4,
+    "count": 5,
     "includedAppIds": [
       "3636770"
     ]
@@ -132182,7 +132462,7 @@
   "3656800": {
     "mainAppId": "3656800",
     "gameName": "Train Sim World® 6",
-    "count": 1426,
+    "count": 1427,
     "includedAppIds": [
       "3656800",
       "3656860",
@@ -132334,7 +132614,8 @@
       "4035820",
       "4035830",
       "4035860",
-      "4035940"
+      "4035940",
+      "3879880"
     ]
   },
   "3657210": {
@@ -134126,7 +134407,7 @@
   "3751950": {
     "mainAppId": "3751950",
     "gameName": "Assassin's Creed Black Flag Resynced",
-    "count": 155,
+    "count": 157,
     "includedAppIds": [
       "3751950"
     ]
@@ -135245,6 +135526,14 @@
     "count": 7,
     "includedAppIds": [
       "3818010"
+    ]
+  },
+  "3818020": {
+    "mainAppId": "3818020",
+    "gameName": "Evil School",
+    "count": 2,
+    "includedAppIds": [
+      "3818020"
     ]
   },
   "3818170": {
@@ -137304,6 +137593,14 @@
     "count": 13,
     "includedAppIds": [
       "3942480"
+    ]
+  },
+  "3942710": {
+    "mainAppId": "3942710",
+    "gameName": "Infinite Game Cartridge Collection",
+    "count": 1,
+    "includedAppIds": [
+      "3942710"
     ]
   },
   "3944130": {
