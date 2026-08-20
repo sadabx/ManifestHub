@@ -56,6 +56,7 @@ Frontend (Static HTML/JS)
 |---|---|---|
 | `GET` | `?download={appId}&name={name}&uid={userId}` | Logs download event, deduplicates request, sends Discord alert, and returns a 302 redirect to GitHub repository zip. |
 | `GET` | `?top=true` | Returns live popular downloads directly from Supabase events. |
+| `GET` | `?tost_download={assetType}&asset_name={fileName}` | Logs TOST download event, deduplicates by IP + asset type, sends Discord embed to dedicated TOST webhook. |
 | `OPTIONS` | N/A | CORS preflight handler for cross-origin browser requests. |
 
 **Key Execution Logic (`?download=...`):**
@@ -172,6 +173,7 @@ Browser (profile/index.html)
 | `SUPABASE_URL` | Plaintext Variable | Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Secret | Server-side database access |
 | `DOWNLOAD_WEBHOOK_URL` | Secret | Discord webhook URL for download alerts |
+| `TOST_DOWNLOAD_WEBHOOK_URL` | Secret | Discord webhook URL for TOST download alerts |
 | `DEDUP_KV` | KV Binding | KV namespace for 30s duplicate protection |
 
 5. Deploy the Worker and note the deployed endpoint URL.
@@ -207,7 +209,7 @@ Users logged in with a matching email will receive administrative moderation bad
 | Layer | File / Location | Exposed Keys | Private Secrets |
 |---|---|---|---|
 | **Frontend** | `src/core/config.js` | `SUPABASE_URL`, `SUPABASE_ANON_KEY` | None |
-| **Cloudflare Worker** | Cloudflare Dashboard | `SUPABASE_URL`, `DEDUP_KV` | `SUPABASE_SERVICE_ROLE_KEY`, `DOWNLOAD_WEBHOOK_URL` |
+| **Cloudflare Worker** | Cloudflare Dashboard | `SUPABASE_URL`, `DEDUP_KV` | `SUPABASE_SERVICE_ROLE_KEY`, `DOWNLOAD_WEBHOOK_URL`, `TOST_DOWNLOAD_WEBHOOK_URL` |
 | **GitHub Actions** | Repository Secrets | None | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` |
 
 ---

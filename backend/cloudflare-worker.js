@@ -126,41 +126,22 @@ export default {
         // 3. Write personal history row into public.download_history (logged-in users only).
         if (userId) {
           try {
-            const historyPayload = {
-              user_id: userId,
-              app_id: parseInt(downloadId),
-              download_type: downloadType,
-              game_name: gameName,
-              created_at: new Date().toISOString(),
-            };
-
-            const historyRes = await fetch(
-              `${sbUrl}/rest/v1/download_history?on_conflict=user_id,app_id,download_type`,
-              {
-                method: "POST",
-                headers: {
-                  Authorization: `Bearer ${sbKey}`,
-                  apikey: sbKey,
-                  "Content-Type": "application/json",
-                  Prefer: "resolution=merge-duplicates,return=minimal",
-                },
-                body: JSON.stringify(historyPayload),
+            await fetch(`${sbUrl}/rest/v1/download_history`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${sbKey}`,
+                apikey: sbKey,
+                "Content-Type": "application/json",
               },
-            );
-
-            if (!historyRes.ok) {
-              await fetch(`${sbUrl}/rest/v1/download_history`, {
-                method: "POST",
-                headers: {
-                  Authorization: `Bearer ${sbKey}`,
-                  apikey: sbKey,
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(historyPayload),
-              });
-            }
+              body: JSON.stringify({
+                user_id: userId,
+                app_id: parseInt(downloadId),
+                download_type: downloadType,
+                game_name: gameName,
+              }),
+            });
           } catch (e) {
-            console.error("History upsert failed:", e);
+            console.error("History insert failed:", e);
           }
         }
       })();
@@ -174,6 +155,100 @@ export default {
       return Response.redirect(
         `https://codeload.github.com/SteamAutoCracks/ManifestHub/zip/refs/heads/${downloadId}`,
         302,
+      );
+    }
+
+    // --- JOB 3: TOST DOWNLOAD TRACKING ---
+    if (request.method === "GET" && url.searchParams.get("tost_download")) {
+      const assetType = url.searchParams.get("tost_download");
+      const assetName = url.searchParams.get("asset_name") || assetType;
+
+      // Friendly labels for Discord embed
+      const platformLabels = {
+        "win-setup": { platform: "Windows", label: "Setup EXE", icon: "🪟" },
+        "win-portable": {
+          platform: "Windows",
+          label: "Portable ZIP",
+          icon: "🪟",
+        },
+        appimage: { platform: "Linux", label: "AppImage", icon: "🐧" },
+        "linux-portable": {
+          platform: "Linux",
+          label: "Portable tar.gz",
+          icon: "🐧",
+        },
+        arch: { platform: "Linux", label: "Arch Package", icon: "🐧" },
+        deb: { platform: "Linux", label: "Debian Package", icon: "🐧" },
+        recommended: {
+          platform: "Auto-detected",
+          label: "Recommended",
+          icon: "⭐",
+        },
+      };
+
+      const info = platformLabels[assetType] || {
+        platform: "Unknown",
+        label: assetType,
+        icon: "📦",
+      };
+
+      // Dedup: ip + assetType, 30s window
+      if (env.DEDUP_KV) {
+        try {
+          const dedupKey = `dedup:tost:${userIp}:${assetType}`;
+          const existing = await env.DEDUP_KV.get(dedupKey);
+          if (existing) {
+            return new Response(
+              JSON.stringify({ status: "duplicate_skipped" }),
+              { status: 200, headers: { ...headers, "Content-Type": "application/json" } },
+            );
+          }
+          await env.DEDUP_KV.put(dedupKey, "1", { expirationTtl: 30 });
+        } catch (e) {
+          console.error("KV dedup error (TOST):", e);
+        }
+      }
+
+      const logTask = (async () => {
+        if (env.TOST_DOWNLOAD_WEBHOOK_URL) {
+          try {
+            await fetch(env.TOST_DOWNLOAD_WEBHOOK_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                embeds: [
+                  {
+                    title: `${info.icon} TOST Download`,
+                    color: 0x3fb950,
+                    fields: [
+                      {
+                        name: "Platform",
+                        value: info.platform,
+                        inline: true,
+                      },
+                      { name: "Asset", value: info.label, inline: true },
+                      {
+                        name: "File",
+                        value: `\`${assetName}\``,
+                        inline: false,
+                      },
+                    ],
+                    timestamp: new Date().toISOString(),
+                  },
+                ],
+              }),
+            });
+          } catch (e) {
+            console.error("TOST Discord webhook failed:", e);
+          }
+        }
+      })();
+
+      ctx.waitUntil(logTask);
+
+      return new Response(
+        JSON.stringify({ status: "logged", asset: assetType }),
+        { status: 200, headers: { ...headers, "Content-Type": "application/json" } },
       );
     }
 

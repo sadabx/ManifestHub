@@ -1,6 +1,10 @@
 const TOST_RELEASE_API =
   "https://api.github.com/repos/sadabx/TOST/releases/latest";
 const TOST_RELEASE_PAGE = "https://github.com/sadabx/TOST/releases/latest";
+const WORKER_URL = "https://manifesthub-bridge.trionine.workers.dev/";
+
+// Debounce: ignore repeated tracking signals for the same asset within 30s
+const TRACK_DEBOUNCE_MS = 30_000;
 
 // Extended patterns to dynamically handle Windows assets as well
 const assetPatterns = {
@@ -11,6 +15,31 @@ const assetPatterns = {
   arch: /^tost-[\w.-]+-1-x86_64\.pkg\.tar\.zst$/i,
   deb: /^tost_[\w.-]+_amd64\.deb$/i,
 };
+
+// ---- Download Tracking ----
+
+function trackTostDownload(assetType, assetName) {
+  const now = Date.now();
+  const debounceMap = JSON.parse(
+    sessionStorage.getItem("_tost_dm") || "{}",
+  );
+
+  if (debounceMap[assetType] && now - debounceMap[assetType] < TRACK_DEBOUNCE_MS) return;
+
+  debounceMap[assetType] = now;
+  sessionStorage.setItem("_tost_dm", JSON.stringify(debounceMap));
+
+  const params = new URLSearchParams({
+    tost_download: assetType,
+    asset_name: assetName || assetType,
+  });
+
+  fetch(`${WORKER_URL}?${params}`, { method: "GET", mode: "cors" }).catch(
+    (err) => console.error("TOST tracking error:", err),
+  );
+}
+
+// ---- Platform Detection ----
 
 async function detectPlatform() {
   // Use Client Hints API if supported, fall back to User Agent string
@@ -82,6 +111,42 @@ function updateRecommendation(platform, resolvedAssets) {
   link.href = TOST_RELEASE_PAGE;
 }
 
+// ---- Click Tracking Attachment ----
+
+function attachDownloadTracking() {
+  // Track individual asset download links
+  document.querySelectorAll("[data-release-asset]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const assetType = link.dataset.releaseAsset;
+      const fileName = link.href.split("/").pop() || assetType;
+      trackTostDownload(assetType, fileName);
+      showDownloadToast(toastMessages[assetType] || "Downloading TOST…");
+    });
+  });
+
+  // Track the recommended download button
+  const recommendedBtn = document.querySelector("[data-recommended-download]");
+  if (recommendedBtn) {
+    recommendedBtn.addEventListener("click", () => {
+      // Determine which asset the recommended button points to
+      const href = recommendedBtn.href || "";
+      let assetType = "recommended";
+      for (const [key, pattern] of Object.entries(assetPatterns)) {
+        const fileName = href.split("/").pop() || "";
+        if (pattern.test(fileName)) {
+          assetType = key;
+          break;
+        }
+      }
+      const fileName = href.split("/").pop() || "TOST";
+      trackTostDownload(assetType, fileName);
+      showDownloadToast(toastMessages[assetType] || "Downloading TOST…");
+    });
+  }
+}
+
+// ---- Release Loader ----
+
 async function loadRelease() {
   const platform = await detectPlatform();
   const status = document.querySelector("[data-release-status]");
@@ -122,6 +187,9 @@ async function loadRelease() {
       status.textContent = "Live details unavailable — visit GitHub Releases";
     updateRecommendation(platform, {});
   }
+
+  // Attach tracking after links have been resolved
+  attachDownloadTracking();
 }
 
 document.addEventListener("DOMContentLoaded", loadRelease);
