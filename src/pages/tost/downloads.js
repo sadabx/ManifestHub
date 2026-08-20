@@ -34,7 +34,7 @@ function trackTostDownload(assetType, assetName) {
     asset_name: assetName || assetType,
   });
 
-  fetch(`${WORKER_URL}?${params}`, { method: "GET", mode: "cors" }).catch(
+  fetch(`${WORKER_URL}?${params}`, { method: "GET", mode: "no-cors" }).catch(
     (err) => console.error("TOST tracking error:", err),
   );
 }

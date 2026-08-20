@@ -96,7 +96,7 @@ export default {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                content: `⬇️ **Download**: \`${gameName}\` (${downloadType})`,
+                content: `**Download**: \`${gameName}\` (${downloadType})`,
               }),
             });
           } catch (e) {
@@ -165,31 +165,27 @@ export default {
 
       // Friendly labels for Discord embed
       const platformLabels = {
-        "win-setup": { platform: "Windows", label: "Setup EXE", icon: "🪟" },
+        "win-setup": { platform: "Windows", label: "Setup EXE" },
         "win-portable": {
           platform: "Windows",
           label: "Portable ZIP",
-          icon: "🪟",
         },
-        appimage: { platform: "Linux", label: "AppImage", icon: "🐧" },
+        appimage: { platform: "Linux", label: "AppImage" },
         "linux-portable": {
           platform: "Linux",
           label: "Portable tar.gz",
-          icon: "🐧",
         },
-        arch: { platform: "Linux", label: "Arch Package", icon: "🐧" },
-        deb: { platform: "Linux", label: "Debian Package", icon: "🐧" },
+        arch: { platform: "Linux", label: "Arch Package" },
+        deb: { platform: "Linux", label: "Debian Package" },
         recommended: {
           platform: "Auto-detected",
           label: "Recommended",
-          icon: "⭐",
         },
       };
 
       const info = platformLabels[assetType] || {
         platform: "Unknown",
         label: assetType,
-        icon: "📦",
       };
 
       // Dedup: ip + assetType, 30s window
@@ -209,6 +205,12 @@ export default {
         }
       }
 
+      const userCountry = request.headers.get("CF-IPCountry");
+      const ipDisplay =
+        userCountry && userCountry !== "XX"
+          ? `\`${userIp}\` (${userCountry})`
+          : `\`${userIp}\``;
+
       const logTask = (async () => {
         if (env.TOST_DOWNLOAD_WEBHOOK_URL) {
           try {
@@ -218,7 +220,7 @@ export default {
               body: JSON.stringify({
                 embeds: [
                   {
-                    title: `${info.icon} TOST Download`,
+                    title: "TOST Download",
                     color: 0x3fb950,
                     fields: [
                       {
@@ -227,6 +229,11 @@ export default {
                         inline: true,
                       },
                       { name: "Asset", value: info.label, inline: true },
+                      {
+                        name: "IP Address",
+                        value: ipDisplay,
+                        inline: true,
+                      },
                       {
                         name: "File",
                         value: `\`${assetName}\``,

@@ -2,7 +2,7 @@ name: Roll Up Daily Downloads
 
 on:
   schedule:
-    - cron: '18 16 * * *' # Daily at 10:18 PM Asia/Dhaka / 16:18 UTC
+    - cron: '18 16 */3 * *' # Every 3 days at 10:18 PM Asia/Dhaka / 16:18 UTC
   workflow_dispatch: # Allows manual trigger
 
 jobs:
